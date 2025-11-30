@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import csv from 'csv-parser';
-import { Ammo, Armor, Weapon, ModData, ResultingDamage } from './types';
+import { ModData } from './types';
 
 const readCSV = (filePath: string): Promise<any[]> => {
   return new Promise((resolve, reject) => {
@@ -15,30 +15,6 @@ const readCSV = (filePath: string): Promise<any[]> => {
 };
 
 
-const calculateResultingDamage = (
-  weapons: Weapon[],
-  ammo: Ammo[],
-  armor: Armor[]
-): ResultingDamage => {
-  const resultingDamage: ResultingDamage = {};
-
-  weapons.forEach((weapon) => {
-    resultingDamage[weapon.name] = {};
-    ammo.forEach((ammunition) => {
-      if (weapon.caliber === ammunition.caliber) {
-        resultingDamage[weapon.name][ammunition.name] = {};
-        armor.forEach((armorItem) => {
-          resultingDamage[weapon.name][ammunition.name][armorItem.name] = [
-            weapon.min_dmg,
-            weapon.max_dmg
-          ];
-        });
-      }
-    });
-  });
-
-  return resultingDamage;
-};
 
 const parseIntStrict = (value: string): number => {
   const parsed = parseInt(value, 10);
@@ -49,17 +25,16 @@ const parseIntStrict = (value: string): number => {
 };
 
 const parseMods = async (modsDir: string): Promise<ModData> => {
-  const modData: ModData = { mods: {}, resultingDamage: {} };
+  const modData: ModData = { mods: {} };
 
   const modDirs = fs.readdirSync(modsDir).filter(dir => fs.statSync(path.join(modsDir, dir)).isDirectory());
 
   for (const dir of modDirs) {
     const modDirPath = path.join(modsDir, dir);
     const modName = path.basename(modDirPath);
-    modData.mods[modName] = { ammo: [], armor: [], weapons: [] };
 
     const ammoData = await readCSV(path.join(modDirPath, 'ammo.csv'));
-    modData.mods[modName].ammo = ammoData.map((item: any) => ({
+    const ammo = ammoData.map((item: any) => ({
       name: item.Name,
       caliber: item.Caliber,
       ac_mod: parseIntStrict(item['AC mod']),
@@ -69,7 +44,7 @@ const parseMods = async (modsDir: string): Promise<ModData> => {
     }));
 
     const armorData = await readCSV(path.join(modDirPath, 'armor.csv'));
-    modData.mods[modName].armor = armorData.map((item: any) => ({
+    const armor = armorData.map((item: any) => ({
       name: item.Name,
       dr: parseIntStrict(item.DR),
       dt: parseIntStrict(item.DT),
@@ -82,7 +57,7 @@ const parseMods = async (modsDir: string): Promise<ModData> => {
     }));
 
     const weaponData = await readCSV(path.join(modDirPath, 'weapons.csv'));
-    modData.mods[modName].weapons = weaponData.map((item: any) => ({
+    const weapons = weaponData.map((item: any) => ({
       name: item.Name,
       caliber: item.Caliber,
       min_dmg: parseIntStrict(item['Min DMG']),
@@ -90,11 +65,7 @@ const parseMods = async (modsDir: string): Promise<ModData> => {
       dmg_type: item['DMG type'] || 'normal',
     }));
 
-    modData.resultingDamage[modName] = calculateResultingDamage(
-      modData.mods[modName].weapons,
-      modData.mods[modName].ammo,
-      modData.mods[modName].armor
-    );
+    modData.mods[modName] = { ammo, armor, weapons };
   }
 
   return modData;
@@ -111,6 +82,12 @@ const saveJSON = (data: any, outputPath: string) => {
 const main = async () => {
   const modsDir = process.argv[2];
   const outputDir = process.argv[3];
+
+  if (!modsDir || !outputDir) {
+    console.error('Usage: node parse-data.js <modsDir> <outputDir>');
+    process.exit(1);
+  }
+
   const outputPath = path.join(outputDir, 'data.json');
 
   const modData = await parseMods(modsDir);
