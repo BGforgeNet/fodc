@@ -1,4 +1,4 @@
 Name,Caliber,Min DMG,Max DMG,DMG type
-10mm pistol,10mm,10,24,
-Desert Eagle,.44,20,32,
-.44 Magnum,.44,24,36,
+10mm pistol,10mm,5,12,
+Desert Eagle,.44,10,16,
+.44 Magnum,.44,12,18,

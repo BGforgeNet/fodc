@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ModData } from './types';
 import DamageTable from './components/DamageTable';
+import { modOrder, modConfigs } from './modConfig';
 
 const fetchModData = async (): Promise<ModData> => {
     const response = await fetch('/data/out/data.json');
@@ -42,17 +43,19 @@ const App = () => {
             )}
 
             {data &&
-                Object.keys(data.mods).map((modName) => {
-                    const mod = data.mods[modName];
-                    if (!mod) return null;
+                modOrder.map((modId) => {
+                    const mod = data.mods[modId];
+                    const config = modConfigs[modId];
+                    if (!mod || !config) return null;
 
                     return (
                         <DamageTable
-                            key={modName}
-                            modName={modName}
+                            key={modId}
+                            modName={config.name}
                             weapons={mod.weapons}
                             ammo={mod.ammo}
                             armor={mod.armor}
+                            formula={config.formula}
                         />
                     );
                 })}
