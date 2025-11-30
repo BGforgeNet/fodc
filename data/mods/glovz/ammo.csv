@@ -1,0 +1,25 @@
+Name,Caliber,AC mod,DR mod,DMG mod,DMG type
+.223 FMJ,.223,-15,-15,1,
+.44 Magnum FMJ,.44,-5,-10,1,
+.44 Magnum JHP,.44,0,-10,2,
+.45 caliber,.45,0,-5,2,
+2mm EC,2mm,-25,-20,0.333,
+4.7mm caseless,4.7mm,-5,-25,0.5,
+5mm AP,5mm,-5,-15,0.5,
+5mm JHP,5mm,0,-15,2,
+7.62mm,7.62mm,-10,-20,1,
+9mm,9mm,0,0,2,
+9mm ball,9mm,0,0,1,
+10mm AP,10mm,-5,0,0.5,
+10mm JHP,10mm,0,0,2,
+14mm AP,14mm,-5,-30,0.5,
+BBs,BBs,0,0,1,
+12 gauge shotgun shells,12ga,-15,0,3,
+Explosive rocket,Rocket,-10,0,1,explosive
+Rocket AP,Rocket,-10,0,0.5,explosive
+Flamethrower fuel,Flamer,-20,0,1,fire
+Flamethrower fuel Mk II,Flamer,-20,-15,1,fire
+HN Needler cartridge,Needler,-20,-5,1,
+HN AP Needler cartridge,Needler,-20,-5,0.5,
+Microfusion cell,MFC,-20,0,2,laser
+Small energy cell,SEC,-20,0,2,laser

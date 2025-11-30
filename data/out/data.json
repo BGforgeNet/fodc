@@ -3,6 +3,94 @@
     "vanilla": {
       "ammo": [
         {
+          "name": ".223 FMJ",
+          "caliber": ".223",
+          "ac_mod": -20,
+          "dr_mod": -20,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".44 Magnum FMJ",
+          "caliber": ".44",
+          "ac_mod": 0,
+          "dr_mod": -20,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".44 Magnum JHP",
+          "caliber": ".44",
+          "ac_mod": 0,
+          "dr_mod": 20,
+          "dmg_mod": 2,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".45 caliber",
+          "caliber": ".45",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "2mm EC",
+          "caliber": "2mm",
+          "ac_mod": -30,
+          "dr_mod": -20,
+          "dmg_mod": 1.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "4.7mm caseless",
+          "caliber": "4.7mm",
+          "ac_mod": -5,
+          "dr_mod": -10,
+          "dmg_mod": 1.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "5mm AP",
+          "caliber": "5mm",
+          "ac_mod": 0,
+          "dr_mod": -35,
+          "dmg_mod": 0.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "5mm JHP",
+          "caliber": "5mm",
+          "ac_mod": 0,
+          "dr_mod": 35,
+          "dmg_mod": 2,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "7.62mm",
+          "caliber": "7.62mm",
+          "ac_mod": -5,
+          "dr_mod": -10,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "9mm",
+          "caliber": "9mm",
+          "ac_mod": 0,
+          "dr_mod": 10,
+          "dmg_mod": 0.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "9mm ball",
+          "caliber": "9mm",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
           "name": "10mm AP",
           "caliber": "10mm",
           "ac_mod": 0,
@@ -19,20 +107,92 @@
           "dmg_type": "normal"
         },
         {
-          "name": ".44 FMJ",
-          "caliber": ".44",
+          "name": "14mm AP",
+          "caliber": "14mm",
           "ac_mod": 0,
-          "dr_mod": -20,
+          "dr_mod": -50,
+          "dmg_mod": 0.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "BBs",
+          "caliber": "BBs",
+          "ac_mod": 0,
+          "dr_mod": 0,
           "dmg_mod": 1,
           "dmg_type": "normal"
         },
         {
-          "name": ".44 JHP",
-          "caliber": ".44",
+          "name": "12 gauge shotgun shells",
+          "caliber": "12ga",
+          "ac_mod": -10,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Explosive rocket",
+          "caliber": "Rocket",
           "ac_mod": 0,
-          "dr_mod": 20,
+          "dr_mod": -25,
+          "dmg_mod": 1,
+          "dmg_type": "explosive"
+        },
+        {
+          "name": "Rocket AP",
+          "caliber": "Rocket",
+          "ac_mod": -15,
+          "dr_mod": -50,
+          "dmg_mod": 1,
+          "dmg_type": "explosive"
+        },
+        {
+          "name": "Flamethrower fuel",
+          "caliber": "Flamer",
+          "ac_mod": -20,
+          "dr_mod": 25,
+          "dmg_mod": 1,
+          "dmg_type": "fire"
+        },
+        {
+          "name": "Flamethrower fuel Mk II",
+          "caliber": "Flamer",
+          "ac_mod": -20,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "fire"
+        },
+        {
+          "name": "HN Needler cartridge",
+          "caliber": "Needler",
+          "ac_mod": -10,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "HN AP Needler cartridge",
+          "caliber": "Needler",
+          "ac_mod": -10,
+          "dr_mod": 0,
           "dmg_mod": 2,
           "dmg_type": "normal"
+        },
+        {
+          "name": "Microfusion cell",
+          "caliber": "MFC",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Small energy cell",
+          "caliber": "SEC",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "laser"
         }
       ],
       "armor": [
@@ -48,95 +208,204 @@
           "dt_laser": 0
         },
         {
-          "name": "Leather Jacket",
+          "name": "Leather jacket",
           "dr": 20,
           "dt": 0,
-          "dr_fire": 0,
+          "dr_fire": 10,
           "dt_fire": 0,
-          "dr_plasma": 0,
+          "dr_plasma": 10,
           "dt_plasma": 0,
-          "dr_laser": 0,
+          "dr_laser": 20,
           "dt_laser": 0
         },
         {
-          "name": "Combat Leather Jacket",
-          "dr": 18,
+          "name": "Robes",
+          "dr": 20,
+          "dt": 0,
+          "dr_fire": 10,
+          "dt_fire": 0,
+          "dr_plasma": 10,
+          "dt_plasma": 0,
+          "dr_laser": 25,
+          "dt_laser": 0
+        },
+        {
+          "name": "Combat leather jacket",
+          "dr": 30,
           "dt": 2,
-          "dr_fire": 0,
-          "dt_fire": 0,
-          "dr_plasma": 0,
+          "dr_fire": 25,
+          "dt_fire": 2,
+          "dr_plasma": 10,
           "dt_plasma": 0,
-          "dr_laser": 0,
+          "dr_laser": 20,
           "dt_laser": 0
         },
         {
-          "name": "Leather Armor",
+          "name": "Leather armor",
           "dr": 25,
           "dt": 2,
-          "dr_fire": 0,
+          "dr_fire": 20,
           "dt_fire": 0,
-          "dr_plasma": 0,
+          "dr_plasma": 10,
           "dt_plasma": 0,
-          "dr_laser": 0,
+          "dr_laser": 20,
           "dt_laser": 0
         },
         {
-          "name": "Leather Armor MKII",
+          "name": "Leather armor Mk II",
           "dr": 25,
           "dt": 3,
-          "dr_fire": 0,
-          "dt_fire": 0,
-          "dr_plasma": 0,
-          "dt_plasma": 0,
-          "dr_laser": 0,
-          "dt_laser": 0
+          "dr_fire": 25,
+          "dt_fire": 1,
+          "dr_plasma": 10,
+          "dt_plasma": 1,
+          "dr_laser": 20,
+          "dt_laser": 1
         },
         {
-          "name": "Metal Armor",
+          "name": "Metal armor",
           "dr": 30,
           "dt": 4,
-          "dr_fire": 0,
-          "dt_fire": 0,
-          "dr_plasma": 0,
-          "dt_plasma": 0,
-          "dr_laser": 0,
-          "dt_laser": 0
+          "dr_fire": 10,
+          "dt_fire": 4,
+          "dr_plasma": 20,
+          "dt_plasma": 4,
+          "dr_laser": 75,
+          "dt_laser": 6
         },
         {
-          "name": "Metal Armor MKII",
+          "name": "Metal armor Mk II",
           "dr": 35,
           "dt": 4,
-          "dr_fire": 0,
-          "dt_fire": 0,
-          "dr_plasma": 0,
-          "dt_plasma": 0,
-          "dr_laser": 0,
-          "dt_laser": 0
+          "dr_fire": 15,
+          "dt_fire": 4,
+          "dr_plasma": 25,
+          "dt_plasma": 4,
+          "dr_laser": 80,
+          "dt_laser": 7
         },
         {
-          "name": "Tesla Armor",
+          "name": "Tesla armor",
           "dr": 20,
           "dt": 4,
-          "dr_fire": 0,
-          "dt_fire": 0,
-          "dr_plasma": 0,
-          "dt_plasma": 0,
-          "dr_laser": 0,
-          "dt_laser": 0
+          "dr_fire": 10,
+          "dt_fire": 4,
+          "dr_plasma": 80,
+          "dt_plasma": 10,
+          "dr_laser": 90,
+          "dt_laser": 19
         },
         {
-          "name": "Combat Armor",
+          "name": "Combat armor",
           "dr": 40,
           "dt": 5,
-          "dr_fire": 0,
-          "dt_fire": 0,
-          "dr_plasma": 0,
-          "dt_plasma": 0,
-          "dr_laser": 0,
-          "dt_laser": 0
+          "dr_fire": 30,
+          "dt_fire": 4,
+          "dr_plasma": 50,
+          "dt_plasma": 4,
+          "dr_laser": 60,
+          "dt_laser": 8
+        },
+        {
+          "name": "Bridgekeeper's robes",
+          "dr": 40,
+          "dt": 5,
+          "dr_fire": 30,
+          "dt_fire": 4,
+          "dr_plasma": 50,
+          "dt_plasma": 4,
+          "dr_laser": 60,
+          "dt_laser": 8
+        },
+        {
+          "name": "Combat armor Mk II",
+          "dr": 40,
+          "dt": 6,
+          "dr_fire": 35,
+          "dt_fire": 5,
+          "dr_plasma": 50,
+          "dt_plasma": 9,
+          "dr_laser": 65,
+          "dt_laser": 9
+        },
+        {
+          "name": "Brotherhood armor",
+          "dr": 40,
+          "dt": 8,
+          "dr_fire": 50,
+          "dt_fire": 7,
+          "dr_plasma": 60,
+          "dt_plasma": 7,
+          "dr_laser": 70,
+          "dt_laser": 8
+        },
+        {
+          "name": "Power armor",
+          "dr": 40,
+          "dt": 12,
+          "dr_fire": 60,
+          "dt_fire": 12,
+          "dr_plasma": 40,
+          "dt_plasma": 10,
+          "dr_laser": 80,
+          "dt_laser": 18
+        },
+        {
+          "name": "Hardened power armor",
+          "dr": 50,
+          "dt": 13,
+          "dr_fire": 70,
+          "dt_fire": 14,
+          "dr_plasma": 50,
+          "dt_plasma": 13,
+          "dr_laser": 90,
+          "dt_laser": 19
+        },
+        {
+          "name": "Advanced power armor",
+          "dr": 55,
+          "dt": 15,
+          "dr_fire": 70,
+          "dt_fire": 16,
+          "dr_plasma": 60,
+          "dt_plasma": 15,
+          "dr_laser": 90,
+          "dt_laser": 19
+        },
+        {
+          "name": "Advanced power armor Mk II",
+          "dr": 60,
+          "dt": 18,
+          "dr_fire": 70,
+          "dt_fire": 16,
+          "dr_plasma": 60,
+          "dt_plasma": 18,
+          "dr_laser": 90,
+          "dt_laser": 19
         }
       ],
       "weapons": [
+        {
+          "name": "10mm SMG",
+          "caliber": "10mm",
+          "min_dmg": 5,
+          "max_dmg": 12,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".223 pistol",
+          "caliber": ".223",
+          "min_dmg": 20,
+          "max_dmg": 30,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "9mm Mauser",
+          "caliber": "9mm",
+          "min_dmg": 5,
+          "max_dmg": 10,
+          "dmg_type": "normal"
+        },
         {
           "name": "10mm pistol",
           "caliber": "10mm",
@@ -145,41 +414,299 @@
           "dmg_type": "normal"
         },
         {
-          "name": "Desert Eagle",
+          "name": "14mm pistol",
+          "caliber": "14mm",
+          "min_dmg": 12,
+          "max_dmg": 22,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Desert Eagle .44",
           "caliber": ".44",
           "min_dmg": 10,
           "max_dmg": 16,
           "dmg_type": "normal"
         },
         {
-          "name": ".44 Magnum",
+          "name": ".44 Magnum revolver",
           "caliber": ".44",
           "min_dmg": 12,
           "max_dmg": 18,
           "dmg_type": "normal"
+        },
+        {
+          "name": "Needler pistol",
+          "caliber": "Needler",
+          "min_dmg": 12,
+          "max_dmg": 24,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Gauss pistol",
+          "caliber": "2mm",
+          "min_dmg": 22,
+          "max_dmg": 32,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Zip gun",
+          "caliber": "10mm",
+          "min_dmg": 5,
+          "max_dmg": 12,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Tommy gun",
+          "caliber": ".45",
+          "min_dmg": 3,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "M3A1 Grease Gun SMG",
+          "caliber": ".45",
+          "min_dmg": 10,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K P90c",
+          "caliber": "10mm",
+          "min_dmg": 12,
+          "max_dmg": 16,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K G11",
+          "caliber": "4.7mm",
+          "min_dmg": 10,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K G11E",
+          "caliber": "4.7mm",
+          "min_dmg": 13,
+          "max_dmg": 23,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Assault rifle",
+          "caliber": "5mm",
+          "min_dmg": 8,
+          "max_dmg": 16,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "XL70E3",
+          "caliber": "5mm",
+          "min_dmg": 12,
+          "max_dmg": 19,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "FN FAL",
+          "caliber": "7.62mm",
+          "min_dmg": 9,
+          "max_dmg": 18,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Hunting rifle",
+          "caliber": ".223",
+          "min_dmg": 8,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Pipe rifle",
+          "caliber": "10mm",
+          "min_dmg": 5,
+          "max_dmg": 12,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Red Ryder BB gun",
+          "caliber": "BBs",
+          "min_dmg": 1,
+          "max_dmg": 3,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Sniper rifle",
+          "caliber": ".223",
+          "min_dmg": 14,
+          "max_dmg": 34,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Gauss rifle",
+          "caliber": "2mm",
+          "min_dmg": 32,
+          "max_dmg": 43,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Combat shotgun",
+          "caliber": "12ga",
+          "min_dmg": 15,
+          "max_dmg": 25,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K CAWS",
+          "caliber": "12ga",
+          "min_dmg": 15,
+          "max_dmg": 25,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Pancor Jackhammer",
+          "caliber": "12ga",
+          "min_dmg": 18,
+          "max_dmg": 29,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Shotgun",
+          "caliber": "12ga",
+          "min_dmg": 12,
+          "max_dmg": 22,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Sawed-off shotgun",
+          "caliber": "12ga",
+          "min_dmg": 12,
+          "max_dmg": 24,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Minigun",
+          "caliber": "5mm",
+          "min_dmg": 7,
+          "max_dmg": 11,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Avenger minigun",
+          "caliber": "5mm",
+          "min_dmg": 10,
+          "max_dmg": 14,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Vindicator minigun",
+          "caliber": "4.7mm",
+          "min_dmg": 14,
+          "max_dmg": 19,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Bozar",
+          "caliber": ".223",
+          "min_dmg": 25,
+          "max_dmg": 35,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "M60",
+          "caliber": "7.62mm",
+          "min_dmg": 18,
+          "max_dmg": 26,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Flamer",
+          "caliber": "Flamer",
+          "min_dmg": 45,
+          "max_dmg": 90,
+          "dmg_type": "fire"
+        },
+        {
+          "name": "Rocket launcher",
+          "caliber": "Rocket",
+          "min_dmg": 35,
+          "max_dmg": 100,
+          "dmg_type": "explosive"
+        },
+        {
+          "name": "Alien blaster",
+          "caliber": "SEC",
+          "min_dmg": 30,
+          "max_dmg": 90,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Laser pistol",
+          "caliber": "SEC",
+          "min_dmg": 10,
+          "max_dmg": 22,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Plasma pistol",
+          "caliber": "SEC",
+          "min_dmg": 15,
+          "max_dmg": 35,
+          "dmg_type": "plasma"
+        },
+        {
+          "name": "Pulse pistol",
+          "caliber": "SEC",
+          "min_dmg": 32,
+          "max_dmg": 46,
+          "dmg_type": "electrical"
+        },
+        {
+          "name": "Gatling laser",
+          "caliber": "MFC",
+          "min_dmg": 20,
+          "max_dmg": 40,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Laser rifle",
+          "caliber": "MFC",
+          "min_dmg": 25,
+          "max_dmg": 50,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Plasma rifle",
+          "caliber": "MFC",
+          "min_dmg": 30,
+          "max_dmg": 65,
+          "dmg_type": "plasma"
+        },
+        {
+          "name": "Turbo plasma rifle",
+          "caliber": "MFC",
+          "min_dmg": 35,
+          "max_dmg": 70,
+          "dmg_type": "plasma"
+        },
+        {
+          "name": "Pulse rifle",
+          "caliber": "MFC",
+          "min_dmg": 54,
+          "max_dmg": 78,
+          "dmg_type": "electrical"
         }
       ]
     },
     "fo2tweaks": {
       "ammo": [
         {
-          "name": "10mm AP",
-          "caliber": "10mm",
-          "ac_mod": 0,
-          "dr_mod": -25,
-          "dmg_mod": 0.5,
+          "name": ".223 FMJ",
+          "caliber": ".223",
+          "ac_mod": -20,
+          "dr_mod": -20,
+          "dmg_mod": 1,
           "dmg_type": "normal"
         },
         {
-          "name": "10mm JHP",
-          "caliber": "10mm",
-          "ac_mod": 0,
-          "dr_mod": 25,
-          "dmg_mod": 2,
-          "dmg_type": "normal"
-        },
-        {
-          "name": ".44 FMJ",
+          "name": ".44 Magnum FMJ",
           "caliber": ".44",
           "ac_mod": 0,
           "dr_mod": -20,
@@ -187,12 +714,180 @@
           "dmg_type": "normal"
         },
         {
-          "name": ".44 JHP",
+          "name": ".44 Magnum JHP",
           "caliber": ".44",
           "ac_mod": 0,
-          "dr_mod": 20,
+          "dr_mod": 35,
           "dmg_mod": 2,
           "dmg_type": "normal"
+        },
+        {
+          "name": ".45 caliber",
+          "caliber": ".45",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "2mm EC",
+          "caliber": "2mm",
+          "ac_mod": -30,
+          "dr_mod": -20,
+          "dmg_mod": 1.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "4.7mm caseless",
+          "caliber": "4.7mm",
+          "ac_mod": -5,
+          "dr_mod": -10,
+          "dmg_mod": 1.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "5mm AP",
+          "caliber": "5mm",
+          "ac_mod": 0,
+          "dr_mod": -35,
+          "dmg_mod": 0.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "5mm JHP",
+          "caliber": "5mm",
+          "ac_mod": 0,
+          "dr_mod": 35,
+          "dmg_mod": 2,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "7.62mm",
+          "caliber": "7.62mm",
+          "ac_mod": -5,
+          "dr_mod": -20,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "9mm",
+          "caliber": "9mm",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 0.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "9mm ball",
+          "caliber": "9mm",
+          "ac_mod": 0,
+          "dr_mod": -20,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "10mm AP",
+          "caliber": "10mm",
+          "ac_mod": 0,
+          "dr_mod": -35,
+          "dmg_mod": 0.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "10mm JHP",
+          "caliber": "10mm",
+          "ac_mod": 0,
+          "dr_mod": 35,
+          "dmg_mod": 2,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "14mm AP",
+          "caliber": "14mm",
+          "ac_mod": 0,
+          "dr_mod": -35,
+          "dmg_mod": 0.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "BBs",
+          "caliber": "BBs",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "12 gauge shotgun shells",
+          "caliber": "12ga",
+          "ac_mod": -10,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Explosive rocket",
+          "caliber": "Rocket",
+          "ac_mod": 0,
+          "dr_mod": 35,
+          "dmg_mod": 1,
+          "dmg_type": "explosive"
+        },
+        {
+          "name": "Rocket AP",
+          "caliber": "Rocket",
+          "ac_mod": -15,
+          "dr_mod": -35,
+          "dmg_mod": 1,
+          "dmg_type": "explosive"
+        },
+        {
+          "name": "Flamethrower fuel",
+          "caliber": "Flamer",
+          "ac_mod": -20,
+          "dr_mod": 25,
+          "dmg_mod": 1,
+          "dmg_type": "fire"
+        },
+        {
+          "name": "Flamethrower fuel Mk II",
+          "caliber": "Flamer",
+          "ac_mod": -20,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "fire"
+        },
+        {
+          "name": "HN Needler cartridge",
+          "caliber": "Needler",
+          "ac_mod": -10,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "HN AP Needler cartridge",
+          "caliber": "Needler",
+          "ac_mod": -10,
+          "dr_mod": -35,
+          "dmg_mod": 2,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Microfusion cell",
+          "caliber": "MFC",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Small energy cell",
+          "caliber": "SEC",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "laser"
         }
       ],
       "armor": [
@@ -208,8 +903,692 @@
           "dt_laser": 0
         },
         {
-          "name": "Leather Jacket",
+          "name": "Leather jacket",
           "dr": 20,
+          "dt": 0,
+          "dr_fire": 10,
+          "dt_fire": 0,
+          "dr_plasma": 10,
+          "dt_plasma": 0,
+          "dr_laser": 20,
+          "dt_laser": 0
+        },
+        {
+          "name": "Robes",
+          "dr": 20,
+          "dt": 0,
+          "dr_fire": 10,
+          "dt_fire": 0,
+          "dr_plasma": 10,
+          "dt_plasma": 0,
+          "dr_laser": 25,
+          "dt_laser": 0
+        },
+        {
+          "name": "Combat leather jacket",
+          "dr": 30,
+          "dt": 2,
+          "dr_fire": 25,
+          "dt_fire": 2,
+          "dr_plasma": 10,
+          "dt_plasma": 0,
+          "dr_laser": 20,
+          "dt_laser": 0
+        },
+        {
+          "name": "Leather armor",
+          "dr": 25,
+          "dt": 2,
+          "dr_fire": 20,
+          "dt_fire": 0,
+          "dr_plasma": 10,
+          "dt_plasma": 0,
+          "dr_laser": 20,
+          "dt_laser": 0
+        },
+        {
+          "name": "Leather armor Mk II",
+          "dr": 25,
+          "dt": 3,
+          "dr_fire": 25,
+          "dt_fire": 1,
+          "dr_plasma": 10,
+          "dt_plasma": 1,
+          "dr_laser": 20,
+          "dt_laser": 1
+        },
+        {
+          "name": "Metal armor",
+          "dr": 30,
+          "dt": 4,
+          "dr_fire": 10,
+          "dt_fire": 4,
+          "dr_plasma": 20,
+          "dt_plasma": 4,
+          "dr_laser": 75,
+          "dt_laser": 6
+        },
+        {
+          "name": "Metal armor Mk II",
+          "dr": 35,
+          "dt": 4,
+          "dr_fire": 15,
+          "dt_fire": 4,
+          "dr_plasma": 25,
+          "dt_plasma": 4,
+          "dr_laser": 80,
+          "dt_laser": 7
+        },
+        {
+          "name": "Tesla armor",
+          "dr": 20,
+          "dt": 4,
+          "dr_fire": 10,
+          "dt_fire": 4,
+          "dr_plasma": 80,
+          "dt_plasma": 10,
+          "dr_laser": 90,
+          "dt_laser": 19
+        },
+        {
+          "name": "Combat armor",
+          "dr": 40,
+          "dt": 5,
+          "dr_fire": 30,
+          "dt_fire": 4,
+          "dr_plasma": 50,
+          "dt_plasma": 4,
+          "dr_laser": 60,
+          "dt_laser": 8
+        },
+        {
+          "name": "Bridgekeeper's robes",
+          "dr": 40,
+          "dt": 5,
+          "dr_fire": 30,
+          "dt_fire": 4,
+          "dr_plasma": 50,
+          "dt_plasma": 4,
+          "dr_laser": 60,
+          "dt_laser": 8
+        },
+        {
+          "name": "Combat armor Mk II",
+          "dr": 40,
+          "dt": 6,
+          "dr_fire": 35,
+          "dt_fire": 5,
+          "dr_plasma": 50,
+          "dt_plasma": 9,
+          "dr_laser": 65,
+          "dt_laser": 9
+        },
+        {
+          "name": "Brotherhood armor",
+          "dr": 40,
+          "dt": 8,
+          "dr_fire": 50,
+          "dt_fire": 7,
+          "dr_plasma": 60,
+          "dt_plasma": 7,
+          "dr_laser": 70,
+          "dt_laser": 8
+        },
+        {
+          "name": "Power armor",
+          "dr": 40,
+          "dt": 12,
+          "dr_fire": 60,
+          "dt_fire": 12,
+          "dr_plasma": 40,
+          "dt_plasma": 10,
+          "dr_laser": 80,
+          "dt_laser": 18
+        },
+        {
+          "name": "Hardened power armor",
+          "dr": 50,
+          "dt": 13,
+          "dr_fire": 70,
+          "dt_fire": 14,
+          "dr_plasma": 50,
+          "dt_plasma": 13,
+          "dr_laser": 90,
+          "dt_laser": 19
+        },
+        {
+          "name": "Advanced power armor",
+          "dr": 55,
+          "dt": 15,
+          "dr_fire": 70,
+          "dt_fire": 16,
+          "dr_plasma": 60,
+          "dt_plasma": 15,
+          "dr_laser": 90,
+          "dt_laser": 19
+        },
+        {
+          "name": "Advanced power armor Mk II",
+          "dr": 60,
+          "dt": 18,
+          "dr_fire": 70,
+          "dt_fire": 16,
+          "dr_plasma": 60,
+          "dt_plasma": 18,
+          "dr_laser": 90,
+          "dt_laser": 19
+        }
+      ],
+      "weapons": [
+        {
+          "name": "10mm SMG",
+          "caliber": "10mm",
+          "min_dmg": 5,
+          "max_dmg": 12,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".223 pistol",
+          "caliber": ".223",
+          "min_dmg": 20,
+          "max_dmg": 30,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "9mm Mauser",
+          "caliber": "9mm",
+          "min_dmg": 5,
+          "max_dmg": 10,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "10mm pistol",
+          "caliber": "10mm",
+          "min_dmg": 5,
+          "max_dmg": 12,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "14mm pistol",
+          "caliber": "14mm",
+          "min_dmg": 12,
+          "max_dmg": 22,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Desert Eagle .44",
+          "caliber": ".44",
+          "min_dmg": 10,
+          "max_dmg": 16,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".44 Magnum revolver",
+          "caliber": ".44",
+          "min_dmg": 12,
+          "max_dmg": 18,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Needler pistol",
+          "caliber": "Needler",
+          "min_dmg": 12,
+          "max_dmg": 24,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Gauss pistol",
+          "caliber": "2mm",
+          "min_dmg": 22,
+          "max_dmg": 32,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Zip gun",
+          "caliber": "10mm",
+          "min_dmg": 5,
+          "max_dmg": 12,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Tommy gun",
+          "caliber": ".45",
+          "min_dmg": 3,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "M3A1 Grease Gun SMG",
+          "caliber": ".45",
+          "min_dmg": 10,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K P90c",
+          "caliber": "10mm",
+          "min_dmg": 12,
+          "max_dmg": 16,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K G11",
+          "caliber": "4.7mm",
+          "min_dmg": 10,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K G11E",
+          "caliber": "4.7mm",
+          "min_dmg": 13,
+          "max_dmg": 23,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Assault rifle",
+          "caliber": "5mm",
+          "min_dmg": 8,
+          "max_dmg": 16,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "XL70E3",
+          "caliber": "5mm",
+          "min_dmg": 12,
+          "max_dmg": 19,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "FN FAL",
+          "caliber": "7.62mm",
+          "min_dmg": 9,
+          "max_dmg": 18,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Hunting rifle",
+          "caliber": ".223",
+          "min_dmg": 8,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Pipe rifle",
+          "caliber": "10mm",
+          "min_dmg": 5,
+          "max_dmg": 12,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Red Ryder BB gun",
+          "caliber": "BBs",
+          "min_dmg": 1,
+          "max_dmg": 3,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Sniper rifle",
+          "caliber": ".223",
+          "min_dmg": 14,
+          "max_dmg": 34,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Gauss rifle",
+          "caliber": "2mm",
+          "min_dmg": 32,
+          "max_dmg": 43,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Combat shotgun",
+          "caliber": "12ga",
+          "min_dmg": 15,
+          "max_dmg": 25,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K CAWS",
+          "caliber": "12ga",
+          "min_dmg": 15,
+          "max_dmg": 25,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Pancor Jackhammer",
+          "caliber": "12ga",
+          "min_dmg": 18,
+          "max_dmg": 29,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Shotgun",
+          "caliber": "12ga",
+          "min_dmg": 12,
+          "max_dmg": 22,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Sawed-off shotgun",
+          "caliber": "12ga",
+          "min_dmg": 12,
+          "max_dmg": 24,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Minigun",
+          "caliber": "5mm",
+          "min_dmg": 7,
+          "max_dmg": 11,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Avenger minigun",
+          "caliber": "5mm",
+          "min_dmg": 10,
+          "max_dmg": 14,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Vindicator minigun",
+          "caliber": "4.7mm",
+          "min_dmg": 14,
+          "max_dmg": 19,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Bozar",
+          "caliber": ".223",
+          "min_dmg": 25,
+          "max_dmg": 35,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "M60",
+          "caliber": "7.62mm",
+          "min_dmg": 18,
+          "max_dmg": 26,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Flamer",
+          "caliber": "Flamer",
+          "min_dmg": 45,
+          "max_dmg": 90,
+          "dmg_type": "fire"
+        },
+        {
+          "name": "Rocket launcher",
+          "caliber": "Rocket",
+          "min_dmg": 35,
+          "max_dmg": 100,
+          "dmg_type": "explosive"
+        },
+        {
+          "name": "Alien blaster",
+          "caliber": "SEC",
+          "min_dmg": 30,
+          "max_dmg": 90,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Laser pistol",
+          "caliber": "SEC",
+          "min_dmg": 10,
+          "max_dmg": 22,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Plasma pistol",
+          "caliber": "SEC",
+          "min_dmg": 15,
+          "max_dmg": 35,
+          "dmg_type": "plasma"
+        },
+        {
+          "name": "Pulse pistol",
+          "caliber": "SEC",
+          "min_dmg": 32,
+          "max_dmg": 46,
+          "dmg_type": "electrical"
+        },
+        {
+          "name": "Gatling laser",
+          "caliber": "MFC",
+          "min_dmg": 20,
+          "max_dmg": 40,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Laser rifle",
+          "caliber": "MFC",
+          "min_dmg": 25,
+          "max_dmg": 50,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Plasma rifle",
+          "caliber": "MFC",
+          "min_dmg": 30,
+          "max_dmg": 65,
+          "dmg_type": "plasma"
+        },
+        {
+          "name": "Turbo plasma rifle",
+          "caliber": "MFC",
+          "min_dmg": 35,
+          "max_dmg": 70,
+          "dmg_type": "plasma"
+        },
+        {
+          "name": "Pulse rifle",
+          "caliber": "MFC",
+          "min_dmg": 54,
+          "max_dmg": 78,
+          "dmg_type": "electrical"
+        }
+      ]
+    },
+    "glovz": {
+      "ammo": [
+        {
+          "name": ".223 FMJ",
+          "caliber": ".223",
+          "ac_mod": -15,
+          "dr_mod": -15,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".44 Magnum FMJ",
+          "caliber": ".44",
+          "ac_mod": -5,
+          "dr_mod": -10,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".44 Magnum JHP",
+          "caliber": ".44",
+          "ac_mod": 0,
+          "dr_mod": -10,
+          "dmg_mod": 2,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".45 caliber",
+          "caliber": ".45",
+          "ac_mod": 0,
+          "dr_mod": -5,
+          "dmg_mod": 2,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "2mm EC",
+          "caliber": "2mm",
+          "ac_mod": -25,
+          "dr_mod": -20,
+          "dmg_mod": 0.333,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "4.7mm caseless",
+          "caliber": "4.7mm",
+          "ac_mod": -5,
+          "dr_mod": -25,
+          "dmg_mod": 0.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "5mm AP",
+          "caliber": "5mm",
+          "ac_mod": -5,
+          "dr_mod": -15,
+          "dmg_mod": 0.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "5mm JHP",
+          "caliber": "5mm",
+          "ac_mod": 0,
+          "dr_mod": -15,
+          "dmg_mod": 2,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "7.62mm",
+          "caliber": "7.62mm",
+          "ac_mod": -10,
+          "dr_mod": -20,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "9mm",
+          "caliber": "9mm",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 2,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "9mm ball",
+          "caliber": "9mm",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "10mm AP",
+          "caliber": "10mm",
+          "ac_mod": -5,
+          "dr_mod": 0,
+          "dmg_mod": 0.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "10mm JHP",
+          "caliber": "10mm",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 2,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "14mm AP",
+          "caliber": "14mm",
+          "ac_mod": -5,
+          "dr_mod": -30,
+          "dmg_mod": 0.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "BBs",
+          "caliber": "BBs",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "12 gauge shotgun shells",
+          "caliber": "12ga",
+          "ac_mod": -15,
+          "dr_mod": 0,
+          "dmg_mod": 3,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Explosive rocket",
+          "caliber": "Rocket",
+          "ac_mod": -10,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "explosive"
+        },
+        {
+          "name": "Rocket AP",
+          "caliber": "Rocket",
+          "ac_mod": -10,
+          "dr_mod": 0,
+          "dmg_mod": 0.5,
+          "dmg_type": "explosive"
+        },
+        {
+          "name": "Flamethrower fuel",
+          "caliber": "Flamer",
+          "ac_mod": -20,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "fire"
+        },
+        {
+          "name": "Flamethrower fuel Mk II",
+          "caliber": "Flamer",
+          "ac_mod": -20,
+          "dr_mod": -15,
+          "dmg_mod": 1,
+          "dmg_type": "fire"
+        },
+        {
+          "name": "HN Needler cartridge",
+          "caliber": "Needler",
+          "ac_mod": -20,
+          "dr_mod": -5,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "HN AP Needler cartridge",
+          "caliber": "Needler",
+          "ac_mod": -20,
+          "dr_mod": -5,
+          "dmg_mod": 0.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Microfusion cell",
+          "caliber": "MFC",
+          "ac_mod": -20,
+          "dr_mod": 0,
+          "dmg_mod": 2,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Small energy cell",
+          "caliber": "SEC",
+          "ac_mod": -20,
+          "dr_mod": 0,
+          "dmg_mod": 2,
+          "dmg_type": "laser"
+        }
+      ],
+      "armor": [
+        {
+          "name": "None",
+          "dr": 0,
           "dt": 0,
           "dr_fire": 0,
           "dt_fire": 0,
@@ -219,84 +1598,204 @@
           "dt_laser": 0
         },
         {
-          "name": "Combat Leather Jacket",
-          "dr": 18,
-          "dt": 2,
-          "dr_fire": 0,
+          "name": "Leather jacket",
+          "dr": 20,
+          "dt": 0,
+          "dr_fire": 10,
           "dt_fire": 0,
-          "dr_plasma": 0,
+          "dr_plasma": 10,
           "dt_plasma": 0,
-          "dr_laser": 0,
+          "dr_laser": 20,
           "dt_laser": 0
         },
         {
-          "name": "Leather Armor",
+          "name": "Robes",
+          "dr": 20,
+          "dt": 0,
+          "dr_fire": 10,
+          "dt_fire": 0,
+          "dr_plasma": 10,
+          "dt_plasma": 0,
+          "dr_laser": 25,
+          "dt_laser": 0
+        },
+        {
+          "name": "Combat leather jacket",
+          "dr": 30,
+          "dt": 2,
+          "dr_fire": 25,
+          "dt_fire": 2,
+          "dr_plasma": 10,
+          "dt_plasma": 0,
+          "dr_laser": 20,
+          "dt_laser": 0
+        },
+        {
+          "name": "Leather armor",
           "dr": 25,
           "dt": 2,
-          "dr_fire": 0,
+          "dr_fire": 20,
           "dt_fire": 0,
-          "dr_plasma": 0,
+          "dr_plasma": 10,
           "dt_plasma": 0,
-          "dr_laser": 0,
+          "dr_laser": 20,
           "dt_laser": 0
         },
         {
-          "name": "Leather Armor MKII",
+          "name": "Leather armor Mk II",
           "dr": 25,
           "dt": 3,
-          "dr_fire": 0,
-          "dt_fire": 0,
-          "dr_plasma": 0,
-          "dt_plasma": 0,
-          "dr_laser": 0,
-          "dt_laser": 0
+          "dr_fire": 25,
+          "dt_fire": 1,
+          "dr_plasma": 10,
+          "dt_plasma": 1,
+          "dr_laser": 20,
+          "dt_laser": 1
         },
         {
-          "name": "Metal Armor",
+          "name": "Metal armor",
           "dr": 30,
           "dt": 4,
-          "dr_fire": 0,
-          "dt_fire": 0,
-          "dr_plasma": 0,
-          "dt_plasma": 0,
-          "dr_laser": 0,
-          "dt_laser": 0
+          "dr_fire": 10,
+          "dt_fire": 4,
+          "dr_plasma": 20,
+          "dt_plasma": 4,
+          "dr_laser": 75,
+          "dt_laser": 6
         },
         {
-          "name": "Metal Armor MKII",
+          "name": "Metal armor Mk II",
           "dr": 35,
           "dt": 4,
-          "dr_fire": 0,
-          "dt_fire": 0,
-          "dr_plasma": 0,
-          "dt_plasma": 0,
-          "dr_laser": 0,
-          "dt_laser": 0
+          "dr_fire": 15,
+          "dt_fire": 4,
+          "dr_plasma": 25,
+          "dt_plasma": 4,
+          "dr_laser": 80,
+          "dt_laser": 7
         },
         {
-          "name": "Tesla Armor",
+          "name": "Tesla armor",
           "dr": 20,
           "dt": 4,
-          "dr_fire": 0,
-          "dt_fire": 0,
-          "dr_plasma": 0,
-          "dt_plasma": 0,
-          "dr_laser": 0,
-          "dt_laser": 0
+          "dr_fire": 10,
+          "dt_fire": 4,
+          "dr_plasma": 80,
+          "dt_plasma": 10,
+          "dr_laser": 90,
+          "dt_laser": 19
         },
         {
-          "name": "Combat Armor",
+          "name": "Combat armor",
           "dr": 40,
           "dt": 5,
-          "dr_fire": 0,
-          "dt_fire": 0,
-          "dr_plasma": 0,
-          "dt_plasma": 0,
-          "dr_laser": 0,
-          "dt_laser": 0
+          "dr_fire": 30,
+          "dt_fire": 4,
+          "dr_plasma": 50,
+          "dt_plasma": 4,
+          "dr_laser": 60,
+          "dt_laser": 8
+        },
+        {
+          "name": "Bridgekeeper's robes",
+          "dr": 40,
+          "dt": 5,
+          "dr_fire": 30,
+          "dt_fire": 4,
+          "dr_plasma": 50,
+          "dt_plasma": 4,
+          "dr_laser": 60,
+          "dt_laser": 8
+        },
+        {
+          "name": "Combat armor Mk II",
+          "dr": 40,
+          "dt": 6,
+          "dr_fire": 35,
+          "dt_fire": 5,
+          "dr_plasma": 50,
+          "dt_plasma": 9,
+          "dr_laser": 65,
+          "dt_laser": 9
+        },
+        {
+          "name": "Brotherhood armor",
+          "dr": 40,
+          "dt": 8,
+          "dr_fire": 50,
+          "dt_fire": 7,
+          "dr_plasma": 60,
+          "dt_plasma": 7,
+          "dr_laser": 70,
+          "dt_laser": 8
+        },
+        {
+          "name": "Power armor",
+          "dr": 40,
+          "dt": 12,
+          "dr_fire": 60,
+          "dt_fire": 12,
+          "dr_plasma": 40,
+          "dt_plasma": 10,
+          "dr_laser": 80,
+          "dt_laser": 18
+        },
+        {
+          "name": "Hardened power armor",
+          "dr": 50,
+          "dt": 13,
+          "dr_fire": 70,
+          "dt_fire": 14,
+          "dr_plasma": 50,
+          "dt_plasma": 13,
+          "dr_laser": 90,
+          "dt_laser": 19
+        },
+        {
+          "name": "Advanced power armor",
+          "dr": 55,
+          "dt": 15,
+          "dr_fire": 70,
+          "dt_fire": 16,
+          "dr_plasma": 60,
+          "dt_plasma": 15,
+          "dr_laser": 90,
+          "dt_laser": 19
+        },
+        {
+          "name": "Advanced power armor Mk II",
+          "dr": 60,
+          "dt": 18,
+          "dr_fire": 70,
+          "dt_fire": 16,
+          "dr_plasma": 60,
+          "dt_plasma": 18,
+          "dr_laser": 90,
+          "dt_laser": 19
         }
       ],
       "weapons": [
+        {
+          "name": "10mm SMG",
+          "caliber": "10mm",
+          "min_dmg": 5,
+          "max_dmg": 12,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".223 pistol",
+          "caliber": ".223",
+          "min_dmg": 20,
+          "max_dmg": 30,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "9mm Mauser",
+          "caliber": "9mm",
+          "min_dmg": 5,
+          "max_dmg": 10,
+          "dmg_type": "normal"
+        },
         {
           "name": "10mm pistol",
           "caliber": "10mm",
@@ -305,18 +1804,979 @@
           "dmg_type": "normal"
         },
         {
-          "name": "Desert Eagle",
+          "name": "14mm pistol",
+          "caliber": "14mm",
+          "min_dmg": 12,
+          "max_dmg": 22,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Desert Eagle .44",
           "caliber": ".44",
           "min_dmg": 10,
           "max_dmg": 16,
           "dmg_type": "normal"
         },
         {
-          "name": ".44 Magnum",
+          "name": ".44 Magnum revolver",
           "caliber": ".44",
           "min_dmg": 12,
           "max_dmg": 18,
           "dmg_type": "normal"
+        },
+        {
+          "name": "Needler pistol",
+          "caliber": "Needler",
+          "min_dmg": 12,
+          "max_dmg": 24,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Gauss pistol",
+          "caliber": "2mm",
+          "min_dmg": 22,
+          "max_dmg": 32,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Zip gun",
+          "caliber": "10mm",
+          "min_dmg": 5,
+          "max_dmg": 12,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Tommy gun",
+          "caliber": ".45",
+          "min_dmg": 3,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "M3A1 Grease Gun SMG",
+          "caliber": ".45",
+          "min_dmg": 10,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K P90c",
+          "caliber": "10mm",
+          "min_dmg": 12,
+          "max_dmg": 16,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K G11",
+          "caliber": "4.7mm",
+          "min_dmg": 10,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K G11E",
+          "caliber": "4.7mm",
+          "min_dmg": 13,
+          "max_dmg": 23,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Assault rifle",
+          "caliber": "5mm",
+          "min_dmg": 8,
+          "max_dmg": 16,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "XL70E3",
+          "caliber": "5mm",
+          "min_dmg": 12,
+          "max_dmg": 19,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "FN FAL",
+          "caliber": "7.62mm",
+          "min_dmg": 9,
+          "max_dmg": 18,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Hunting rifle",
+          "caliber": ".223",
+          "min_dmg": 8,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Pipe rifle",
+          "caliber": "10mm",
+          "min_dmg": 5,
+          "max_dmg": 12,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Red Ryder BB gun",
+          "caliber": "BBs",
+          "min_dmg": 1,
+          "max_dmg": 3,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Sniper rifle",
+          "caliber": ".223",
+          "min_dmg": 14,
+          "max_dmg": 34,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Gauss rifle",
+          "caliber": "2mm",
+          "min_dmg": 32,
+          "max_dmg": 43,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Combat shotgun",
+          "caliber": "12ga",
+          "min_dmg": 15,
+          "max_dmg": 25,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K CAWS",
+          "caliber": "12ga",
+          "min_dmg": 15,
+          "max_dmg": 25,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Pancor Jackhammer",
+          "caliber": "12ga",
+          "min_dmg": 18,
+          "max_dmg": 29,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Shotgun",
+          "caliber": "12ga",
+          "min_dmg": 12,
+          "max_dmg": 22,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Sawed-off shotgun",
+          "caliber": "12ga",
+          "min_dmg": 12,
+          "max_dmg": 24,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Minigun",
+          "caliber": "5mm",
+          "min_dmg": 7,
+          "max_dmg": 11,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Avenger minigun",
+          "caliber": "5mm",
+          "min_dmg": 10,
+          "max_dmg": 14,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Vindicator minigun",
+          "caliber": "4.7mm",
+          "min_dmg": 14,
+          "max_dmg": 19,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Bozar",
+          "caliber": ".223",
+          "min_dmg": 25,
+          "max_dmg": 35,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "M60",
+          "caliber": "7.62mm",
+          "min_dmg": 18,
+          "max_dmg": 26,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Flamer",
+          "caliber": "Flamer",
+          "min_dmg": 45,
+          "max_dmg": 90,
+          "dmg_type": "fire"
+        },
+        {
+          "name": "Rocket launcher",
+          "caliber": "Rocket",
+          "min_dmg": 35,
+          "max_dmg": 100,
+          "dmg_type": "explosive"
+        },
+        {
+          "name": "Alien blaster",
+          "caliber": "SEC",
+          "min_dmg": 30,
+          "max_dmg": 90,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Laser pistol",
+          "caliber": "SEC",
+          "min_dmg": 10,
+          "max_dmg": 22,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Plasma pistol",
+          "caliber": "SEC",
+          "min_dmg": 15,
+          "max_dmg": 35,
+          "dmg_type": "plasma"
+        },
+        {
+          "name": "Pulse pistol",
+          "caliber": "SEC",
+          "min_dmg": 32,
+          "max_dmg": 46,
+          "dmg_type": "electrical"
+        },
+        {
+          "name": "Gatling laser",
+          "caliber": "MFC",
+          "min_dmg": 20,
+          "max_dmg": 40,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Laser rifle",
+          "caliber": "MFC",
+          "min_dmg": 25,
+          "max_dmg": 50,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Plasma rifle",
+          "caliber": "MFC",
+          "min_dmg": 30,
+          "max_dmg": 65,
+          "dmg_type": "plasma"
+        },
+        {
+          "name": "Turbo plasma rifle",
+          "caliber": "MFC",
+          "min_dmg": 35,
+          "max_dmg": 70,
+          "dmg_type": "plasma"
+        },
+        {
+          "name": "Pulse rifle",
+          "caliber": "MFC",
+          "min_dmg": 54,
+          "max_dmg": 78,
+          "dmg_type": "electrical"
+        }
+      ]
+    },
+    "yaam": {
+      "ammo": [
+        {
+          "name": ".223 FMJ",
+          "caliber": ".223",
+          "ac_mod": -20,
+          "dr_mod": 5,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".44 Magnum FMJ",
+          "caliber": ".44",
+          "ac_mod": 0,
+          "dr_mod": 5,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".44 Magnum JHP",
+          "caliber": ".44",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".45 caliber",
+          "caliber": ".45",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "2mm EC",
+          "caliber": "2mm",
+          "ac_mod": -30,
+          "dr_mod": 9,
+          "dmg_mod": 1.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "4.7mm caseless",
+          "caliber": "4.7mm",
+          "ac_mod": -5,
+          "dr_mod": 7,
+          "dmg_mod": 1.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "5mm AP",
+          "caliber": "5mm",
+          "ac_mod": 0,
+          "dr_mod": 4,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "5mm JHP",
+          "caliber": "5mm",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "7.62mm",
+          "caliber": "7.62mm",
+          "ac_mod": -5,
+          "dr_mod": 2,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "9mm",
+          "caliber": "9mm",
+          "ac_mod": 0,
+          "dr_mod": 2,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "9mm ball",
+          "caliber": "9mm",
+          "ac_mod": 0,
+          "dr_mod": 2,
+          "dmg_mod": 1.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "10mm AP",
+          "caliber": "10mm",
+          "ac_mod": 0,
+          "dr_mod": 4,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "10mm JHP",
+          "caliber": "10mm",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "14mm AP",
+          "caliber": "14mm",
+          "ac_mod": 0,
+          "dr_mod": 8,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "BBs",
+          "caliber": "BBs",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "12 gauge shotgun shells",
+          "caliber": "12ga",
+          "ac_mod": -10,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Explosive rocket",
+          "caliber": "Rocket",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1.5,
+          "dmg_type": "explosive"
+        },
+        {
+          "name": "Rocket AP",
+          "caliber": "Rocket",
+          "ac_mod": 0,
+          "dr_mod": 20,
+          "dmg_mod": 1,
+          "dmg_type": "explosive"
+        },
+        {
+          "name": "Flamethrower fuel",
+          "caliber": "Flamer",
+          "ac_mod": -20,
+          "dr_mod": 0,
+          "dmg_mod": 0.75,
+          "dmg_type": "fire"
+        },
+        {
+          "name": "Flamethrower fuel Mk II",
+          "caliber": "Flamer",
+          "ac_mod": -20,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "fire"
+        },
+        {
+          "name": "HN Needler cartridge",
+          "caliber": "Needler",
+          "ac_mod": -10,
+          "dr_mod": 2,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "HN AP Needler cartridge",
+          "caliber": "Needler",
+          "ac_mod": -10,
+          "dr_mod": 5,
+          "dmg_mod": 2,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Microfusion cell",
+          "caliber": "MFC",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Small energy cell",
+          "caliber": "SEC",
+          "ac_mod": 0,
+          "dr_mod": 0,
+          "dmg_mod": 1,
+          "dmg_type": "laser"
+        }
+      ],
+      "armor": [
+        {
+          "name": "None",
+          "dr": 0,
+          "dt": 0,
+          "dr_fire": 0,
+          "dt_fire": 0,
+          "dr_plasma": 0,
+          "dt_plasma": 0,
+          "dr_laser": 0,
+          "dt_laser": 0
+        },
+        {
+          "name": "Leather jacket",
+          "dr": 20,
+          "dt": 0,
+          "dr_fire": 10,
+          "dt_fire": 0,
+          "dr_plasma": 10,
+          "dt_plasma": 0,
+          "dr_laser": 20,
+          "dt_laser": 0
+        },
+        {
+          "name": "Robes",
+          "dr": 20,
+          "dt": 0,
+          "dr_fire": 10,
+          "dt_fire": 0,
+          "dr_plasma": 10,
+          "dt_plasma": 0,
+          "dr_laser": 25,
+          "dt_laser": 0
+        },
+        {
+          "name": "Combat leather jacket",
+          "dr": 30,
+          "dt": 2,
+          "dr_fire": 25,
+          "dt_fire": 2,
+          "dr_plasma": 10,
+          "dt_plasma": 0,
+          "dr_laser": 20,
+          "dt_laser": 0
+        },
+        {
+          "name": "Leather armor",
+          "dr": 25,
+          "dt": 2,
+          "dr_fire": 20,
+          "dt_fire": 0,
+          "dr_plasma": 10,
+          "dt_plasma": 0,
+          "dr_laser": 20,
+          "dt_laser": 0
+        },
+        {
+          "name": "Leather armor Mk II",
+          "dr": 25,
+          "dt": 3,
+          "dr_fire": 25,
+          "dt_fire": 1,
+          "dr_plasma": 10,
+          "dt_plasma": 1,
+          "dr_laser": 20,
+          "dt_laser": 1
+        },
+        {
+          "name": "Metal armor",
+          "dr": 30,
+          "dt": 4,
+          "dr_fire": 10,
+          "dt_fire": 4,
+          "dr_plasma": 20,
+          "dt_plasma": 4,
+          "dr_laser": 75,
+          "dt_laser": 6
+        },
+        {
+          "name": "Metal armor Mk II",
+          "dr": 35,
+          "dt": 4,
+          "dr_fire": 15,
+          "dt_fire": 4,
+          "dr_plasma": 25,
+          "dt_plasma": 4,
+          "dr_laser": 80,
+          "dt_laser": 7
+        },
+        {
+          "name": "Tesla armor",
+          "dr": 20,
+          "dt": 4,
+          "dr_fire": 10,
+          "dt_fire": 4,
+          "dr_plasma": 80,
+          "dt_plasma": 10,
+          "dr_laser": 90,
+          "dt_laser": 19
+        },
+        {
+          "name": "Combat armor",
+          "dr": 40,
+          "dt": 5,
+          "dr_fire": 30,
+          "dt_fire": 4,
+          "dr_plasma": 50,
+          "dt_plasma": 4,
+          "dr_laser": 60,
+          "dt_laser": 8
+        },
+        {
+          "name": "Bridgekeeper's robes",
+          "dr": 40,
+          "dt": 5,
+          "dr_fire": 30,
+          "dt_fire": 4,
+          "dr_plasma": 50,
+          "dt_plasma": 4,
+          "dr_laser": 60,
+          "dt_laser": 8
+        },
+        {
+          "name": "Combat armor Mk II",
+          "dr": 40,
+          "dt": 6,
+          "dr_fire": 35,
+          "dt_fire": 5,
+          "dr_plasma": 50,
+          "dt_plasma": 9,
+          "dr_laser": 65,
+          "dt_laser": 9
+        },
+        {
+          "name": "Brotherhood armor",
+          "dr": 40,
+          "dt": 8,
+          "dr_fire": 50,
+          "dt_fire": 7,
+          "dr_plasma": 60,
+          "dt_plasma": 7,
+          "dr_laser": 70,
+          "dt_laser": 8
+        },
+        {
+          "name": "Power armor",
+          "dr": 40,
+          "dt": 12,
+          "dr_fire": 60,
+          "dt_fire": 12,
+          "dr_plasma": 40,
+          "dt_plasma": 10,
+          "dr_laser": 80,
+          "dt_laser": 18
+        },
+        {
+          "name": "Hardened power armor",
+          "dr": 50,
+          "dt": 13,
+          "dr_fire": 70,
+          "dt_fire": 14,
+          "dr_plasma": 50,
+          "dt_plasma": 13,
+          "dr_laser": 90,
+          "dt_laser": 19
+        },
+        {
+          "name": "Advanced power armor",
+          "dr": 55,
+          "dt": 15,
+          "dr_fire": 70,
+          "dt_fire": 16,
+          "dr_plasma": 60,
+          "dt_plasma": 15,
+          "dr_laser": 90,
+          "dt_laser": 19
+        },
+        {
+          "name": "Advanced power armor Mk II",
+          "dr": 60,
+          "dt": 18,
+          "dr_fire": 70,
+          "dt_fire": 16,
+          "dr_plasma": 60,
+          "dt_plasma": 18,
+          "dr_laser": 90,
+          "dt_laser": 19
+        }
+      ],
+      "weapons": [
+        {
+          "name": "10mm SMG",
+          "caliber": "10mm",
+          "min_dmg": 5,
+          "max_dmg": 12,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".223 pistol",
+          "caliber": ".223",
+          "min_dmg": 20,
+          "max_dmg": 30,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "9mm Mauser",
+          "caliber": "9mm",
+          "min_dmg": 5,
+          "max_dmg": 10,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "10mm pistol",
+          "caliber": "10mm",
+          "min_dmg": 5,
+          "max_dmg": 12,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "14mm pistol",
+          "caliber": "14mm",
+          "min_dmg": 12,
+          "max_dmg": 22,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Desert Eagle .44",
+          "caliber": ".44",
+          "min_dmg": 10,
+          "max_dmg": 16,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".44 Magnum revolver",
+          "caliber": ".44",
+          "min_dmg": 12,
+          "max_dmg": 18,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Needler pistol",
+          "caliber": "Needler",
+          "min_dmg": 12,
+          "max_dmg": 24,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Gauss pistol",
+          "caliber": "2mm",
+          "min_dmg": 22,
+          "max_dmg": 32,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Zip gun",
+          "caliber": "10mm",
+          "min_dmg": 5,
+          "max_dmg": 12,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Tommy gun",
+          "caliber": ".45",
+          "min_dmg": 3,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "M3A1 Grease Gun SMG",
+          "caliber": ".45",
+          "min_dmg": 10,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K P90c",
+          "caliber": "10mm",
+          "min_dmg": 12,
+          "max_dmg": 16,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K G11",
+          "caliber": "4.7mm",
+          "min_dmg": 10,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K G11E",
+          "caliber": "4.7mm",
+          "min_dmg": 13,
+          "max_dmg": 23,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Assault rifle",
+          "caliber": "5mm",
+          "min_dmg": 8,
+          "max_dmg": 16,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "XL70E3",
+          "caliber": "5mm",
+          "min_dmg": 12,
+          "max_dmg": 19,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "FN FAL",
+          "caliber": "7.62mm",
+          "min_dmg": 9,
+          "max_dmg": 18,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Hunting rifle",
+          "caliber": ".223",
+          "min_dmg": 8,
+          "max_dmg": 20,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Pipe rifle",
+          "caliber": "10mm",
+          "min_dmg": 5,
+          "max_dmg": 12,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Red Ryder BB gun",
+          "caliber": "BBs",
+          "min_dmg": 1,
+          "max_dmg": 3,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Sniper rifle",
+          "caliber": ".223",
+          "min_dmg": 14,
+          "max_dmg": 34,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Gauss rifle",
+          "caliber": "2mm",
+          "min_dmg": 32,
+          "max_dmg": 43,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Combat shotgun",
+          "caliber": "12ga",
+          "min_dmg": 15,
+          "max_dmg": 25,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "H&K CAWS",
+          "caliber": "12ga",
+          "min_dmg": 15,
+          "max_dmg": 25,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Pancor Jackhammer",
+          "caliber": "12ga",
+          "min_dmg": 18,
+          "max_dmg": 29,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Shotgun",
+          "caliber": "12ga",
+          "min_dmg": 12,
+          "max_dmg": 22,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Sawed-off shotgun",
+          "caliber": "12ga",
+          "min_dmg": 12,
+          "max_dmg": 24,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Minigun",
+          "caliber": "5mm",
+          "min_dmg": 7,
+          "max_dmg": 11,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Avenger minigun",
+          "caliber": "5mm",
+          "min_dmg": 10,
+          "max_dmg": 14,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Vindicator minigun",
+          "caliber": "4.7mm",
+          "min_dmg": 14,
+          "max_dmg": 19,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Bozar",
+          "caliber": ".223",
+          "min_dmg": 25,
+          "max_dmg": 35,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "M60",
+          "caliber": "7.62mm",
+          "min_dmg": 18,
+          "max_dmg": 26,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Flamer",
+          "caliber": "Flamer",
+          "min_dmg": 45,
+          "max_dmg": 90,
+          "dmg_type": "fire"
+        },
+        {
+          "name": "Rocket launcher",
+          "caliber": "Rocket",
+          "min_dmg": 35,
+          "max_dmg": 100,
+          "dmg_type": "explosive"
+        },
+        {
+          "name": "Alien blaster",
+          "caliber": "SEC",
+          "min_dmg": 30,
+          "max_dmg": 90,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Laser pistol",
+          "caliber": "SEC",
+          "min_dmg": 10,
+          "max_dmg": 22,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Plasma pistol",
+          "caliber": "SEC",
+          "min_dmg": 15,
+          "max_dmg": 35,
+          "dmg_type": "plasma"
+        },
+        {
+          "name": "Pulse pistol",
+          "caliber": "SEC",
+          "min_dmg": 32,
+          "max_dmg": 46,
+          "dmg_type": "electrical"
+        },
+        {
+          "name": "Gatling laser",
+          "caliber": "MFC",
+          "min_dmg": 20,
+          "max_dmg": 40,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Laser rifle",
+          "caliber": "MFC",
+          "min_dmg": 25,
+          "max_dmg": 50,
+          "dmg_type": "laser"
+        },
+        {
+          "name": "Plasma rifle",
+          "caliber": "MFC",
+          "min_dmg": 30,
+          "max_dmg": 65,
+          "dmg_type": "plasma"
+        },
+        {
+          "name": "Turbo plasma rifle",
+          "caliber": "MFC",
+          "min_dmg": 35,
+          "max_dmg": 70,
+          "dmg_type": "plasma"
+        },
+        {
+          "name": "Pulse rifle",
+          "caliber": "MFC",
+          "min_dmg": 54,
+          "max_dmg": 78,
+          "dmg_type": "electrical"
         }
       ]
     }
