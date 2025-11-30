@@ -16,7 +16,7 @@ const fallout2Formula = (weapon: Weapon, ammo: Ammo, armor: Armor): string => {
     return `${minDamage}-${maxDamage}`;
 };
 
-// FO2tweaks formula (damage never negative)
+// FO2tweaks formula (all calculations and results use floats, damage never negative)
 // Formula: (rnd + ranged_bonus - dt) * ammo_mult * critical_mult * difficulty_mult * dr_mult
 // Where:
 //   dt = target_dt * (100 + dr_mod) / 100
@@ -27,28 +27,33 @@ const fallout2Formula = (weapon: Weapon, ammo: Ammo, armor: Armor): string => {
 //   damage = (rnd - dt) * ammo_mult * dr_mult
 const fo2tweaksFormula = (weapon: Weapon, ammo: Ammo, armor: Armor): string => {
     const calculateDamage = (baseDamage: number): number => {
-        // Calculate modified DT
-        let dt = armor.dt * (100 + ammo.dr_mod) / 100;
+        // Calculate modified DT (float)
+        let dt = (armor.dt * (100.0 + ammo.dr_mod)) / 100.0;
         if (dt < 0) dt = 0;
 
-        // Calculate ammo multiplier
-        const ammoMult = (100 + ammo.dr_mod) / 100;
+        // Calculate ammo multiplier (float)
+        const ammoMult = (100.0 + ammo.dr_mod) / 100.0;
 
-        // Calculate final DR and DR multiplier
-        let finalDr = armor.dr * (100 + ammo.dr_mod) / 100;
+        // Calculate final DR and DR multiplier (float)
+        let finalDr = (armor.dr * (100.0 + ammo.dr_mod)) / 100.0;
         if (finalDr < 0) finalDr = 0;
         if (finalDr > 90) finalDr = 90;
-        const drMult = (100 - finalDr) / 100;
+        const drMult = (100.0 - finalDr) / 100.0;
 
-        // Apply damage formula: (baseDamage - dt) * ammo_mult * dr_mult
+        // Apply damage formula (float result)
         const damage = (baseDamage - dt) * ammoMult * drMult;
-        return Math.max(0, Math.floor(damage));
+        return Math.max(0, damage);
     };
 
     const minDamage = calculateDamage(weapon.min_dmg);
     const maxDamage = calculateDamage(weapon.max_dmg);
 
-    return `${minDamage}-${maxDamage}`;
+    const formatFloat = (n: number): string => {
+        if (n % 1 === 0) return n.toString();
+        return parseFloat(n.toFixed(1)).toString();
+    };
+
+    return `${formatFloat(minDamage)}-${formatFloat(maxDamage)}`;
 };
 
 const formulas: Record<string, DamageCalculator> = {
