@@ -1,0 +1,49 @@
+export interface Ammo {
+    name: string;
+    caliber: string;
+    ac_mod: number;
+    dr_mod: number;
+    dmg_mod: number;
+    dmg_type?: string;
+}
+
+export interface Armor {
+    name: string;
+    dr: number;
+    dt: number;
+    dt_fire: number;
+    dr_fire: number;
+    dr_plasma: number;
+    dt_plasma: number;
+    dr_laser: number;
+    dt_laser: number;
+}
+
+export interface Weapon {
+    name: string;
+    caliber: string;
+    min_dmg: number;
+    max_dmg: number;
+    dmg_type?: string;
+}
+
+export interface ResultingDamage {
+    [weaponName: string]: {
+        [ammoName: string]: {
+            [armorName: string]: [number, number];
+        };
+    };
+}
+
+export interface ModData {
+    mods: {
+        [modName: string]: {
+            ammo: Ammo[];
+            armor: Armor[];
+            weapons: Weapon[];
+        };
+    };
+    resultingDamage: {
+        [modName: string]: ResultingDamage;
+    };
+}

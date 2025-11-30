@@ -1,0 +1,402 @@
+{
+  "mods": {
+    "vanilla": {
+      "ammo": [
+        {
+          "name": "10mm AP",
+          "caliber": "10mm",
+          "ac_mod": 0,
+          "dr_mod": -25,
+          "dmg_mod": 0.5,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "10mm JHP",
+          "caliber": "10mm",
+          "ac_mod": 0,
+          "dr_mod": 25,
+          "dmg_mod": 2,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".44 FMJ",
+          "caliber": ".44",
+          "ac_mod": 0,
+          "dr_mod": -20,
+          "dmg_mod": 1,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".44 JHP",
+          "caliber": ".44",
+          "ac_mod": 0,
+          "dr_mod": 20,
+          "dmg_mod": 2,
+          "dmg_type": "normal"
+        }
+      ],
+      "armor": [
+        {
+          "name": "None",
+          "dr": 0,
+          "dt": 0,
+          "dr_fire": 0,
+          "dt_fire": 0,
+          "dr_plasma": 0,
+          "dt_plasma": 0,
+          "dr_laser": 0,
+          "dt_laser": 0
+        },
+        {
+          "name": "Leather Jacket",
+          "dr": 20,
+          "dt": 0,
+          "dr_fire": 0,
+          "dt_fire": 0,
+          "dr_plasma": 0,
+          "dt_plasma": 0,
+          "dr_laser": 0,
+          "dt_laser": 0
+        },
+        {
+          "name": "Combat Leather Jacket",
+          "dr": 18,
+          "dt": 2,
+          "dr_fire": 0,
+          "dt_fire": 0,
+          "dr_plasma": 0,
+          "dt_plasma": 0,
+          "dr_laser": 0,
+          "dt_laser": 0
+        },
+        {
+          "name": "Leather Armor",
+          "dr": 25,
+          "dt": 2,
+          "dr_fire": 0,
+          "dt_fire": 0,
+          "dr_plasma": 0,
+          "dt_plasma": 0,
+          "dr_laser": 0,
+          "dt_laser": 0
+        },
+        {
+          "name": "Leather Armor MKII",
+          "dr": 25,
+          "dt": 3,
+          "dr_fire": 0,
+          "dt_fire": 0,
+          "dr_plasma": 0,
+          "dt_plasma": 0,
+          "dr_laser": 0,
+          "dt_laser": 0
+        },
+        {
+          "name": "Metal Armor",
+          "dr": 30,
+          "dt": 4,
+          "dr_fire": 0,
+          "dt_fire": 0,
+          "dr_plasma": 0,
+          "dt_plasma": 0,
+          "dr_laser": 0,
+          "dt_laser": 0
+        },
+        {
+          "name": "Metal Armor MKII",
+          "dr": 35,
+          "dt": 4,
+          "dr_fire": 0,
+          "dt_fire": 0,
+          "dr_plasma": 0,
+          "dt_plasma": 0,
+          "dr_laser": 0,
+          "dt_laser": 0
+        },
+        {
+          "name": "Tesla Armor",
+          "dr": 20,
+          "dt": 4,
+          "dr_fire": 0,
+          "dt_fire": 0,
+          "dr_plasma": 0,
+          "dt_plasma": 0,
+          "dr_laser": 0,
+          "dt_laser": 0
+        },
+        {
+          "name": "Combat Armor",
+          "dr": 40,
+          "dt": 5,
+          "dr_fire": 0,
+          "dt_fire": 0,
+          "dr_plasma": 0,
+          "dt_plasma": 0,
+          "dr_laser": 0,
+          "dt_laser": 0
+        }
+      ],
+      "weapons": [
+        {
+          "name": "10mm pistol",
+          "caliber": "10mm",
+          "min_dmg": 10,
+          "max_dmg": 24,
+          "dmg_type": "normal"
+        },
+        {
+          "name": "Desert Eagle",
+          "caliber": ".44",
+          "min_dmg": 20,
+          "max_dmg": 32,
+          "dmg_type": "normal"
+        },
+        {
+          "name": ".44 Magnum",
+          "caliber": ".44",
+          "min_dmg": 24,
+          "max_dmg": 36,
+          "dmg_type": "normal"
+        }
+      ]
+    }
+  },
+  "resultingDamage": {
+    "vanilla": {
+      "10mm pistol": {
+        "10mm AP": {
+          "None": [
+            10,
+            24
+          ],
+          "Leather Jacket": [
+            10,
+            24
+          ],
+          "Combat Leather Jacket": [
+            10,
+            24
+          ],
+          "Leather Armor": [
+            10,
+            24
+          ],
+          "Leather Armor MKII": [
+            10,
+            24
+          ],
+          "Metal Armor": [
+            10,
+            24
+          ],
+          "Metal Armor MKII": [
+            10,
+            24
+          ],
+          "Tesla Armor": [
+            10,
+            24
+          ],
+          "Combat Armor": [
+            10,
+            24
+          ]
+        },
+        "10mm JHP": {
+          "None": [
+            10,
+            24
+          ],
+          "Leather Jacket": [
+            10,
+            24
+          ],
+          "Combat Leather Jacket": [
+            10,
+            24
+          ],
+          "Leather Armor": [
+            10,
+            24
+          ],
+          "Leather Armor MKII": [
+            10,
+            24
+          ],
+          "Metal Armor": [
+            10,
+            24
+          ],
+          "Metal Armor MKII": [
+            10,
+            24
+          ],
+          "Tesla Armor": [
+            10,
+            24
+          ],
+          "Combat Armor": [
+            10,
+            24
+          ]
+        }
+      },
+      "Desert Eagle": {
+        ".44 FMJ": {
+          "None": [
+            20,
+            32
+          ],
+          "Leather Jacket": [
+            20,
+            32
+          ],
+          "Combat Leather Jacket": [
+            20,
+            32
+          ],
+          "Leather Armor": [
+            20,
+            32
+          ],
+          "Leather Armor MKII": [
+            20,
+            32
+          ],
+          "Metal Armor": [
+            20,
+            32
+          ],
+          "Metal Armor MKII": [
+            20,
+            32
+          ],
+          "Tesla Armor": [
+            20,
+            32
+          ],
+          "Combat Armor": [
+            20,
+            32
+          ]
+        },
+        ".44 JHP": {
+          "None": [
+            20,
+            32
+          ],
+          "Leather Jacket": [
+            20,
+            32
+          ],
+          "Combat Leather Jacket": [
+            20,
+            32
+          ],
+          "Leather Armor": [
+            20,
+            32
+          ],
+          "Leather Armor MKII": [
+            20,
+            32
+          ],
+          "Metal Armor": [
+            20,
+            32
+          ],
+          "Metal Armor MKII": [
+            20,
+            32
+          ],
+          "Tesla Armor": [
+            20,
+            32
+          ],
+          "Combat Armor": [
+            20,
+            32
+          ]
+        }
+      },
+      ".44 Magnum": {
+        ".44 FMJ": {
+          "None": [
+            24,
+            36
+          ],
+          "Leather Jacket": [
+            24,
+            36
+          ],
+          "Combat Leather Jacket": [
+            24,
+            36
+          ],
+          "Leather Armor": [
+            24,
+            36
+          ],
+          "Leather Armor MKII": [
+            24,
+            36
+          ],
+          "Metal Armor": [
+            24,
+            36
+          ],
+          "Metal Armor MKII": [
+            24,
+            36
+          ],
+          "Tesla Armor": [
+            24,
+            36
+          ],
+          "Combat Armor": [
+            24,
+            36
+          ]
+        },
+        ".44 JHP": {
+          "None": [
+            24,
+            36
+          ],
+          "Leather Jacket": [
+            24,
+            36
+          ],
+          "Combat Leather Jacket": [
+            24,
+            36
+          ],
+          "Leather Armor": [
+            24,
+            36
+          ],
+          "Leather Armor MKII": [
+            24,
+            36
+          ],
+          "Metal Armor": [
+            24,
+            36
+          ],
+          "Metal Armor MKII": [
+            24,
+            36
+          ],
+          "Tesla Armor": [
+            24,
+            36
+          ],
+          "Combat Armor": [
+            24,
+            36
+          ]
+        }
+      }
+    }
+  }
+}

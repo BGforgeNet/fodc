@@ -1,0 +1,5 @@
+Name,Caliber,AC mod,DR mod,DMG mod,DMG type
+10mm AP,10mm,0,-25,0.5,
+10mm JHP,10mm,0,25,2,
+.44 FMJ,.44,0,-20,1,
+.44 JHP,.44,0,20,2,
