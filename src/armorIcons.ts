@@ -1,0 +1,17 @@
+export const armorIcons: Record<string, string> = {
+    'None': '',
+    'Leather jacket': '/images/armor/leather-jacket.gif',
+    'Combat leather jacket': '/images/armor/combat-leather-jacket.gif',
+    'Leather armor': '/images/armor/leather-armor.gif',
+    'Leather armor Mk II': '/images/armor/leather-armor-mk2.gif',
+    'Metal armor': '/images/armor/metal-armor.png',
+    'Metal armor Mk II': '/images/armor/metal-armor-mk2.png',
+    'Tesla armor': '/images/armor/tesla-armor.png',
+    'Combat armor': '/images/armor/combat-armor.gif',
+    'Combat armor Mk II': '/images/armor/combat-armor-mk2.gif',
+    'Brotherhood armor': '/images/armor/brotherhood-armor.gif',
+    'Power armor': '/images/armor/power-armor.gif',
+    'Hardened power armor': '/images/armor/power-armor.gif',
+    'Advanced power armor': '/images/armor/advanced-power-armor.gif',
+    'Advanced power armor Mk II': '/images/armor/advanced-power-armor.gif',
+};

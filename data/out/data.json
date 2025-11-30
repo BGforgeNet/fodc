@@ -198,6 +198,7 @@
       "armor": [
         {
           "name": "None",
+          "abbrev": "",
           "dr": 0,
           "dt": 0,
           "dr_fire": 0,
@@ -209,6 +210,7 @@
         },
         {
           "name": "Leather jacket",
+          "abbrev": "",
           "dr": 20,
           "dt": 0,
           "dr_fire": 10,
@@ -220,6 +222,7 @@
         },
         {
           "name": "Combat leather jacket",
+          "abbrev": "",
           "dr": 30,
           "dt": 2,
           "dr_fire": 25,
@@ -231,6 +234,7 @@
         },
         {
           "name": "Leather armor",
+          "abbrev": "",
           "dr": 25,
           "dt": 2,
           "dr_fire": 20,
@@ -242,6 +246,7 @@
         },
         {
           "name": "Leather armor Mk II",
+          "abbrev": "Mk II",
           "dr": 25,
           "dt": 3,
           "dr_fire": 25,
@@ -253,6 +258,7 @@
         },
         {
           "name": "Metal armor",
+          "abbrev": "",
           "dr": 30,
           "dt": 4,
           "dr_fire": 10,
@@ -264,6 +270,7 @@
         },
         {
           "name": "Metal armor Mk II",
+          "abbrev": "Mk II",
           "dr": 35,
           "dt": 4,
           "dr_fire": 15,
@@ -275,6 +282,7 @@
         },
         {
           "name": "Tesla armor",
+          "abbrev": "Tesla",
           "dr": 20,
           "dt": 4,
           "dr_fire": 10,
@@ -286,6 +294,7 @@
         },
         {
           "name": "Combat armor",
+          "abbrev": "",
           "dr": 40,
           "dt": 5,
           "dr_fire": 30,
@@ -297,6 +306,7 @@
         },
         {
           "name": "Combat armor Mk II",
+          "abbrev": "Mk II",
           "dr": 40,
           "dt": 6,
           "dr_fire": 35,
@@ -308,6 +318,7 @@
         },
         {
           "name": "Brotherhood armor",
+          "abbrev": "Brotherhood",
           "dr": 40,
           "dt": 8,
           "dr_fire": 50,
@@ -319,6 +330,7 @@
         },
         {
           "name": "Power armor",
+          "abbrev": "",
           "dr": 40,
           "dt": 12,
           "dr_fire": 60,
@@ -330,6 +342,7 @@
         },
         {
           "name": "Hardened power armor",
+          "abbrev": "Hardened",
           "dr": 50,
           "dt": 13,
           "dr_fire": 70,
@@ -341,6 +354,7 @@
         },
         {
           "name": "Advanced power armor",
+          "abbrev": "",
           "dr": 55,
           "dt": 15,
           "dr_fire": 70,
@@ -352,6 +366,7 @@
         },
         {
           "name": "Advanced power armor Mk II",
+          "abbrev": "Mk II",
           "dr": 60,
           "dt": 18,
           "dr_fire": 70,
@@ -871,6 +886,7 @@
       "armor": [
         {
           "name": "None",
+          "abbrev": "",
           "dr": 0,
           "dt": 0,
           "dr_fire": 0,
@@ -882,6 +898,7 @@
         },
         {
           "name": "Leather jacket",
+          "abbrev": "",
           "dr": 20,
           "dt": 0,
           "dr_fire": 10,
@@ -893,6 +910,7 @@
         },
         {
           "name": "Combat leather jacket",
+          "abbrev": "",
           "dr": 30,
           "dt": 2,
           "dr_fire": 25,
@@ -904,6 +922,7 @@
         },
         {
           "name": "Leather armor",
+          "abbrev": "",
           "dr": 25,
           "dt": 2,
           "dr_fire": 20,
@@ -915,6 +934,7 @@
         },
         {
           "name": "Leather armor Mk II",
+          "abbrev": "Mk II",
           "dr": 25,
           "dt": 3,
           "dr_fire": 25,
@@ -926,6 +946,7 @@
         },
         {
           "name": "Metal armor",
+          "abbrev": "",
           "dr": 30,
           "dt": 4,
           "dr_fire": 10,
@@ -937,6 +958,7 @@
         },
         {
           "name": "Metal armor Mk II",
+          "abbrev": "Mk II",
           "dr": 35,
           "dt": 4,
           "dr_fire": 15,
@@ -948,6 +970,7 @@
         },
         {
           "name": "Tesla armor",
+          "abbrev": "Tesla",
           "dr": 20,
           "dt": 4,
           "dr_fire": 10,
@@ -959,6 +982,7 @@
         },
         {
           "name": "Combat armor",
+          "abbrev": "",
           "dr": 40,
           "dt": 5,
           "dr_fire": 30,
@@ -970,6 +994,7 @@
         },
         {
           "name": "Combat armor Mk II",
+          "abbrev": "Mk II",
           "dr": 40,
           "dt": 6,
           "dr_fire": 35,
@@ -981,6 +1006,7 @@
         },
         {
           "name": "Brotherhood armor",
+          "abbrev": "Brotherhood",
           "dr": 40,
           "dt": 8,
           "dr_fire": 50,
@@ -992,6 +1018,7 @@
         },
         {
           "name": "Power armor",
+          "abbrev": "",
           "dr": 40,
           "dt": 12,
           "dr_fire": 60,
@@ -1003,6 +1030,7 @@
         },
         {
           "name": "Hardened power armor",
+          "abbrev": "Hardened",
           "dr": 50,
           "dt": 13,
           "dr_fire": 70,
@@ -1014,6 +1042,7 @@
         },
         {
           "name": "Advanced power armor",
+          "abbrev": "",
           "dr": 55,
           "dt": 15,
           "dr_fire": 70,
@@ -1025,6 +1054,7 @@
         },
         {
           "name": "Advanced power armor Mk II",
+          "abbrev": "Mk II",
           "dr": 60,
           "dt": 18,
           "dr_fire": 70,
@@ -1544,6 +1574,7 @@
       "armor": [
         {
           "name": "None",
+          "abbrev": "",
           "dr": 0,
           "dt": 0,
           "dr_fire": 0,
@@ -1555,6 +1586,7 @@
         },
         {
           "name": "Leather jacket",
+          "abbrev": "",
           "dr": 20,
           "dt": 0,
           "dr_fire": 10,
@@ -1566,6 +1598,7 @@
         },
         {
           "name": "Combat leather jacket",
+          "abbrev": "",
           "dr": 30,
           "dt": 2,
           "dr_fire": 25,
@@ -1577,6 +1610,7 @@
         },
         {
           "name": "Leather armor",
+          "abbrev": "",
           "dr": 25,
           "dt": 2,
           "dr_fire": 20,
@@ -1588,6 +1622,7 @@
         },
         {
           "name": "Leather armor Mk II",
+          "abbrev": "Mk II",
           "dr": 25,
           "dt": 3,
           "dr_fire": 25,
@@ -1599,6 +1634,7 @@
         },
         {
           "name": "Metal armor",
+          "abbrev": "",
           "dr": 30,
           "dt": 4,
           "dr_fire": 10,
@@ -1610,6 +1646,7 @@
         },
         {
           "name": "Metal armor Mk II",
+          "abbrev": "Mk II",
           "dr": 35,
           "dt": 4,
           "dr_fire": 15,
@@ -1621,6 +1658,7 @@
         },
         {
           "name": "Tesla armor",
+          "abbrev": "Tesla",
           "dr": 20,
           "dt": 4,
           "dr_fire": 10,
@@ -1632,6 +1670,7 @@
         },
         {
           "name": "Combat armor",
+          "abbrev": "",
           "dr": 40,
           "dt": 5,
           "dr_fire": 30,
@@ -1643,6 +1682,7 @@
         },
         {
           "name": "Combat armor Mk II",
+          "abbrev": "Mk II",
           "dr": 40,
           "dt": 6,
           "dr_fire": 35,
@@ -1654,6 +1694,7 @@
         },
         {
           "name": "Brotherhood armor",
+          "abbrev": "Brotherhood",
           "dr": 40,
           "dt": 8,
           "dr_fire": 50,
@@ -1665,6 +1706,7 @@
         },
         {
           "name": "Power armor",
+          "abbrev": "",
           "dr": 40,
           "dt": 12,
           "dr_fire": 60,
@@ -1676,6 +1718,7 @@
         },
         {
           "name": "Hardened power armor",
+          "abbrev": "Hardened",
           "dr": 50,
           "dt": 13,
           "dr_fire": 70,
@@ -1687,6 +1730,7 @@
         },
         {
           "name": "Advanced power armor",
+          "abbrev": "",
           "dr": 55,
           "dt": 15,
           "dr_fire": 70,
@@ -1698,6 +1742,7 @@
         },
         {
           "name": "Advanced power armor Mk II",
+          "abbrev": "Mk II",
           "dr": 60,
           "dt": 18,
           "dr_fire": 70,
@@ -2217,6 +2262,7 @@
       "armor": [
         {
           "name": "None",
+          "abbrev": "",
           "dr": 0,
           "dt": 0,
           "dr_fire": 0,
@@ -2228,6 +2274,7 @@
         },
         {
           "name": "Leather jacket",
+          "abbrev": "",
           "dr": 20,
           "dt": 0,
           "dr_fire": 10,
@@ -2239,6 +2286,7 @@
         },
         {
           "name": "Combat leather jacket",
+          "abbrev": "",
           "dr": 30,
           "dt": 2,
           "dr_fire": 25,
@@ -2250,6 +2298,7 @@
         },
         {
           "name": "Leather armor",
+          "abbrev": "",
           "dr": 25,
           "dt": 2,
           "dr_fire": 20,
@@ -2261,6 +2310,7 @@
         },
         {
           "name": "Leather armor Mk II",
+          "abbrev": "Mk II",
           "dr": 25,
           "dt": 3,
           "dr_fire": 25,
@@ -2272,6 +2322,7 @@
         },
         {
           "name": "Metal armor",
+          "abbrev": "",
           "dr": 30,
           "dt": 4,
           "dr_fire": 10,
@@ -2283,6 +2334,7 @@
         },
         {
           "name": "Metal armor Mk II",
+          "abbrev": "Mk II",
           "dr": 35,
           "dt": 4,
           "dr_fire": 15,
@@ -2294,6 +2346,7 @@
         },
         {
           "name": "Tesla armor",
+          "abbrev": "Tesla",
           "dr": 20,
           "dt": 4,
           "dr_fire": 10,
@@ -2305,6 +2358,7 @@
         },
         {
           "name": "Combat armor",
+          "abbrev": "",
           "dr": 40,
           "dt": 5,
           "dr_fire": 30,
@@ -2316,6 +2370,7 @@
         },
         {
           "name": "Combat armor Mk II",
+          "abbrev": "Mk II",
           "dr": 40,
           "dt": 6,
           "dr_fire": 35,
@@ -2327,6 +2382,7 @@
         },
         {
           "name": "Brotherhood armor",
+          "abbrev": "Brotherhood",
           "dr": 40,
           "dt": 8,
           "dr_fire": 50,
@@ -2338,6 +2394,7 @@
         },
         {
           "name": "Power armor",
+          "abbrev": "",
           "dr": 40,
           "dt": 12,
           "dr_fire": 60,
@@ -2349,6 +2406,7 @@
         },
         {
           "name": "Hardened power armor",
+          "abbrev": "Hardened",
           "dr": 50,
           "dt": 13,
           "dr_fire": 70,
@@ -2360,6 +2418,7 @@
         },
         {
           "name": "Advanced power armor",
+          "abbrev": "",
           "dr": 55,
           "dt": 15,
           "dr_fire": 70,
@@ -2371,6 +2430,7 @@
         },
         {
           "name": "Advanced power armor Mk II",
+          "abbrev": "Mk II",
           "dr": 60,
           "dt": 18,
           "dr_fire": 70,

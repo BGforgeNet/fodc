@@ -9,6 +9,7 @@ export interface Ammo {
 
 export interface Armor {
     name: string;
+    abbrev: string;
     dr: number;
     dt: number;
     dt_fire: number;

@@ -55,6 +55,7 @@ const parseMods = async (modsDir: string): Promise<ModData> => {
   const vanillaArmorData = await readCSV(path.join(vanillaPath, 'armor.csv'));
   const vanillaArmor = vanillaArmorData.map((item: any) => ({
     name: item.Name,
+    abbrev: item.Abbrev || '',
     dr: parseIntStrict(item.DR),
     dt: parseIntStrict(item.DT),
     dr_fire: item['DR fire'] ? parseInt(item['DR fire']) : 0,
@@ -100,6 +101,7 @@ const parseMods = async (modsDir: string): Promise<ModData> => {
     const armor = armorData
       ? armorData.map((item: any) => ({
           name: item.Name,
+          abbrev: item.Abbrev || '',
           dr: parseIntStrict(item.DR),
           dt: parseIntStrict(item.DT),
           dr_fire: item['DR fire'] ? parseInt(item['DR fire']) : 0,

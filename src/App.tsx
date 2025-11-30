@@ -134,6 +134,12 @@ const App = () => {
                                         >
                                             Max
                                         </button>
+                                        <button
+                                            className={`btn ${damageMode === 'range' ? 'btn-primary' : 'btn-outline-primary'}`}
+                                            onClick={() => setDamageMode('range')}
+                                        >
+                                            Range
+                                        </button>
                                     </div>
                                 </div>
                             </div>
