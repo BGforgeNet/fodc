@@ -1,6 +1,6 @@
 import Plot from 'react-plotly.js';
 import { Data, Layout } from 'plotly.js';
-import { Weapon, ModData } from '../types';
+import { ModData } from '../types';
 import { getDamageWithFormula } from '../formulas';
 import { modOrder, modConfigs } from '../modConfig';
 import { armorIcons } from '../armorIcons';
@@ -9,18 +9,20 @@ import React, { useState, useCallback } from 'react';
 type DamageMode = 'average' | 'min' | 'max' | 'range';
 
 interface DamageChartProps {
-    weapon: Weapon;
+    weaponName: string;
     ammoName: string;
     data: ModData;
     mode: DamageMode;
+    hiddenMods: Set<string>;
+    onHiddenModsChange: (mods: Set<string>) => void;
 }
 
-const DamageChart = ({ weapon, ammoName, data, mode }: DamageChartProps) => {
+const DamageChart = ({ weaponName, ammoName, data, mode, hiddenMods, onHiddenModsChange }: DamageChartProps) => {
     const vanillaMod = data.mods['vanilla'];
     if (!vanillaMod) return null;
     const armorList = vanillaMod.armor;
-
-    const [hiddenMods, setHiddenMods] = useState<Set<string>>(new Set());
+    const weapon = vanillaMod.weapons.find((w) => w.name === weaponName);
+    if (!weapon) return null;
 
     const traces: Data[] = [];
     const armorNames = armorList.map((a) => a.name);
@@ -179,15 +181,13 @@ const DamageChart = ({ weapon, ammoName, data, mode }: DamageChartProps) => {
                 onLegendClick={(e) => {
                     const name = e.data[e.curveNumber]?.name;
                     if (name) {
-                        setHiddenMods((prev) => {
-                            const next = new Set(prev);
-                            if (next.has(name)) {
-                                next.delete(name);
-                            } else {
-                                next.add(name);
-                            }
-                            return next;
-                        });
+                        const next = new Set(hiddenMods);
+                        if (next.has(name)) {
+                            next.delete(name);
+                        } else {
+                            next.add(name);
+                        }
+                        onHiddenModsChange(next);
                     }
                     return false;
                 }}

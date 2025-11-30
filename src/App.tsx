@@ -21,6 +21,7 @@ const App = () => {
     const [damageMode, setDamageMode] = useState<DamageMode>('average');
     const [selectedWeapon, setSelectedWeapon] = useState<string>('10mm pistol');
     const [selectedAmmo, setSelectedAmmo] = useState<string>('10mm AP');
+    const [hiddenMods, setHiddenMods] = useState<Set<string>>(new Set());
 
     useEffect(() => {
         fetchModData()
@@ -36,15 +37,16 @@ const App = () => {
     // Filter ammo by weapon caliber
     const compatibleAmmo = vanillaMod?.ammo.filter((a) => a.caliber === weapon?.caliber) ?? [];
 
-    // Reset ammo when weapon changes and current ammo is incompatible
+    // Compute effective ammo - use selected if compatible, otherwise first compatible
+    const currentAmmoValid = compatibleAmmo.some((a) => a.name === selectedAmmo);
+    const effectiveAmmo = currentAmmoValid ? selectedAmmo : (compatibleAmmo[0]?.name ?? '');
+
+    // Sync state when effective differs from selected (deferred to avoid render loop)
     useEffect(() => {
-        if (weapon && compatibleAmmo.length > 0) {
-            const currentAmmoValid = compatibleAmmo.some((a) => a.name === selectedAmmo);
-            if (!currentAmmoValid) {
-                setSelectedAmmo(compatibleAmmo[0]?.name ?? '');
-            }
+        if (effectiveAmmo !== selectedAmmo) {
+            setSelectedAmmo(effectiveAmmo);
         }
-    }, [weapon, compatibleAmmo, selectedAmmo]);
+    }, [effectiveAmmo, selectedAmmo]);
 
     return (
         <div className="container-fluid">
@@ -100,7 +102,7 @@ const App = () => {
                                     <select
                                         className="form-select"
                                         style={{ width: '280px' }}
-                                        value={selectedAmmo}
+                                        value={effectiveAmmo}
                                         onChange={(e) => setSelectedAmmo(e.target.value)}
                                     >
                                         {compatibleAmmo.map((a) => (
@@ -139,14 +141,14 @@ const App = () => {
                                     </div>
                                 </div>
                             </div>
-                            {weapon && (
-                                <DamageChart
-                                    weapon={weapon}
-                                    ammoName={selectedAmmo}
+                            <DamageChart
+                                    weaponName={selectedWeapon}
+                                    ammoName={effectiveAmmo}
                                     data={data}
                                     mode={damageMode}
+                                    hiddenMods={hiddenMods}
+                                    onHiddenModsChange={setHiddenMods}
                                 />
-                            )}
                         </>
                     )}
 
