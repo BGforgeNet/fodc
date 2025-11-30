@@ -20,6 +20,8 @@ const DamageChart = ({ weapon, ammoName, data, mode }: DamageChartProps) => {
     if (!vanillaMod) return null;
     const armorList = vanillaMod.armor;
 
+    const [hiddenMods, setHiddenMods] = useState<Set<string>>(new Set());
+
     const traces: Data[] = [];
     const armorNames = armorList.map((a) => a.name);
 
@@ -40,8 +42,11 @@ const DamageChart = ({ weapon, ammoName, data, mode }: DamageChartProps) => {
             return { min: parts[0] ?? 0, max: parts[1] ?? 0 };
         });
 
+        const visible = hiddenMods.has(config.name) ? 'legendonly' : true;
+
         if (mode === 'range') {
             const color = colors[modIndex % colors.length] ?? '#1f77b4';
+            const rangeText = damageData.map((d) => `${d.min}-${d.max}`);
             // Min line (bottom)
             traces.push({
                 x: armorNames,
@@ -51,8 +56,9 @@ const DamageChart = ({ weapon, ammoName, data, mode }: DamageChartProps) => {
                 line: { color },
                 name: config.name,
                 legendgroup: config.name,
-                hovertemplate: 'Min: %{y:.6~g}<extra>%{fullData.name}</extra>',
-            });
+                hoverinfo: 'skip',
+                visible,
+            } as Data);
             // Max line (top) with fill to min
             traces.push({
                 x: armorNames,
@@ -65,9 +71,12 @@ const DamageChart = ({ weapon, ammoName, data, mode }: DamageChartProps) => {
                 name: config.name,
                 legendgroup: config.name,
                 showlegend: false,
-                hovertemplate: 'Max: %{y:.6~g}<extra>%{fullData.name}</extra>',
+                text: rangeText,
+                hovertemplate: '%{text}<extra>%{fullData.name}</extra>',
+                visible,
             });
         } else {
+            const color = colors[modIndex % colors.length] ?? '#1f77b4';
             const damages = damageData.map((d) => {
                 if (mode === 'min') return d.min;
                 if (mode === 'max') return d.max;
@@ -79,8 +88,11 @@ const DamageChart = ({ weapon, ammoName, data, mode }: DamageChartProps) => {
                 y: damages,
                 type: 'scatter',
                 mode: 'lines',
+                line: { color },
                 name: config.name,
+                legendgroup: config.name,
                 hovertemplate: '%{y:.6~g}<extra>%{fullData.name}</extra>',
+                visible,
             });
         }
     });
@@ -154,6 +166,7 @@ const DamageChart = ({ weapon, ammoName, data, mode }: DamageChartProps) => {
                     },
                     yaxis: { title: { text: 'Damage' }, rangemode: 'tozero' },
                     hovermode: 'x unified',
+                    uirevision: 'true',
                     autosize: true,
                     margin: { b: 120, r: 80 },
                     images,
@@ -163,6 +176,21 @@ const DamageChart = ({ weapon, ammoName, data, mode }: DamageChartProps) => {
                 style={{ width: '100%', height: '500px' }}
                 onInitialized={handlePlotUpdate}
                 onUpdate={handlePlotUpdate}
+                onLegendClick={(e) => {
+                    const name = e.data[e.curveNumber]?.name;
+                    if (name) {
+                        setHiddenMods((prev) => {
+                            const next = new Set(prev);
+                            if (next.has(name)) {
+                                next.delete(name);
+                            } else {
+                                next.add(name);
+                            }
+                            return next;
+                        });
+                    }
+                    return false;
+                }}
             />
             {/* Invisible overlay for tooltips */}
             {tooltipPositions.map((pos, i) => (
