@@ -99,6 +99,7 @@ const App = () => {
                                 <div className="col-auto">
                                     <select
                                         className="form-select"
+                                        style={{ width: '280px' }}
                                         value={selectedAmmo}
                                         onChange={(e) => setSelectedAmmo(e.target.value)}
                                     >
