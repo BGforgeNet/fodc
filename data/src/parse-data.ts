@@ -75,6 +75,7 @@ const parseMods = async (modsDir: string): Promise<ModData> => {
     dmg_type: item['DMG type'] || 'normal',
     burst: item.Burst ? parseInt(item.Burst) : undefined,
     burst_only: item['Burst only'] === 'true',
+    penetrate: item.Penetrate === 'true',
   }));
 
   modData.mods['vanilla'] = { ammo: vanillaAmmo, armor: vanillaArmor, weapons: vanillaWeapons };
@@ -125,6 +126,7 @@ const parseMods = async (modsDir: string): Promise<ModData> => {
           dmg_type: item['DMG type'] || 'normal',
           burst: item.Burst ? parseInt(item.Burst) : undefined,
           burst_only: item['Burst only'] === 'true',
+          penetrate: item.Penetrate === 'true',
         }))
       : vanillaWeapons;
 

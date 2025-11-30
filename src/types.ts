@@ -28,6 +28,7 @@ export interface Weapon {
     dmg_type?: string;
     burst?: number;
     burst_only?: boolean;
+    penetrate?: boolean;
 }
 
 export interface ModData {

@@ -6,7 +6,8 @@ type DamageCalculator = (weapon: Weapon, ammo: Ammo, armor: Armor) => string;
 const fallout2Formula = (weapon: Weapon, ammo: Ammo, armor: Armor): string => {
     const calculateDamage = (baseDamage: number): number => {
         const effectiveDr = Math.max(0, Math.min(90, armor.dr + ammo.dr_mod));
-        const damage = ((baseDamage * ammo.dmg_mod) - armor.dt) * (100 - effectiveDr) / 100;
+        const effectiveDt = weapon.penetrate ? Math.floor(armor.dt / 5) : armor.dt;
+        const damage = ((baseDamage * ammo.dmg_mod) - effectiveDt) * (100 - effectiveDr) / 100;
         return Math.max(0, Math.round(damage));
     };
 
@@ -23,12 +24,16 @@ const fallout2Formula = (weapon: Weapon, ammo: Ammo, armor: Armor): string => {
 //   ammo_mult = (100 + dr_mod) / 100
 //   dr_mult = (100 - final_dr) / 100
 //   final_dr = target_dr * (100 + dr_mod) / 100, capped at 90
+// Penetrate: target_dt *= 0.2 before dr_mod is applied
 // Simplified (no ranged bonus, no critical, normal difficulty):
 //   damage = (rnd - dt) * ammo_mult * dr_mult
 const fo2tweaksFormula = (weapon: Weapon, ammo: Ammo, armor: Armor): string => {
     const calculateDamage = (baseDamage: number): number => {
+        // Apply Penetrate perk before dr_mod
+        const targetDt = weapon.penetrate ? armor.dt * 0.2 : armor.dt;
+
         // Calculate modified DT (float)
-        let dt = (armor.dt * (100.0 + ammo.dr_mod)) / 100.0;
+        let dt = (targetDt * (100.0 + ammo.dr_mod)) / 100.0;
         if (dt < 0) dt = 0;
 
         // Calculate ammo multiplier (float)
@@ -61,14 +66,18 @@ const fo2tweaksFormula = (weapon: Weapon, ammo: Ammo, armor: Armor): string => {
 // total_damage = [(raw_damage - max(modified_DT, 0)) * modified_mult] / [dmg_div * 2 * 100]
 // modified_DR = armor_DR + [10 * min(modified_DT, 0) / 100]
 // modified_DT = armor_DT - ammo_DT
+// Penetrate: armor_DT *= 0.2 before calculation
 // Simplified (no critical, normal difficulty, no perks, no ranged bonus):
 //   modified_mult = 2 * dmg_mult * 100 = 200 * dmg_mult
 //   dmg_div * 2 * 100 cancels with modified_mult partially
 const yaamFormula = (weapon: Weapon, ammo: Ammo, armor: Armor): string => {
     const calculateDamage = (baseDamage: number): number => {
+        // Apply Penetrate perk - reduce DT by 80%
+        const armorDT = weapon.penetrate ? armor.dt * 0.2 : armor.dt;
+
         // Calculate modified_DT = armor_DT - ammo_DT
         // Note: ammo.dr_mod is used as ammo_DT in YAAM
-        const modifiedDT = armor.dt - ammo.dr_mod;
+        const modifiedDT = armorDT - ammo.dr_mod;
 
         // Calculate modified_DR = armor_DR + [10 * min(modified_DT, 0) / 100]
         const modifiedDR = armor.dr + (10 * Math.min(modifiedDT, 0)) / 100;
@@ -95,54 +104,35 @@ const yaamFormula = (weapon: Weapon, ammo: Ammo, armor: Armor): string => {
 };
 
 // Glovz formula (damage never negative)
-// Simplified for normal difficulty (CD = 100, so CD' = 0)
-// armDT and armDR cannot be negative
-// ammo cannot add DR (if amDRM > 0, flip it to negative)
+// damage = max[int(total_damage) - int(modified_DR * int(total_damage)), 0]
+// total_damage = [(raw_damage - max(modified_DT, 0)) * modified_mult] / [dmg_div * 2 * 100]
+// modified_DR = armor_DR + [10 * min(modified_DT, 0) / 100]
+// modified_DT = armor_DT - ammo_DT
+// Simplified: non-critical, normal difficulty, no perks
 const glovzFormula = (weapon: Weapon, ammo: Ammo, armor: Armor): string => {
     const calculateDamage = (baseDamage: number): number => {
-        // armDT cannot be negative
-        let armDT = armor.dt < 0 ? 0 : armor.dt;
+        // armor_DT reduced by 80% if weapon has Penetrate
+        const armorDT = weapon.penetrate ? Math.floor(armor.dt * 0.2) : armor.dt;
 
-        // amY (dmg_div) - assuming it's in dmg_mod as a single value, we treat dmg_mod as amX/amY combined
-        // For simplicity, we'll use dmg_mod directly as the multiplier
-        // Since we don't have separate amX/amY, we skip the division step
+        // modified_DT = armor_DT - ammo_DT (ammo.dr_mod is ammo_DT in Glovz)
+        const modifiedDT = armorDT - ammo.dr_mod;
 
-        // ND = RD - armDT
-        let ND = baseDamage - armDT;
+        // modified_DR = armor_DR + [10 * min(modified_DT, 0) / 100]
+        const modifiedDR = armor.dr + (10 * Math.min(modifiedDT, 0)) / 100;
 
-        // armDR cannot be negative
-        let armDR = armor.dr < 0 ? 0 : armor.dr;
+        // modified_mult = critical_hit_bonus * dmg_mult * combat_difficulty_modifier
+        // For non-critical (2), normal difficulty (100): 2 * dmg_mult * 100
+        const modifiedMult = 2 * ammo.dmg_mod * 100;
 
-        // amDRM - if positive, flip to negative
-        let amDRM = ammo.dr_mod;
-        if (amDRM > 0) amDRM = 0 - amDRM;
+        // total_damage = [(raw_damage - max(modified_DT, 0)) * modified_mult] / [dmg_div * 2 * 100]
+        // Assuming dmg_div = 1 (we don't have separate mult/div)
+        const totalDamage = ((baseDamage - Math.max(modifiedDT, 0)) * modifiedMult) / (1 * 2 * 100);
 
-        // CD' for normal difficulty (CD = 100) is 0
-        const CD_prime = 0;
+        // damage = max[int(total_damage) - int(modified_DR * int(total_damage)), 0]
+        const intTotalDamage = Math.floor(totalDamage);
+        const damage = intTotalDamage - Math.floor((modifiedDR * intTotalDamage) / 100);
 
-        // armDR = armDR + amDRM + CD'
-        armDR = armDR + amDRM + CD_prime;
-
-        // amX - treat dmg_mod as amX for this calculation
-        // armDR is divided by amX (if amX > 0)
-        if (ammo.dmg_mod > 0) {
-            armDR = armDR / ammo.dmg_mod;
-        }
-
-        // Apply DR reduction or bonus
-        if (armDR > 0) {
-            const temp = (ND * armDR) / 100;
-            ND = ND - temp;
-        } else if (armDR < 0) {
-            // Small bonus - using absolute value of armDR as bonus percent
-            const temp = (ND * Math.abs(armDR)) / 100;
-            ND = ND + temp;
-        }
-
-        // ND cannot be negative
-        if (ND < 0) ND = 0;
-
-        return Math.round(ND);
+        return Math.max(0, damage);
     };
 
     const minDamage = calculateDamage(weapon.min_dmg);
