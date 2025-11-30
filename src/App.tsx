@@ -24,6 +24,8 @@ const App = () => {
     const [hiddenMods, setHiddenMods] = useState<Set<string>>(new Set());
     const [burstEnabled, setBurstEnabled] = useState(false);
     const [pointBlank, setPointBlank] = useState(false);
+    const [criticalHit, setCriticalHit] = useState(false);
+    const [bonusRangedDamage, setBonusRangedDamage] = useState(0);
 
     useEffect(() => {
         fetchModData()
@@ -183,6 +185,36 @@ const App = () => {
                                         </label>
                                     </div>
                                 </div>
+                                <div className="col-auto d-flex align-items-center">
+                                    <div className="form-check">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            id="criticalToggle"
+                                            checked={criticalHit}
+                                            onChange={() => setCriticalHit(!criticalHit)}
+                                        />
+                                        <label className="form-check-label" htmlFor="criticalToggle">
+                                            Critical
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="col-auto d-flex align-items-center">
+                                    <label className="me-2" htmlFor="bonusRangedDamage">
+                                        Bonus Ranged Damage rank
+                                    </label>
+                                    <select
+                                        id="bonusRangedDamage"
+                                        className="form-select form-select-sm"
+                                        style={{ width: '60px' }}
+                                        value={bonusRangedDamage}
+                                        onChange={(e) => setBonusRangedDamage(Number(e.target.value))}
+                                    >
+                                        <option value={0}>0</option>
+                                        <option value={1}>1</option>
+                                        <option value={2}>2</option>
+                                    </select>
+                                </div>
                             </div>
                             <DamageChart
                                     weaponName={selectedWeapon}
@@ -193,6 +225,8 @@ const App = () => {
                                     onHiddenModsChange={setHiddenMods}
                                     burst={effectiveBurst}
                                     pointBlank={pointBlank}
+                                    critical={criticalHit}
+                                    rangedBonus={bonusRangedDamage * 2}
                                 />
                         </>
                     )}
