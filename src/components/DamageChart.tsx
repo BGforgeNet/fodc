@@ -15,9 +15,11 @@ interface DamageChartProps {
     mode: DamageMode;
     hiddenMods: Set<string>;
     onHiddenModsChange: (mods: Set<string>) => void;
+    burst: boolean;
+    pointBlank: boolean;
 }
 
-const DamageChart = ({ weaponName, ammoName, data, mode, hiddenMods, onHiddenModsChange }: DamageChartProps) => {
+const DamageChart = ({ weaponName, ammoName, data, mode, hiddenMods, onHiddenModsChange, burst, pointBlank }: DamageChartProps) => {
     const vanillaMod = data.mods['vanilla'];
     if (!vanillaMod) return null;
     const armorList = vanillaMod.armor;
@@ -37,11 +39,13 @@ const DamageChart = ({ weaponName, ammoName, data, mode, hiddenMods, onHiddenMod
         const ammo = mod.ammo.find((a) => a.name === ammoName && a.caliber === weapon.caliber);
         if (!ammo) return;
 
+        const burstRounds = burst && weapon.burst ? weapon.burst : 1;
+        const burstMultiplier = burst ? (pointBlank ? burstRounds : burstRounds / 3) : 1;
         const damageData = armorList.map((armor) => {
             const modArmor = mod.armor.find((a) => a.name === armor.name) ?? armor;
             const damageStr = getDamageWithFormula(config.formula, weapon, ammo, modArmor);
             const parts = damageStr.split('-').map(Number);
-            return { min: parts[0] ?? 0, max: parts[1] ?? 0 };
+            return { min: (parts[0] ?? 0) * burstMultiplier, max: (parts[1] ?? 0) * burstMultiplier };
         });
 
         const visible = hiddenMods.has(config.name) ? 'legendonly' : true;
@@ -100,6 +104,9 @@ const DamageChart = ({ weaponName, ammoName, data, mode, hiddenMods, onHiddenMod
     });
 
     const modeLabel = mode.charAt(0).toUpperCase() + mode.slice(1);
+    const burstLabel = burst && weapon.burst
+        ? ` Burst${pointBlank ? ' (Point blank)' : ''}`
+        : '';
 
     const [tooltipPositions, setTooltipPositions] = useState<{ x: number; width: number }[]>([]);
     const lastPositionsRef = React.useRef<string>('');
@@ -158,7 +165,7 @@ const DamageChart = ({ weaponName, ammoName, data, mode, hiddenMods, onHiddenMod
                 className="plotly-chart"
                 data={traces}
                 layout={{
-                    title: { text: `${weapon.name} + ${ammoName} (${modeLabel})` },
+                    title: { text: `${weapon.name} + ${ammoName} (${modeLabel})${burstLabel}` },
                     xaxis: {
                         showticklabels: false,
                         showgrid: true,

@@ -22,6 +22,8 @@ const App = () => {
     const [selectedWeapon, setSelectedWeapon] = useState<string>('10mm pistol');
     const [selectedAmmo, setSelectedAmmo] = useState<string>('10mm AP');
     const [hiddenMods, setHiddenMods] = useState<Set<string>>(new Set());
+    const [burstEnabled, setBurstEnabled] = useState(false);
+    const [pointBlank, setPointBlank] = useState(false);
 
     useEffect(() => {
         fetchModData()
@@ -47,6 +49,11 @@ const App = () => {
             setSelectedAmmo(effectiveAmmo);
         }
     }, [effectiveAmmo, selectedAmmo]);
+
+    // Burst: force enabled for burst-only weapons, otherwise use toggle
+    const hasBurst = weapon?.burst !== undefined;
+    const isBurstOnly = weapon?.burst_only === true;
+    const effectiveBurst = isBurstOnly || (hasBurst && burstEnabled);
 
     return (
         <div className="container-fluid">
@@ -140,6 +147,42 @@ const App = () => {
                                         </button>
                                     </div>
                                 </div>
+                                <div className="col-auto d-flex align-items-center">
+                                    <div className="form-check">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            id="burstToggle"
+                                            checked={effectiveBurst}
+                                            onChange={() => setBurstEnabled(!burstEnabled)}
+                                            disabled={!hasBurst || isBurstOnly}
+                                        />
+                                        <label
+                                            className={`form-check-label ${!hasBurst ? 'text-muted' : ''}`}
+                                            htmlFor="burstToggle"
+                                        >
+                                            Burst
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="col-auto d-flex align-items-center">
+                                    <div className="form-check">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            id="pointBlankToggle"
+                                            checked={pointBlank}
+                                            onChange={() => setPointBlank(!pointBlank)}
+                                            disabled={!effectiveBurst}
+                                        />
+                                        <label
+                                            className={`form-check-label ${!effectiveBurst ? 'text-muted' : ''}`}
+                                            htmlFor="pointBlankToggle"
+                                        >
+                                            Point blank
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                             <DamageChart
                                     weaponName={selectedWeapon}
@@ -148,6 +191,8 @@ const App = () => {
                                     mode={damageMode}
                                     hiddenMods={hiddenMods}
                                     onHiddenModsChange={setHiddenMods}
+                                    burst={effectiveBurst}
+                                    pointBlank={pointBlank}
                                 />
                         </>
                     )}

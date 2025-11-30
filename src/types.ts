@@ -26,6 +26,8 @@ export interface Weapon {
     min_dmg: number;
     max_dmg: number;
     dmg_type?: string;
+    burst?: number;
+    burst_only?: boolean;
 }
 
 export interface ModData {

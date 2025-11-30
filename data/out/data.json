@@ -383,308 +383,379 @@
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": false
         },
         {
           "name": ".223 pistol",
           "caliber": ".223",
           "min_dmg": 20,
           "max_dmg": 30,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "9mm Mauser",
           "caliber": "9mm",
           "min_dmg": 5,
           "max_dmg": 10,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "10mm pistol",
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "14mm pistol",
           "caliber": "14mm",
           "min_dmg": 12,
           "max_dmg": 22,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Desert Eagle .44",
           "caliber": ".44",
           "min_dmg": 10,
           "max_dmg": 16,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": ".44 Magnum revolver",
           "caliber": ".44",
           "min_dmg": 12,
           "max_dmg": 18,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Needler pistol",
           "caliber": "Needler",
           "min_dmg": 12,
           "max_dmg": 24,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Gauss pistol",
           "caliber": "2mm",
           "min_dmg": 22,
           "max_dmg": 32,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Zip gun",
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Tommy gun",
           "caliber": ".45",
           "min_dmg": 3,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": false
         },
         {
           "name": "M3A1 Grease Gun SMG",
           "caliber": ".45",
           "min_dmg": 10,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 8,
+          "burst_only": false
         },
         {
           "name": "H&K P90c",
           "caliber": "10mm",
           "min_dmg": 12,
           "max_dmg": 16,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 12,
+          "burst_only": false
         },
         {
           "name": "H&K G11",
           "caliber": "4.7mm",
           "min_dmg": 10,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "H&K G11E",
           "caliber": "4.7mm",
           "min_dmg": 13,
           "max_dmg": 23,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "Assault rifle",
           "caliber": "5mm",
           "min_dmg": 8,
           "max_dmg": 16,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 8,
+          "burst_only": false
         },
         {
           "name": "XL70E3",
           "caliber": "5mm",
           "min_dmg": 12,
           "max_dmg": 19,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 8,
+          "burst_only": false
         },
         {
           "name": "FN FAL",
           "caliber": "7.62mm",
           "min_dmg": 9,
           "max_dmg": 18,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": false
         },
         {
           "name": "Hunting rifle",
           "caliber": ".223",
           "min_dmg": 8,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Pipe rifle",
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Red Ryder BB gun",
           "caliber": "BBs",
           "min_dmg": 1,
           "max_dmg": 3,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Sniper rifle",
           "caliber": ".223",
           "min_dmg": 14,
           "max_dmg": 34,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Gauss rifle",
           "caliber": "2mm",
           "min_dmg": 32,
           "max_dmg": 43,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Combat shotgun",
           "caliber": "12ga",
           "min_dmg": 15,
           "max_dmg": 25,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 3,
+          "burst_only": false
         },
         {
           "name": "H&K CAWS",
           "caliber": "12ga",
           "min_dmg": 15,
           "max_dmg": 25,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "Pancor Jackhammer",
           "caliber": "12ga",
           "min_dmg": 18,
           "max_dmg": 29,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "Shotgun",
           "caliber": "12ga",
           "min_dmg": 12,
           "max_dmg": 22,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Sawed-off shotgun",
           "caliber": "12ga",
           "min_dmg": 12,
           "max_dmg": 24,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Minigun",
           "caliber": "5mm",
           "min_dmg": 7,
           "max_dmg": 11,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 40,
+          "burst_only": true
         },
         {
           "name": "Avenger minigun",
           "caliber": "5mm",
           "min_dmg": 10,
           "max_dmg": 14,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 40,
+          "burst_only": true
         },
         {
           "name": "Vindicator minigun",
           "caliber": "4.7mm",
           "min_dmg": 14,
           "max_dmg": 19,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 25,
+          "burst_only": true
         },
         {
           "name": "Bozar",
           "caliber": ".223",
           "min_dmg": 25,
           "max_dmg": 35,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 15,
+          "burst_only": true
+        },
+        {
+          "name": "Light support weapon",
+          "caliber": ".223",
+          "min_dmg": 20,
+          "max_dmg": 30,
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": true
         },
         {
           "name": "M60",
           "caliber": "7.62mm",
           "min_dmg": 18,
           "max_dmg": 26,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": true
         },
         {
           "name": "Flamer",
           "caliber": "Flamer",
           "min_dmg": 45,
           "max_dmg": 90,
-          "dmg_type": "fire"
+          "dmg_type": "fire",
+          "burst_only": false
         },
         {
           "name": "Rocket launcher",
           "caliber": "Rocket",
           "min_dmg": 35,
           "max_dmg": 100,
-          "dmg_type": "explosive"
+          "dmg_type": "explosive",
+          "burst_only": false
         },
         {
           "name": "Alien blaster",
           "caliber": "SEC",
           "min_dmg": 30,
           "max_dmg": 90,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Laser pistol",
           "caliber": "SEC",
           "min_dmg": 10,
           "max_dmg": 22,
-          "dmg_type": "laser"
+          "dmg_type": "laser",
+          "burst_only": false
         },
         {
           "name": "Plasma pistol",
           "caliber": "SEC",
           "min_dmg": 15,
           "max_dmg": 35,
-          "dmg_type": "plasma"
+          "dmg_type": "plasma",
+          "burst_only": false
         },
         {
           "name": "Pulse pistol",
           "caliber": "SEC",
           "min_dmg": 32,
           "max_dmg": 46,
-          "dmg_type": "electrical"
+          "dmg_type": "electrical",
+          "burst_only": false
         },
         {
           "name": "Gatling laser",
           "caliber": "MFC",
           "min_dmg": 20,
           "max_dmg": 40,
-          "dmg_type": "laser"
+          "dmg_type": "laser",
+          "burst": 10,
+          "burst_only": true
         },
         {
           "name": "Laser rifle",
           "caliber": "MFC",
           "min_dmg": 25,
           "max_dmg": 50,
-          "dmg_type": "laser"
+          "dmg_type": "laser",
+          "burst_only": false
         },
         {
           "name": "Plasma rifle",
           "caliber": "MFC",
           "min_dmg": 30,
           "max_dmg": 65,
-          "dmg_type": "plasma"
+          "dmg_type": "plasma",
+          "burst_only": false
         },
         {
           "name": "Turbo plasma rifle",
           "caliber": "MFC",
           "min_dmg": 35,
           "max_dmg": 70,
-          "dmg_type": "plasma"
+          "dmg_type": "plasma",
+          "burst_only": false
         },
         {
           "name": "Pulse rifle",
           "caliber": "MFC",
           "min_dmg": 54,
           "max_dmg": 78,
-          "dmg_type": "electrical"
+          "dmg_type": "electrical",
+          "burst_only": false
         }
       ]
     },
@@ -1071,308 +1142,379 @@
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": false
         },
         {
           "name": ".223 pistol",
           "caliber": ".223",
           "min_dmg": 20,
           "max_dmg": 30,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "9mm Mauser",
           "caliber": "9mm",
           "min_dmg": 5,
           "max_dmg": 10,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "10mm pistol",
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "14mm pistol",
           "caliber": "14mm",
           "min_dmg": 12,
           "max_dmg": 22,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Desert Eagle .44",
           "caliber": ".44",
           "min_dmg": 10,
           "max_dmg": 16,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": ".44 Magnum revolver",
           "caliber": ".44",
           "min_dmg": 12,
           "max_dmg": 18,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Needler pistol",
           "caliber": "Needler",
           "min_dmg": 12,
           "max_dmg": 24,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Gauss pistol",
           "caliber": "2mm",
           "min_dmg": 22,
           "max_dmg": 32,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Zip gun",
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Tommy gun",
           "caliber": ".45",
           "min_dmg": 3,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": false
         },
         {
           "name": "M3A1 Grease Gun SMG",
           "caliber": ".45",
           "min_dmg": 10,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 8,
+          "burst_only": false
         },
         {
           "name": "H&K P90c",
           "caliber": "10mm",
           "min_dmg": 12,
           "max_dmg": 16,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 12,
+          "burst_only": false
         },
         {
           "name": "H&K G11",
           "caliber": "4.7mm",
           "min_dmg": 10,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "H&K G11E",
           "caliber": "4.7mm",
           "min_dmg": 13,
           "max_dmg": 23,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "Assault rifle",
           "caliber": "5mm",
           "min_dmg": 8,
           "max_dmg": 16,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 8,
+          "burst_only": false
         },
         {
           "name": "XL70E3",
           "caliber": "5mm",
           "min_dmg": 12,
           "max_dmg": 19,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 8,
+          "burst_only": false
         },
         {
           "name": "FN FAL",
           "caliber": "7.62mm",
           "min_dmg": 9,
           "max_dmg": 18,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": false
         },
         {
           "name": "Hunting rifle",
           "caliber": ".223",
           "min_dmg": 8,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Pipe rifle",
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Red Ryder BB gun",
           "caliber": "BBs",
           "min_dmg": 1,
           "max_dmg": 3,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Sniper rifle",
           "caliber": ".223",
           "min_dmg": 14,
           "max_dmg": 34,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Gauss rifle",
           "caliber": "2mm",
           "min_dmg": 32,
           "max_dmg": 43,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Combat shotgun",
           "caliber": "12ga",
           "min_dmg": 15,
           "max_dmg": 25,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 3,
+          "burst_only": false
         },
         {
           "name": "H&K CAWS",
           "caliber": "12ga",
           "min_dmg": 15,
           "max_dmg": 25,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "Pancor Jackhammer",
           "caliber": "12ga",
           "min_dmg": 18,
           "max_dmg": 29,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "Shotgun",
           "caliber": "12ga",
           "min_dmg": 12,
           "max_dmg": 22,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Sawed-off shotgun",
           "caliber": "12ga",
           "min_dmg": 12,
           "max_dmg": 24,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Minigun",
           "caliber": "5mm",
           "min_dmg": 7,
           "max_dmg": 11,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 40,
+          "burst_only": true
         },
         {
           "name": "Avenger minigun",
           "caliber": "5mm",
           "min_dmg": 10,
           "max_dmg": 14,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 40,
+          "burst_only": true
         },
         {
           "name": "Vindicator minigun",
           "caliber": "4.7mm",
           "min_dmg": 14,
           "max_dmg": 19,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 25,
+          "burst_only": true
         },
         {
           "name": "Bozar",
           "caliber": ".223",
           "min_dmg": 25,
           "max_dmg": 35,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 15,
+          "burst_only": true
+        },
+        {
+          "name": "Light support weapon",
+          "caliber": ".223",
+          "min_dmg": 20,
+          "max_dmg": 30,
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": true
         },
         {
           "name": "M60",
           "caliber": "7.62mm",
           "min_dmg": 18,
           "max_dmg": 26,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": true
         },
         {
           "name": "Flamer",
           "caliber": "Flamer",
           "min_dmg": 45,
           "max_dmg": 90,
-          "dmg_type": "fire"
+          "dmg_type": "fire",
+          "burst_only": false
         },
         {
           "name": "Rocket launcher",
           "caliber": "Rocket",
           "min_dmg": 35,
           "max_dmg": 100,
-          "dmg_type": "explosive"
+          "dmg_type": "explosive",
+          "burst_only": false
         },
         {
           "name": "Alien blaster",
           "caliber": "SEC",
           "min_dmg": 30,
           "max_dmg": 90,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Laser pistol",
           "caliber": "SEC",
           "min_dmg": 10,
           "max_dmg": 22,
-          "dmg_type": "laser"
+          "dmg_type": "laser",
+          "burst_only": false
         },
         {
           "name": "Plasma pistol",
           "caliber": "SEC",
           "min_dmg": 15,
           "max_dmg": 35,
-          "dmg_type": "plasma"
+          "dmg_type": "plasma",
+          "burst_only": false
         },
         {
           "name": "Pulse pistol",
           "caliber": "SEC",
           "min_dmg": 32,
           "max_dmg": 46,
-          "dmg_type": "electrical"
+          "dmg_type": "electrical",
+          "burst_only": false
         },
         {
           "name": "Gatling laser",
           "caliber": "MFC",
           "min_dmg": 20,
           "max_dmg": 40,
-          "dmg_type": "laser"
+          "dmg_type": "laser",
+          "burst": 10,
+          "burst_only": true
         },
         {
           "name": "Laser rifle",
           "caliber": "MFC",
           "min_dmg": 25,
           "max_dmg": 50,
-          "dmg_type": "laser"
+          "dmg_type": "laser",
+          "burst_only": false
         },
         {
           "name": "Plasma rifle",
           "caliber": "MFC",
           "min_dmg": 30,
           "max_dmg": 65,
-          "dmg_type": "plasma"
+          "dmg_type": "plasma",
+          "burst_only": false
         },
         {
           "name": "Turbo plasma rifle",
           "caliber": "MFC",
           "min_dmg": 35,
           "max_dmg": 70,
-          "dmg_type": "plasma"
+          "dmg_type": "plasma",
+          "burst_only": false
         },
         {
           "name": "Pulse rifle",
           "caliber": "MFC",
           "min_dmg": 54,
           "max_dmg": 78,
-          "dmg_type": "electrical"
+          "dmg_type": "electrical",
+          "burst_only": false
         }
       ]
     },
@@ -1759,308 +1901,379 @@
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": false
         },
         {
           "name": ".223 pistol",
           "caliber": ".223",
           "min_dmg": 20,
           "max_dmg": 30,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "9mm Mauser",
           "caliber": "9mm",
           "min_dmg": 5,
           "max_dmg": 10,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "10mm pistol",
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "14mm pistol",
           "caliber": "14mm",
           "min_dmg": 12,
           "max_dmg": 22,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Desert Eagle .44",
           "caliber": ".44",
           "min_dmg": 10,
           "max_dmg": 16,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": ".44 Magnum revolver",
           "caliber": ".44",
           "min_dmg": 12,
           "max_dmg": 18,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Needler pistol",
           "caliber": "Needler",
           "min_dmg": 12,
           "max_dmg": 24,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Gauss pistol",
           "caliber": "2mm",
           "min_dmg": 22,
           "max_dmg": 32,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Zip gun",
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Tommy gun",
           "caliber": ".45",
           "min_dmg": 3,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": false
         },
         {
           "name": "M3A1 Grease Gun SMG",
           "caliber": ".45",
           "min_dmg": 10,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 8,
+          "burst_only": false
         },
         {
           "name": "H&K P90c",
           "caliber": "10mm",
           "min_dmg": 12,
           "max_dmg": 16,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 12,
+          "burst_only": false
         },
         {
           "name": "H&K G11",
           "caliber": "4.7mm",
           "min_dmg": 10,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "H&K G11E",
           "caliber": "4.7mm",
           "min_dmg": 13,
           "max_dmg": 23,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "Assault rifle",
           "caliber": "5mm",
           "min_dmg": 8,
           "max_dmg": 16,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 8,
+          "burst_only": false
         },
         {
           "name": "XL70E3",
           "caliber": "5mm",
           "min_dmg": 12,
           "max_dmg": 19,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 8,
+          "burst_only": false
         },
         {
           "name": "FN FAL",
           "caliber": "7.62mm",
           "min_dmg": 9,
           "max_dmg": 18,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": false
         },
         {
           "name": "Hunting rifle",
           "caliber": ".223",
           "min_dmg": 8,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Pipe rifle",
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Red Ryder BB gun",
           "caliber": "BBs",
           "min_dmg": 1,
           "max_dmg": 3,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Sniper rifle",
           "caliber": ".223",
           "min_dmg": 14,
           "max_dmg": 34,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Gauss rifle",
           "caliber": "2mm",
           "min_dmg": 32,
           "max_dmg": 43,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Combat shotgun",
           "caliber": "12ga",
           "min_dmg": 15,
           "max_dmg": 25,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 3,
+          "burst_only": false
         },
         {
           "name": "H&K CAWS",
           "caliber": "12ga",
           "min_dmg": 15,
           "max_dmg": 25,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "Pancor Jackhammer",
           "caliber": "12ga",
           "min_dmg": 18,
           "max_dmg": 29,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "Shotgun",
           "caliber": "12ga",
           "min_dmg": 12,
           "max_dmg": 22,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Sawed-off shotgun",
           "caliber": "12ga",
           "min_dmg": 12,
           "max_dmg": 24,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Minigun",
           "caliber": "5mm",
           "min_dmg": 7,
           "max_dmg": 11,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 40,
+          "burst_only": true
         },
         {
           "name": "Avenger minigun",
           "caliber": "5mm",
           "min_dmg": 10,
           "max_dmg": 14,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 40,
+          "burst_only": true
         },
         {
           "name": "Vindicator minigun",
           "caliber": "4.7mm",
           "min_dmg": 14,
           "max_dmg": 19,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 25,
+          "burst_only": true
         },
         {
           "name": "Bozar",
           "caliber": ".223",
           "min_dmg": 25,
           "max_dmg": 35,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 15,
+          "burst_only": true
+        },
+        {
+          "name": "Light support weapon",
+          "caliber": ".223",
+          "min_dmg": 20,
+          "max_dmg": 30,
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": true
         },
         {
           "name": "M60",
           "caliber": "7.62mm",
           "min_dmg": 18,
           "max_dmg": 26,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": true
         },
         {
           "name": "Flamer",
           "caliber": "Flamer",
           "min_dmg": 45,
           "max_dmg": 90,
-          "dmg_type": "fire"
+          "dmg_type": "fire",
+          "burst_only": false
         },
         {
           "name": "Rocket launcher",
           "caliber": "Rocket",
           "min_dmg": 35,
           "max_dmg": 100,
-          "dmg_type": "explosive"
+          "dmg_type": "explosive",
+          "burst_only": false
         },
         {
           "name": "Alien blaster",
           "caliber": "SEC",
           "min_dmg": 30,
           "max_dmg": 90,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Laser pistol",
           "caliber": "SEC",
           "min_dmg": 10,
           "max_dmg": 22,
-          "dmg_type": "laser"
+          "dmg_type": "laser",
+          "burst_only": false
         },
         {
           "name": "Plasma pistol",
           "caliber": "SEC",
           "min_dmg": 15,
           "max_dmg": 35,
-          "dmg_type": "plasma"
+          "dmg_type": "plasma",
+          "burst_only": false
         },
         {
           "name": "Pulse pistol",
           "caliber": "SEC",
           "min_dmg": 32,
           "max_dmg": 46,
-          "dmg_type": "electrical"
+          "dmg_type": "electrical",
+          "burst_only": false
         },
         {
           "name": "Gatling laser",
           "caliber": "MFC",
           "min_dmg": 20,
           "max_dmg": 40,
-          "dmg_type": "laser"
+          "dmg_type": "laser",
+          "burst": 10,
+          "burst_only": true
         },
         {
           "name": "Laser rifle",
           "caliber": "MFC",
           "min_dmg": 25,
           "max_dmg": 50,
-          "dmg_type": "laser"
+          "dmg_type": "laser",
+          "burst_only": false
         },
         {
           "name": "Plasma rifle",
           "caliber": "MFC",
           "min_dmg": 30,
           "max_dmg": 65,
-          "dmg_type": "plasma"
+          "dmg_type": "plasma",
+          "burst_only": false
         },
         {
           "name": "Turbo plasma rifle",
           "caliber": "MFC",
           "min_dmg": 35,
           "max_dmg": 70,
-          "dmg_type": "plasma"
+          "dmg_type": "plasma",
+          "burst_only": false
         },
         {
           "name": "Pulse rifle",
           "caliber": "MFC",
           "min_dmg": 54,
           "max_dmg": 78,
-          "dmg_type": "electrical"
+          "dmg_type": "electrical",
+          "burst_only": false
         }
       ]
     },
@@ -2447,308 +2660,379 @@
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": false
         },
         {
           "name": ".223 pistol",
           "caliber": ".223",
           "min_dmg": 20,
           "max_dmg": 30,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "9mm Mauser",
           "caliber": "9mm",
           "min_dmg": 5,
           "max_dmg": 10,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "10mm pistol",
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "14mm pistol",
           "caliber": "14mm",
           "min_dmg": 12,
           "max_dmg": 22,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Desert Eagle .44",
           "caliber": ".44",
           "min_dmg": 10,
           "max_dmg": 16,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": ".44 Magnum revolver",
           "caliber": ".44",
           "min_dmg": 12,
           "max_dmg": 18,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Needler pistol",
           "caliber": "Needler",
           "min_dmg": 12,
           "max_dmg": 24,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Gauss pistol",
           "caliber": "2mm",
           "min_dmg": 22,
           "max_dmg": 32,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Zip gun",
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Tommy gun",
           "caliber": ".45",
           "min_dmg": 3,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": false
         },
         {
           "name": "M3A1 Grease Gun SMG",
           "caliber": ".45",
           "min_dmg": 10,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 8,
+          "burst_only": false
         },
         {
           "name": "H&K P90c",
           "caliber": "10mm",
           "min_dmg": 12,
           "max_dmg": 16,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 12,
+          "burst_only": false
         },
         {
           "name": "H&K G11",
           "caliber": "4.7mm",
           "min_dmg": 10,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "H&K G11E",
           "caliber": "4.7mm",
           "min_dmg": 13,
           "max_dmg": 23,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "Assault rifle",
           "caliber": "5mm",
           "min_dmg": 8,
           "max_dmg": 16,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 8,
+          "burst_only": false
         },
         {
           "name": "XL70E3",
           "caliber": "5mm",
           "min_dmg": 12,
           "max_dmg": 19,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 8,
+          "burst_only": false
         },
         {
           "name": "FN FAL",
           "caliber": "7.62mm",
           "min_dmg": 9,
           "max_dmg": 18,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": false
         },
         {
           "name": "Hunting rifle",
           "caliber": ".223",
           "min_dmg": 8,
           "max_dmg": 20,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Pipe rifle",
           "caliber": "10mm",
           "min_dmg": 5,
           "max_dmg": 12,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Red Ryder BB gun",
           "caliber": "BBs",
           "min_dmg": 1,
           "max_dmg": 3,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Sniper rifle",
           "caliber": ".223",
           "min_dmg": 14,
           "max_dmg": 34,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Gauss rifle",
           "caliber": "2mm",
           "min_dmg": 32,
           "max_dmg": 43,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Combat shotgun",
           "caliber": "12ga",
           "min_dmg": 15,
           "max_dmg": 25,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 3,
+          "burst_only": false
         },
         {
           "name": "H&K CAWS",
           "caliber": "12ga",
           "min_dmg": 15,
           "max_dmg": 25,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "Pancor Jackhammer",
           "caliber": "12ga",
           "min_dmg": 18,
           "max_dmg": 29,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 5,
+          "burst_only": false
         },
         {
           "name": "Shotgun",
           "caliber": "12ga",
           "min_dmg": 12,
           "max_dmg": 22,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Sawed-off shotgun",
           "caliber": "12ga",
           "min_dmg": 12,
           "max_dmg": 24,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Minigun",
           "caliber": "5mm",
           "min_dmg": 7,
           "max_dmg": 11,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 40,
+          "burst_only": true
         },
         {
           "name": "Avenger minigun",
           "caliber": "5mm",
           "min_dmg": 10,
           "max_dmg": 14,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 40,
+          "burst_only": true
         },
         {
           "name": "Vindicator minigun",
           "caliber": "4.7mm",
           "min_dmg": 14,
           "max_dmg": 19,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 25,
+          "burst_only": true
         },
         {
           "name": "Bozar",
           "caliber": ".223",
           "min_dmg": 25,
           "max_dmg": 35,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 15,
+          "burst_only": true
+        },
+        {
+          "name": "Light support weapon",
+          "caliber": ".223",
+          "min_dmg": 20,
+          "max_dmg": 30,
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": true
         },
         {
           "name": "M60",
           "caliber": "7.62mm",
           "min_dmg": 18,
           "max_dmg": 26,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst": 10,
+          "burst_only": true
         },
         {
           "name": "Flamer",
           "caliber": "Flamer",
           "min_dmg": 45,
           "max_dmg": 90,
-          "dmg_type": "fire"
+          "dmg_type": "fire",
+          "burst_only": false
         },
         {
           "name": "Rocket launcher",
           "caliber": "Rocket",
           "min_dmg": 35,
           "max_dmg": 100,
-          "dmg_type": "explosive"
+          "dmg_type": "explosive",
+          "burst_only": false
         },
         {
           "name": "Alien blaster",
           "caliber": "SEC",
           "min_dmg": 30,
           "max_dmg": 90,
-          "dmg_type": "normal"
+          "dmg_type": "normal",
+          "burst_only": false
         },
         {
           "name": "Laser pistol",
           "caliber": "SEC",
           "min_dmg": 10,
           "max_dmg": 22,
-          "dmg_type": "laser"
+          "dmg_type": "laser",
+          "burst_only": false
         },
         {
           "name": "Plasma pistol",
           "caliber": "SEC",
           "min_dmg": 15,
           "max_dmg": 35,
-          "dmg_type": "plasma"
+          "dmg_type": "plasma",
+          "burst_only": false
         },
         {
           "name": "Pulse pistol",
           "caliber": "SEC",
           "min_dmg": 32,
           "max_dmg": 46,
-          "dmg_type": "electrical"
+          "dmg_type": "electrical",
+          "burst_only": false
         },
         {
           "name": "Gatling laser",
           "caliber": "MFC",
           "min_dmg": 20,
           "max_dmg": 40,
-          "dmg_type": "laser"
+          "dmg_type": "laser",
+          "burst": 10,
+          "burst_only": true
         },
         {
           "name": "Laser rifle",
           "caliber": "MFC",
           "min_dmg": 25,
           "max_dmg": 50,
-          "dmg_type": "laser"
+          "dmg_type": "laser",
+          "burst_only": false
         },
         {
           "name": "Plasma rifle",
           "caliber": "MFC",
           "min_dmg": 30,
           "max_dmg": 65,
-          "dmg_type": "plasma"
+          "dmg_type": "plasma",
+          "burst_only": false
         },
         {
           "name": "Turbo plasma rifle",
           "caliber": "MFC",
           "min_dmg": 35,
           "max_dmg": 70,
-          "dmg_type": "plasma"
+          "dmg_type": "plasma",
+          "burst_only": false
         },
         {
           "name": "Pulse rifle",
           "caliber": "MFC",
           "min_dmg": 54,
           "max_dmg": 78,
-          "dmg_type": "electrical"
+          "dmg_type": "electrical",
+          "burst_only": false
         }
       ]
     }
