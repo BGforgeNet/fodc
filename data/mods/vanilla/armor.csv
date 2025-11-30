@@ -1,7 +1,6 @@
 Name,DR,DT,DR fire,DT fire,DR plasma,DT plasma,DR laser,DT laser
 None,0,0,0,0,0,0,0,0
 Leather jacket,20,0,10,0,10,0,20,0
-Robes,20,0,10,0,10,0,25,0
 Combat leather jacket,30,2,25,2,10,0,20,0
 Leather armor,25,2,20,0,10,0,20,0
 Leather armor Mk II,25,3,25,1,10,1,20,1
@@ -9,7 +8,6 @@ Metal armor,30,4,10,4,20,4,75,6
 Metal armor Mk II,35,4,15,4,25,4,80,7
 Tesla armor,20,4,10,4,80,10,90,19
 Combat armor,40,5,30,4,50,4,60,8
-Bridgekeeper's robes,40,5,30,4,50,4,60,8
 Combat armor Mk II,40,6,35,5,50,9,65,9
 Brotherhood armor,40,8,50,7,60,7,70,8
 Power armor,40,12,60,12,40,10,80,18

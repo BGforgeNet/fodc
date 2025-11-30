@@ -219,17 +219,6 @@
           "dt_laser": 0
         },
         {
-          "name": "Robes",
-          "dr": 20,
-          "dt": 0,
-          "dr_fire": 10,
-          "dt_fire": 0,
-          "dr_plasma": 10,
-          "dt_plasma": 0,
-          "dr_laser": 25,
-          "dt_laser": 0
-        },
-        {
           "name": "Combat leather jacket",
           "dr": 30,
           "dt": 2,
@@ -297,17 +286,6 @@
         },
         {
           "name": "Combat armor",
-          "dr": 40,
-          "dt": 5,
-          "dr_fire": 30,
-          "dt_fire": 4,
-          "dr_plasma": 50,
-          "dt_plasma": 4,
-          "dr_laser": 60,
-          "dt_laser": 8
-        },
-        {
-          "name": "Bridgekeeper's robes",
           "dr": 40,
           "dt": 5,
           "dr_fire": 30,
@@ -914,17 +892,6 @@
           "dt_laser": 0
         },
         {
-          "name": "Robes",
-          "dr": 20,
-          "dt": 0,
-          "dr_fire": 10,
-          "dt_fire": 0,
-          "dr_plasma": 10,
-          "dt_plasma": 0,
-          "dr_laser": 25,
-          "dt_laser": 0
-        },
-        {
           "name": "Combat leather jacket",
           "dr": 30,
           "dt": 2,
@@ -992,17 +959,6 @@
         },
         {
           "name": "Combat armor",
-          "dr": 40,
-          "dt": 5,
-          "dr_fire": 30,
-          "dt_fire": 4,
-          "dr_plasma": 50,
-          "dt_plasma": 4,
-          "dr_laser": 60,
-          "dt_laser": 8
-        },
-        {
-          "name": "Bridgekeeper's robes",
           "dr": 40,
           "dt": 5,
           "dr_fire": 30,
@@ -1609,17 +1565,6 @@
           "dt_laser": 0
         },
         {
-          "name": "Robes",
-          "dr": 20,
-          "dt": 0,
-          "dr_fire": 10,
-          "dt_fire": 0,
-          "dr_plasma": 10,
-          "dt_plasma": 0,
-          "dr_laser": 25,
-          "dt_laser": 0
-        },
-        {
           "name": "Combat leather jacket",
           "dr": 30,
           "dt": 2,
@@ -1687,17 +1632,6 @@
         },
         {
           "name": "Combat armor",
-          "dr": 40,
-          "dt": 5,
-          "dr_fire": 30,
-          "dt_fire": 4,
-          "dr_plasma": 50,
-          "dt_plasma": 4,
-          "dr_laser": 60,
-          "dt_laser": 8
-        },
-        {
-          "name": "Bridgekeeper's robes",
           "dr": 40,
           "dt": 5,
           "dr_fire": 30,
@@ -2304,17 +2238,6 @@
           "dt_laser": 0
         },
         {
-          "name": "Robes",
-          "dr": 20,
-          "dt": 0,
-          "dr_fire": 10,
-          "dt_fire": 0,
-          "dr_plasma": 10,
-          "dt_plasma": 0,
-          "dr_laser": 25,
-          "dt_laser": 0
-        },
-        {
           "name": "Combat leather jacket",
           "dr": 30,
           "dt": 2,
@@ -2382,17 +2305,6 @@
         },
         {
           "name": "Combat armor",
-          "dr": 40,
-          "dt": 5,
-          "dr_fire": 30,
-          "dt_fire": 4,
-          "dr_plasma": 50,
-          "dt_plasma": 4,
-          "dr_laser": 60,
-          "dt_laser": 8
-        },
-        {
-          "name": "Bridgekeeper's robes",
           "dr": 40,
           "dt": 5,
           "dr_fire": 30,
