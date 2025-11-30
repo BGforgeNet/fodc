@@ -27,14 +27,6 @@ export interface Weapon {
     dmg_type?: string;
 }
 
-export interface ResultingDamage {
-    [weaponName: string]: {
-        [ammoName: string]: {
-            [armorName: string]: [number, number];
-        };
-    };
-}
-
 export interface ModData {
     mods: {
         [modName: string]: {
