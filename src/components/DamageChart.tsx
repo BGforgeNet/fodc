@@ -4,7 +4,7 @@ import { Weapon, ModData } from '../types';
 import { getDamageWithFormula } from '../formulas';
 import { modOrder, modConfigs } from '../modConfig';
 import { armorIcons } from '../armorIcons';
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 
 type DamageMode = 'average' | 'min' | 'max' | 'range';
 
@@ -88,6 +88,7 @@ const DamageChart = ({ weapon, ammoName, data, mode }: DamageChartProps) => {
     const modeLabel = mode.charAt(0).toUpperCase() + mode.slice(1);
 
     const [tooltipPositions, setTooltipPositions] = useState<{ x: number; width: number }[]>([]);
+    const lastPositionsRef = React.useRef<string>('');
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handlePlotUpdate = useCallback((_figure: any, graphDiv: any) => {
@@ -102,13 +103,11 @@ const DamageChart = ({ weapon, ammoName, data, mode }: DamageChartProps) => {
         }));
 
         // Only update if positions actually changed
-        setTooltipPositions((prev) => {
-            if (prev.length === positions.length &&
-                prev.every((p, i) => p.x === positions[i]?.x && p.width === positions[i]?.width)) {
-                return prev;
-            }
-            return positions;
-        });
+        const posKey = JSON.stringify(positions);
+        if (posKey !== lastPositionsRef.current) {
+            lastPositionsRef.current = posKey;
+            setTooltipPositions(positions);
+        }
     }, [armorList]);
 
     const images: Partial<Layout>['images'] = armorList.map((armor) => {
