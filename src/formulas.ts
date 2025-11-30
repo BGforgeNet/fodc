@@ -162,7 +162,7 @@ export const getDamageWithFormula = (formulaName: string, weapon: Weapon, ammo: 
     const formula = formulas[formulaName];
     if (!formula) {
         console.warn(`Unknown formula: ${formulaName}, falling back to fallout2`);
-        return formulas.fallout2(weapon, ammo, armor);
+        return fallout2Formula(weapon, ammo, armor);
     }
     return formula(weapon, ammo, armor);
 };

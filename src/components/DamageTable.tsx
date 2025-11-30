@@ -46,7 +46,7 @@ const DamageTable = (props: DamageTableProps) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {rows.map((row, idx) => (
+                    {rows.map((row) => (
                         <tr key={`${row.weapon.name}-${row.ammo.name}`}>
                             {row.isFirstAmmoForWeapon && (
                                 <td rowSpan={row.ammoCountForWeapon}>{row.weapon.name}</td>

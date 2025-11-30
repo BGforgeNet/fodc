@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ModData } from './types';
 import DamageTable from './components/DamageTable';
+import DamageChart, { DamageMode } from './components/DamageChart';
 import { modOrder, modConfigs } from './modConfig';
 
 const fetchModData = async (): Promise<ModData> => {
@@ -15,6 +16,10 @@ const App = () => {
     const [data, setData] = useState<ModData | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
+    const [activeTab, setActiveTab] = useState<'charts' | 'tables'>('charts');
+    const [damageMode, setDamageMode] = useState<DamageMode>('average');
+    const [selectedWeapon, setSelectedWeapon] = useState<string>('10mm pistol');
+    const [selectedAmmo, setSelectedAmmo] = useState<string>('10mm AP');
 
     useEffect(() => {
         fetchModData()
@@ -22,6 +27,23 @@ const App = () => {
             .catch(setError)
             .finally(() => setLoading(false));
     }, []);
+
+    const vanillaMod = data?.mods['vanilla'];
+    const weapons = vanillaMod?.weapons ?? [];
+    const weapon = weapons.find((w) => w.name === selectedWeapon);
+
+    // Filter ammo by weapon caliber
+    const compatibleAmmo = vanillaMod?.ammo.filter((a) => a.caliber === weapon?.caliber) ?? [];
+
+    // Reset ammo when weapon changes and current ammo is incompatible
+    useEffect(() => {
+        if (weapon && compatibleAmmo.length > 0) {
+            const currentAmmoValid = compatibleAmmo.some((a) => a.name === selectedAmmo);
+            if (!currentAmmoValid) {
+                setSelectedAmmo(compatibleAmmo[0]?.name ?? '');
+            }
+        }
+    }, [weapon, compatibleAmmo, selectedAmmo]);
 
     return (
         <div className="container-fluid">
@@ -42,23 +64,109 @@ const App = () => {
                 </div>
             )}
 
-            {data &&
-                modOrder.map((modId) => {
-                    const mod = data.mods[modId];
-                    const config = modConfigs[modId];
-                    if (!mod || !config) return null;
+            {data && (
+                <>
+                    <ul className="nav nav-tabs mb-4">
+                        <li className="nav-item">
+                            <button
+                                className={`nav-link ${activeTab === 'charts' ? 'active' : ''}`}
+                                onClick={() => setActiveTab('charts')}
+                            >
+                                Charts
+                            </button>
+                        </li>
+                        <li className="nav-item">
+                            <button
+                                className={`nav-link ${activeTab === 'tables' ? 'active' : ''}`}
+                                onClick={() => setActiveTab('tables')}
+                            >
+                                Tables
+                            </button>
+                        </li>
+                    </ul>
 
-                    return (
-                        <DamageTable
-                            key={modId}
-                            modName={config.name}
-                            weapons={mod.weapons}
-                            ammo={mod.ammo}
-                            armor={mod.armor}
-                            formula={config.formula}
-                        />
-                    );
-                })}
+                    {activeTab === 'charts' && (
+                        <>
+                            <div className="row mb-3 align-items-center">
+                                <div className="col-auto">
+                                    <select
+                                        className="form-select"
+                                        value={selectedWeapon}
+                                        onChange={(e) => setSelectedWeapon(e.target.value)}
+                                    >
+                                        {weapons.map((w) => (
+                                            <option key={w.name} value={w.name}>
+                                                {w.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="col-auto">
+                                    <select
+                                        className="form-select"
+                                        value={selectedAmmo}
+                                        onChange={(e) => setSelectedAmmo(e.target.value)}
+                                    >
+                                        {compatibleAmmo.map((a) => (
+                                            <option key={a.name} value={a.name}>
+                                                {a.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="col-auto">
+                                    <div className="btn-group" role="group">
+                                        <button
+                                            className={`btn ${damageMode === 'min' ? 'btn-primary' : 'btn-outline-primary'}`}
+                                            onClick={() => setDamageMode('min')}
+                                        >
+                                            Min
+                                        </button>
+                                        <button
+                                            className={`btn ${damageMode === 'average' ? 'btn-primary' : 'btn-outline-primary'}`}
+                                            onClick={() => setDamageMode('average')}
+                                        >
+                                            Average
+                                        </button>
+                                        <button
+                                            className={`btn ${damageMode === 'max' ? 'btn-primary' : 'btn-outline-primary'}`}
+                                            onClick={() => setDamageMode('max')}
+                                        >
+                                            Max
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            {weapon && (
+                                <DamageChart
+                                    weapon={weapon}
+                                    ammoName={selectedAmmo}
+                                    data={data}
+                                    mode={damageMode}
+                                />
+                            )}
+                        </>
+                    )}
+
+                    {activeTab === 'tables' &&
+                        modOrder.map((modId) => {
+                            const mod = data.mods[modId];
+                            const config = modConfigs[modId];
+                            if (!mod || !config) return null;
+
+                            return (
+                                <DamageTable
+                                    key={modId}
+                                    modName={config.name}
+                                    weapons={mod.weapons}
+                                    ammo={mod.ammo}
+                                    armor={mod.armor}
+                                    formula={config.formula}
+                                />
+                            );
+                        })}
+                </>
+            )}
         </div>
     );
 };
