@@ -150,7 +150,7 @@ const App = () => {
                                     </div>
                                 </div>
                                 <div className="col-auto d-flex align-items-center">
-                                    <div className="form-check">
+                                    <div className="form-check" title="If not point blank, assume only 1/3 of rounds hit">
                                         <input
                                             type="checkbox"
                                             className="form-check-input"
@@ -168,7 +168,7 @@ const App = () => {
                                     </div>
                                 </div>
                                 <div className="col-auto d-flex align-items-center">
-                                    <div className="form-check">
+                                    <div className="form-check" title="Assume all rounds hit">
                                         <input
                                             type="checkbox"
                                             className="form-check-input"
@@ -186,7 +186,7 @@ const App = () => {
                                     </div>
                                 </div>
                                 <div className="col-auto d-flex align-items-center">
-                                    <div className="form-check">
+                                    <div className="form-check" title="Assume armor bypass. On single shot, assume damage x3, on burst - x2">
                                         <input
                                             type="checkbox"
                                             className="form-check-input"
