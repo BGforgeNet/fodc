@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ModData } from './types';
 import DamageTable from './components/DamageTable';
 import DamageChart, { DamageMode } from './components/DamageChart';
+import SearchableSelect from './components/SearchableSelect';
 import { modOrder, modConfigs } from './modConfig';
 
 const fetchModData = async (): Promise<ModData> => {
@@ -89,17 +90,11 @@ const App = () => {
                         <>
                             <div className="row mb-3 align-items-center">
                                 <div className="col-auto">
-                                    <select
-                                        className="form-select"
+                                    <SearchableSelect
+                                        options={weapons.map((w) => w.name)}
                                         value={selectedWeapon}
-                                        onChange={(e) => setSelectedWeapon(e.target.value)}
-                                    >
-                                        {weapons.map((w) => (
-                                            <option key={w.name} value={w.name}>
-                                                {w.name}
-                                            </option>
-                                        ))}
-                                    </select>
+                                        onChange={setSelectedWeapon}
+                                    />
                                 </div>
                                 <div className="col-auto">
                                     <select
