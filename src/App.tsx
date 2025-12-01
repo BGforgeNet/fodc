@@ -20,12 +20,13 @@ const App = () => {
     const [error, setError] = useState<Error | null>(null);
     const [activeTab, setActiveTab] = useState<'charts' | 'tables'>('charts');
     const [damageMode, setDamageMode] = useState<DamageMode>('average');
-    const [selectedWeapon, setSelectedWeapon] = useState<string>('10mm pistol');
+    const [selectedWeapon, setSelectedWeapon] = useState<string>('10mm SMG');
     const [selectedAmmo, setSelectedAmmo] = useState<string>('10mm AP');
     const [hiddenMods, setHiddenMods] = useState<Set<string>>(new Set());
     const [burstEnabled, setBurstEnabled] = useState(false);
     const [pointBlank, setPointBlank] = useState(false);
     const [criticalHit, setCriticalHit] = useState(false);
+    const [sniperLuck, setSniperLuck] = useState(false);
     const [bonusRangedDamage, setBonusRangedDamage] = useState(0);
 
     useEffect(() => {
@@ -201,6 +202,24 @@ const App = () => {
                                     </div>
                                 </div>
                                 <div className="col-auto d-flex align-items-center">
+                                    <div className="form-check mb-0" title="Every round is a critical hit">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            id="sniperLuckToggle"
+                                            checked={sniperLuck}
+                                            onChange={() => {
+                                                const newValue = !sniperLuck;
+                                                setSniperLuck(newValue);
+                                                if (newValue) setCriticalHit(true);
+                                            }}
+                                        />
+                                        <label className="form-check-label" htmlFor="sniperLuckToggle">
+                                            Sniper 10 Luck
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="col-auto d-flex align-items-center">
                                     <span className="me-2">Bonus Ranged Damage</span>
                                     <div className="btn-group btn-group-sm">
                                         <button
@@ -233,6 +252,7 @@ const App = () => {
                                     burst={effectiveBurst}
                                     pointBlank={pointBlank}
                                     critical={criticalHit}
+                                    allCrit={sniperLuck}
                                     rangedBonus={bonusRangedDamage * 2}
                                 />
                         </>

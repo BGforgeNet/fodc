@@ -1,11 +1,11 @@
 import { Weapon, Ammo, Armor } from './types';
 
-type DamageCalculator = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, rangedBonus: number) => string;
+type DamageCalculator = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, allCrit: boolean, rangedBonus: number) => string;
 
 // Fallout 2 formula (standard rounding, damage never negative)
 // Critical: x3 multiplier (x6 total since base is x2), armor bypass (DR and DT to 20%)
 // Note: Penetrate and critical armor bypass are not cumulative
-const fallout2Formula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, rangedBonus: number): string => {
+const fallout2Formula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, _allCrit: boolean, rangedBonus: number): string => {
     const calculateDamage = (baseDamage: number): number => {
         // Critical multiplier: x3 for single (x6 total), x2 for burst (x4 total)
         const critMultiplier = critical ? (burst ? 2 : 3) : 1;
@@ -45,7 +45,7 @@ const fallout2Formula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boo
 // Burst critical: 1 bullet at x4, rest at x2 (base)
 // Simplified (no ranged bonus, normal difficulty):
 //   damage = (rnd - dt) * ammo_mult * critical_mult * dr_mult
-const fo2tweaksFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, rangedBonus: number): string => {
+const fo2tweaksFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, allCrit: boolean, rangedBonus: number): string => {
     const calculateDamage = (baseDamage: number, isCritical: boolean): number => {
         // Armor bypass: critical affects both DR and DT, penetrate only DT
         // Applied before dr_mod, not cumulative
@@ -80,9 +80,10 @@ const fo2tweaksFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: bo
     };
 
     // For burst critical: 1 bullet at x4, rest at x2
+    // With allCrit (Sniper + 10 Luck): all bullets at x4
     // For single critical: x4
     // For non-critical: x2
-    if (burst && critical) {
+    if (burst && critical && !allCrit) {
         const minCrit = calculateDamage(weapon.min_dmg, true);
         const maxCrit = calculateDamage(weapon.max_dmg, true);
         const minNonCrit = calculateDamage(weapon.min_dmg, false);
@@ -115,7 +116,7 @@ const fo2tweaksFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: bo
 // Critical: multiplyDamage = 6 instead of 2, armor bypass (DR and DT to 20%)
 // Penetrate: DT to 20% (not cumulative with critical)
 // Normal difficulty (100), no perks, no ranged bonus
-const yaamFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, rangedBonus: number): string => {
+const yaamFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, _allCrit: boolean, rangedBonus: number): string => {
     const calculateDamage = (baseDamage: number): number => {
         // Armor bypass: critical affects both DR and DT, penetrate only DT
         // Not cumulative - critical takes precedence
@@ -181,7 +182,7 @@ const yaamFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean
 // Critical: multiplyDamage = 6 instead of 2, armor bypass (DR and DT to 20%)
 // Penetrate: DT to 20% (not cumulative with critical)
 // Normal difficulty (100), no perks
-const glovzFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, rangedBonus: number): string => {
+const glovzFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, _allCrit: boolean, rangedBonus: number): string => {
     const calculateDamage = (baseDamage: number): number => {
         // Armor bypass: critical affects both DR and DT, penetrate only DT
         // Not cumulative - critical takes precedence
@@ -248,11 +249,11 @@ const formulas: Record<string, DamageCalculator> = {
     glovz: glovzFormula,
 };
 
-export const getDamageWithFormula = (formulaName: string, weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, rangedBonus: number): string => {
+export const getDamageWithFormula = (formulaName: string, weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, allCrit: boolean, rangedBonus: number): string => {
     const formula = formulas[formulaName];
     if (!formula) {
         console.warn(`Unknown formula: ${formulaName}, falling back to fallout2`);
-        return fallout2Formula(weapon, ammo, armor, critical, burst, rangedBonus);
+        return fallout2Formula(weapon, ammo, armor, critical, burst, allCrit, rangedBonus);
     }
-    return formula(weapon, ammo, armor, critical, burst, rangedBonus);
+    return formula(weapon, ammo, armor, critical, burst, allCrit, rangedBonus);
 };

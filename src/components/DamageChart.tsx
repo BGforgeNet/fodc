@@ -18,10 +18,11 @@ interface DamageChartProps {
     burst: boolean;
     pointBlank: boolean;
     critical: boolean;
+    allCrit: boolean;
     rangedBonus: number;
 }
 
-const DamageChart = ({ weaponName, ammoName, data, mode, hiddenMods, onHiddenModsChange, burst, pointBlank, critical, rangedBonus }: DamageChartProps) => {
+const DamageChart = ({ weaponName, ammoName, data, mode, hiddenMods, onHiddenModsChange, burst, pointBlank, critical, allCrit, rangedBonus }: DamageChartProps) => {
     const vanillaMod = data.mods['vanilla'];
     if (!vanillaMod) return null;
     const armorList = vanillaMod.armor;
@@ -45,9 +46,10 @@ const DamageChart = ({ weaponName, ammoName, data, mode, hiddenMods, onHiddenMod
         const hitsMultiplier = burst ? (pointBlank ? burstRounds : burstRounds / 3) : 1;
         const damageData = armorList.map((armor) => {
             const modArmor = mod.armor.find((a) => a.name === armor.name) ?? armor;
-            const damageStr = getDamageWithFormula(config.formula, weapon, ammo, modArmor, critical, burst, rangedBonus);
+            const damageStr = getDamageWithFormula(config.formula, weapon, ammo, modArmor, critical, burst, allCrit, rangedBonus);
 
             // Handle fo2tweaks burst critical format: "crit|noncrit-crit|noncrit"
+            // Only used when burst + critical but not allCrit
             if (damageStr.includes('|')) {
                 const [minPart, maxPart] = damageStr.split('-');
                 const [minCrit, minNonCrit] = (minPart ?? '0|0').split('|').map(Number);
