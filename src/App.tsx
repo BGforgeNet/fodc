@@ -114,14 +114,7 @@ const App = () => {
                     {activeTab === 'charts' && (
                         <>
                             <div className="row mb-3 align-items-center justify-content-center">
-                                <div className="col-auto">
-                                    <SearchableSelect
-                                        options={weapons.map((w) => w.name)}
-                                        value={selectedWeapon}
-                                        onChange={setSelectedWeapon}
-                                    />
-                                </div>
-                                <div className="col-auto d-flex align-items-center gap-3">
+                                <div className="col-auto d-flex align-items-center gap-2">
                                     {weaponIcons[selectedWeapon] && (
                                         <img
                                             src={weaponIcons[selectedWeapon]}
@@ -130,16 +123,13 @@ const App = () => {
                                             className={styles.weaponIcon}
                                         />
                                     )}
-                                    {ammoIcons[effectiveAmmo] && (
-                                        <img
-                                            src={ammoIcons[effectiveAmmo]}
-                                            alt={effectiveAmmo}
-                                            title={effectiveAmmo}
-                                            className={styles.ammoIcon}
-                                        />
-                                    )}
+                                    <SearchableSelect
+                                        options={weapons.map((w) => w.name)}
+                                        value={selectedWeapon}
+                                        onChange={setSelectedWeapon}
+                                    />
                                 </div>
-                                <div className="col-auto">
+                                <div className="col-auto d-flex align-items-center gap-2">
                                     <select
                                         className={`form-select ${styles.ammoSelect}`}
                                         value={effectiveAmmo}
@@ -152,6 +142,14 @@ const App = () => {
                                             </option>
                                         ))}
                                     </select>
+                                    {ammoIcons[effectiveAmmo] && (
+                                        <img
+                                            src={ammoIcons[effectiveAmmo]}
+                                            alt={effectiveAmmo}
+                                            title={effectiveAmmo}
+                                            className={styles.ammoIcon}
+                                        />
+                                    )}
                                 </div>
                             </div>
                             <div className="row mb-3 align-items-center justify-content-center">
