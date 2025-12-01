@@ -113,6 +113,7 @@ const App = () => {
                                         style={{ width: '280px' }}
                                         value={effectiveAmmo}
                                         onChange={(e) => setSelectedAmmo(e.target.value)}
+                                        disabled={compatibleAmmo.length <= 1}
                                     >
                                         {compatibleAmmo.map((a) => (
                                             <option key={a.name} value={a.name}>
