@@ -96,11 +96,18 @@ const App = () => {
         const newMod = data?.mods[newModId];
         const newWeapons = newMod?.weapons ?? [];
         if (newWeapons.length > 0 && !newWeapons.some((w) => w.name === cwWeapon)) {
+            // Weapon doesn't exist in new mod - switch to first weapon
             const firstWeapon = newWeapons[0];
             setCwWeapon(firstWeapon?.name ?? '');
-            // Also update ammo for new weapon
             const newAmmo = newMod?.ammo.filter((a) => a.caliber === firstWeapon?.caliber) ?? [];
             setCwAmmo(newAmmo[0]?.name ?? '');
+        } else {
+            // Weapon exists - check if current ammo exists in new mod
+            const currentWeapon = newWeapons.find((w) => w.name === cwWeapon);
+            const compatibleAmmo = newMod?.ammo.filter((a) => a.caliber === currentWeapon?.caliber) ?? [];
+            if (!compatibleAmmo.some((a) => a.name === cwAmmo)) {
+                setCwAmmo(compatibleAmmo[0]?.name ?? '');
+            }
         }
     };
 

@@ -277,11 +277,107 @@ const glovzFormula = (
     return `${minDamage}-${maxDamage}`;
 };
 
+// EcCo (Economy and Combat Overhaul) formula
+// Source: https://github.com/phobos2077/fo2_ecco/blob/master/scripts_src/_pbs_headers/damage_mod.h
+// Config: https://github.com/phobos2077/fo2_ecco/blob/master/root/mods/ecco/combat.ini
+//
+// Key differences from vanilla:
+// 1. DT is reduced by ammo's DR adjust for AP ammo (negative dr_mod):
+//    DT = armorDT + (ammoDR / 10) * dt_mult  (dt_mult = 1.3 for AP ammo)
+//    JHP ammo (positive dr_mod) does NOT affect DT (dt_mode_positive = 0)
+// 2. DR calculation is vanilla: DR = armorDR + ammoDR, clamped to 0-100
+// 3. Burst criticals: only 50% of bullets get critical multiplier (burst_critical_fraction = 0.5)
+// 4. Float calculations with probabilistic rounding per bullet
+// 5. Penetrate: DT reduced to 20% (same as vanilla)
+// 6. Critical: DT and DR reduced to 20%, crit multiplier x2 (x4 total)
+//
+// Formula per bullet:
+//   effectiveDT = max(0, armorDT + ammoDR * 0.13)  // only for AP ammo (ammoDR < 0)
+//   effectiveDR = clamp(armorDR + ammoDR, 0, 100)
+//   damage = (baseDmg + rangedBonus - effectiveDT) * ammoMult * (1 - effectiveDR/100) * critMult
+const eccoFormula = (
+    weapon: Weapon,
+    ammo: Ammo,
+    armor: Armor,
+    critical: boolean,
+    burst: boolean,
+    rangedBonus: number
+): string => {
+    // EcCo config defaults from combat.ini
+    const DT_MULT_NEGATIVE = 1.3; // dt_mult_negative for AP ammo
+    // BURST_CRITICAL_FRACTION = 0.5 - Only 50% of burst bullets get crit bonus
+    // This is handled by returning both crit and non-crit damage for charts to calculate
+
+    const calculateDamage = (baseDamage: number, isCritical: boolean): number => {
+        // Armor bypass: critical affects both DR and DT, penetrate only DT
+        // Applied before ammo modifiers, not cumulative
+        let targetDr = armor.dr;
+        let targetDt = armor.dt;
+        if (isCritical) {
+            targetDr = armor.dr * 0.2;
+            targetDt = armor.dt * 0.2;
+        } else if (weapon.penetrate) {
+            targetDt = armor.dt * 0.2;
+        }
+
+        // DT modification by ammo DR adjust (EcCo's key difference)
+        // Only AP ammo (negative dr_mod) affects DT: DT += ammoDR * 0.1 * dt_mult
+        // JHP ammo (positive dr_mod) has no effect on DT (dt_mode_positive = 0)
+        let effectiveDt = targetDt;
+        if (ammo.dr_mod < 0) {
+            // dt_mode_negative = 1 (ADD mode): DT += ammoDR / 10 * dt_mult
+            effectiveDt = targetDt + (ammo.dr_mod / 10) * DT_MULT_NEGATIVE;
+        }
+        effectiveDt = Math.max(0, effectiveDt);
+
+        // DR calculation is vanilla: DR = armorDR + ammoDR
+        let effectiveDr = targetDr + ammo.dr_mod;
+        effectiveDr = Math.max(0, Math.min(100, effectiveDr));
+
+        // Critical multiplier: x2 for critical (x4 total with base x2), x1 for non-critical
+        const critMult = isCritical ? 2 : 1;
+
+        // Damage formula
+        const rawDamage = baseDamage + rangedBonus - effectiveDt;
+        if (rawDamage <= 0) return 0;
+
+        const damage = rawDamage * ammo.dmg_mod * (1 - effectiveDr / 100) * critMult;
+        return Math.max(0, damage);
+    };
+
+    // For burst critical: only 50% of bullets get crit (first bullet always crits)
+    // Return both crit and non-crit damage for chart to handle
+    if (burst && critical) {
+        const minCrit = calculateDamage(weapon.min_dmg, true);
+        const maxCrit = calculateDamage(weapon.max_dmg, true);
+        const minNonCrit = calculateDamage(weapon.min_dmg, false);
+        const maxNonCrit = calculateDamage(weapon.max_dmg, false);
+
+        const formatFloat = (n: number): string => {
+            if (n % 1 === 0) return n.toString();
+            return parseFloat(n.toFixed(1)).toString();
+        };
+        // Encode both values: crit|noncrit (50% of bullets are crit)
+        return `${formatFloat(minCrit)}|${formatFloat(minNonCrit)}-${formatFloat(maxCrit)}|${formatFloat(maxNonCrit)}`;
+    }
+
+    const minDamage = calculateDamage(weapon.min_dmg, critical);
+    const maxDamage = calculateDamage(weapon.max_dmg, critical);
+
+    const formatFloat = (n: number): string => {
+        if (n % 1 === 0) return n.toString();
+        return parseFloat(n.toFixed(1)).toString();
+    };
+
+    return `${formatFloat(minDamage)}-${formatFloat(maxDamage)}`;
+};
+
 const formulas: Record<string, DamageCalculator> = {
     fallout2: fallout2Formula,
     fo2tweaks: fo2tweaksFormula,
     yaam: yaamFormula,
     glovz: glovzFormula,
+    ecco: eccoFormula,
 };
 
 export const getDamageWithFormula = (

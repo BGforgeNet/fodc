@@ -1,0 +1,16 @@
+Name,Abbrev,DR,DT,DR fire,DT fire,DR plasma,DT plasma,DR laser,DT laser
+No armor,,0,0,0,0,0,0,0,0
+Leather jacket,,15,0,10,0,10,0,0,0
+Combat leather jacket,,30,2,25,2,10,0,0,2
+Leather armor,,20,2,20,0,10,0,0,2
+Leather armor Mk II,Mk II,25,3,25,1,10,1,10,2
+Metal armor,,30,5,10,4,20,4,30,6
+Metal armor Mk II,Mk II,35,5,15,4,25,4,50,6
+Tesla armor,Tesla,35,5,15,4,80,10,90,12
+Combat armor,,40,5,30,4,50,4,30,4
+Combat armor Mk II,Mk II,45,6,35,5,50,5,40,6
+Brotherhood armor,Brotherhood,45,8,50,7,60,7,65,6
+Power armor,,40,12,60,12,40,10,70,8
+Hardened power armor,Hardened,50,13,60,14,50,13,70,10
+Advanced power armor,,55,15,70,16,60,15,70,16
+Advanced power armor Mk II,Mk II,60,18,70,16,60,18,90,19
