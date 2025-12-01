@@ -1,5 +1,5 @@
 export const armorIcons: Record<string, string> = {
-    'None': '',
+    None: '',
     'Leather jacket': '/images/armor/leather-jacket.gif',
     'Combat leather jacket': '/images/armor/combat-leather-jacket.gif',
     'Leather armor': '/images/armor/leather-armor.gif',

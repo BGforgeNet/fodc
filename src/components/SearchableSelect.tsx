@@ -12,9 +12,7 @@ const SearchableSelect = ({ options, value, onChange }: SearchableSelectProps) =
     const inputRef = useRef<HTMLInputElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    const filtered = search
-        ? options.filter((o) => o.toLowerCase().includes(search.toLowerCase()))
-        : options;
+    const filtered = search ? options.filter((o) => o.toLowerCase().includes(search.toLowerCase())) : options;
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
@@ -77,9 +75,7 @@ const SearchableSelect = ({ options, value, onChange }: SearchableSelectProps) =
                             {option}
                         </button>
                     ))}
-                    {filtered.length === 0 && (
-                        <div className="dropdown-item disabled">No matches</div>
-                    )}
+                    {filtered.length === 0 && <div className="dropdown-item disabled">No matches</div>}
                 </div>
             )}
         </div>

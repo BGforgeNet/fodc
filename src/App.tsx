@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { ModData } from './types';
+import { DamageMode } from './chartUtils';
 import DamageTable from './components/DamageTable';
-import DamageChart, { DamageMode } from './components/DamageChart';
+import DamageChart from './components/DamageChart';
 import CompareWeaponsChart, { WeaponEntry } from './components/CompareWeaponsChart';
 import SearchableSelect from './components/SearchableSelect';
+import { DamageModeButtons, FireModeSelector, CriticalControls, BonusRangedDamage } from './components/ChartControls';
 import { modOrder, modConfigs } from './modConfig';
 import { weaponIcons } from './icons/weaponIcons';
 import { ammoIcons } from './icons/ammoIcons';
@@ -54,30 +56,34 @@ const App = () => {
 
     // Compute effective ammo - use selected if compatible, otherwise first compatible
     const currentAmmoValid = compatibleAmmo.some((a) => a.name === selectedAmmo);
-    const effectiveAmmo = currentAmmoValid ? selectedAmmo : (compatibleAmmo[0]?.name ?? '');
-
-    // Sync state when effective differs from selected (deferred to avoid render loop)
-    useEffect(() => {
-        if (effectiveAmmo !== selectedAmmo) {
-            setSelectedAmmo(effectiveAmmo);
-        }
-    }, [effectiveAmmo, selectedAmmo]);
+    const effectiveAmmo = currentAmmoValid ? selectedAmmo : compatibleAmmo[0]?.name ?? '';
 
     // Burst: force enabled for burst-only weapons, otherwise use fire mode
     const hasBurst = weapon?.burst !== undefined;
     const isBurstOnly = weapon?.burst_only === true;
     const effectiveBurst = isBurstOnly || (hasBurst && fireMode !== 'single');
     const pointBlank = fireMode === 'pointblank';
-    const effectiveFireMode = isBurstOnly && fireMode === 'single' ? 'burst' : fireMode;
 
-    // Switch to valid fire mode when weapon changes
-    useEffect(() => {
-        if (isBurstOnly && fireMode === 'single') {
-            setFireMode('burst');
-        } else if (!hasBurst && fireMode !== 'single') {
-            setFireMode('single');
+    // Handler for weapon change - also updates ammo and fire mode if needed
+    const handleWeaponChange = (newWeapon: string) => {
+        setSelectedWeapon(newWeapon);
+        const newWeaponData = weapons.find((w) => w.name === newWeapon);
+        if (newWeaponData) {
+            // Update ammo if current selection is incompatible
+            const newCompatibleAmmo = vanillaMod?.ammo.filter((a) => a.caliber === newWeaponData.caliber) ?? [];
+            if (!newCompatibleAmmo.some((a) => a.name === selectedAmmo)) {
+                setSelectedAmmo(newCompatibleAmmo[0]?.name ?? '');
+            }
+            // Update fire mode if needed
+            const newHasBurst = newWeaponData.burst !== undefined;
+            const newIsBurstOnly = newWeaponData.burst_only === true;
+            if (newIsBurstOnly && fireMode === 'single') {
+                setFireMode('burst');
+            } else if (!newHasBurst && fireMode !== 'single') {
+                setFireMode('single');
+            }
         }
-    }, [hasBurst, isBurstOnly, fireMode]);
+    };
 
     // Compare weapons: get weapons and ammo for selected mod
     const cwMod = data?.mods[cwModId];
@@ -85,18 +91,31 @@ const App = () => {
     const cwSelectedWeapon = cwWeapons.find((w) => w.name === cwWeapon);
     const cwCompatibleAmmo = cwMod?.ammo.filter((a) => a.caliber === cwSelectedWeapon?.caliber) ?? [];
 
-    // Auto-select first weapon/ammo when mod changes
-    useEffect(() => {
-        if (cwWeapons.length > 0 && !cwWeapons.some((w) => w.name === cwWeapon)) {
-            setCwWeapon(cwWeapons[0]?.name ?? '');
+    // Handler for compare-weapons mod change
+    const handleCwModChange = (newModId: string) => {
+        setCwModId(newModId);
+        const newMod = data?.mods[newModId];
+        const newWeapons = newMod?.weapons ?? [];
+        if (newWeapons.length > 0 && !newWeapons.some((w) => w.name === cwWeapon)) {
+            const firstWeapon = newWeapons[0];
+            setCwWeapon(firstWeapon?.name ?? '');
+            // Also update ammo for new weapon
+            const newAmmo = newMod?.ammo.filter((a) => a.caliber === firstWeapon?.caliber) ?? [];
+            setCwAmmo(newAmmo[0]?.name ?? '');
         }
-    }, [cwModId, cwWeapons, cwWeapon]);
+    };
 
-    useEffect(() => {
-        if (cwCompatibleAmmo.length > 0 && !cwCompatibleAmmo.some((a) => a.name === cwAmmo)) {
-            setCwAmmo(cwCompatibleAmmo[0]?.name ?? '');
+    // Handler for compare-weapons weapon change
+    const handleCwWeaponChange = (newWeapon: string) => {
+        setCwWeapon(newWeapon);
+        const newWeaponData = cwWeapons.find((w) => w.name === newWeapon);
+        if (newWeaponData) {
+            const newAmmo = cwMod?.ammo.filter((a) => a.caliber === newWeaponData.caliber) ?? [];
+            if (!newAmmo.some((a) => a.name === cwAmmo)) {
+                setCwAmmo(newAmmo[0]?.name ?? '');
+            }
         }
-    }, [cwWeapon, cwCompatibleAmmo, cwAmmo]);
+    };
 
     const isDuplicateEntry = weaponEntries.some(
         (e) => e.modId === cwModId && e.weaponName === cwWeapon && e.ammoName === cwAmmo
@@ -167,7 +186,7 @@ const App = () => {
                                     <SearchableSelect
                                         options={weapons.map((w) => w.name)}
                                         value={selectedWeapon}
-                                        onChange={setSelectedWeapon}
+                                        onChange={handleWeaponChange}
                                     />
                                 </div>
                                 <div className="col-auto d-flex align-items-center gap-2">
@@ -209,140 +228,39 @@ const App = () => {
                             </div>
                             <div className="row mb-3 align-items-center justify-content-center">
                                 <div className="col-auto">
-                                    <div className="btn-group" role="group">
-                                        <button
-                                            className={`btn ${damageMode === 'min' ? 'btn-primary' : 'btn-outline-primary'}`}
-                                            onClick={() => setDamageMode('min')}
-                                        >
-                                            Min
-                                        </button>
-                                        <button
-                                            className={`btn ${damageMode === 'average' ? 'btn-primary' : 'btn-outline-primary'}`}
-                                            onClick={() => setDamageMode('average')}
-                                        >
-                                            Average
-                                        </button>
-                                        <button
-                                            className={`btn ${damageMode === 'max' ? 'btn-primary' : 'btn-outline-primary'}`}
-                                            onClick={() => setDamageMode('max')}
-                                        >
-                                            Max
-                                        </button>
-                                        <button
-                                            className={`btn ${damageMode === 'range' ? 'btn-primary' : 'btn-outline-primary'}`}
-                                            onClick={() => setDamageMode('range')}
-                                        >
-                                            Range
-                                        </button>
-                                    </div>
+                                    <DamageModeButtons mode={damageMode} onChange={setDamageMode} />
                                 </div>
                                 <div className="col-auto d-flex align-items-center">
-                                    <div className="btn-group btn-group-sm">
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            id="fireSingle"
-                                            checked={effectiveFireMode === 'single'}
-                                            onChange={() => setFireMode('single')}
-                                            disabled={isBurstOnly}
-                                        />
-                                        <label className="btn btn-outline-primary" htmlFor="fireSingle">
-                                            Single
-                                        </label>
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            id="fireBurst"
-                                            checked={effectiveFireMode === 'burst'}
-                                            onChange={() => setFireMode('burst')}
-                                            disabled={!hasBurst}
-                                            title="Assume 1/3 of rounds hit"
-                                        />
-                                        <label className={`btn btn-outline-primary ${!hasBurst ? 'disabled' : ''}`} htmlFor="fireBurst">
-                                            Burst
-                                        </label>
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            id="firePointblank"
-                                            checked={effectiveFireMode === 'pointblank'}
-                                            onChange={() => setFireMode('pointblank')}
-                                            disabled={!hasBurst}
-                                            title="Assume all rounds hit"
-                                        />
-                                        <label className={`btn btn-outline-primary ${!hasBurst ? 'disabled' : ''}`} htmlFor="firePointblank">
-                                            Point-blank burst
-                                        </label>
-                                    </div>
+                                    <FireModeSelector
+                                        mode={fireMode}
+                                        onChange={setFireMode}
+                                        hasBurst={hasBurst}
+                                        isBurstOnly={isBurstOnly}
+                                        idPrefix="cm"
+                                    />
                                 </div>
-                                <div className="col-auto d-flex align-items-center">
-                                    <div className="form-check mb-0" title="Assume armor bypass. On single shot, assume damage x3, on burst - x2">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            id="criticalToggle"
-                                            checked={criticalHit}
-                                            onChange={() => setCriticalHit(!criticalHit)}
-                                        />
-                                        <label className="form-check-label" htmlFor="criticalToggle">
-                                            Critical
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="col-auto d-flex align-items-center">
-                                    <div className="form-check mb-0" title="Every round is a critical hit">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            id="sniperLuckToggle"
-                                            checked={sniperLuck}
-                                            onChange={() => {
-                                                const newValue = !sniperLuck;
-                                                setSniperLuck(newValue);
-                                                if (newValue) setCriticalHit(true);
-                                            }}
-                                        />
-                                        <label className="form-check-label" htmlFor="sniperLuckToggle">
-                                            Sniper 10 Luck
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="col-auto d-flex align-items-center">
-                                    <span className="me-2">Bonus Ranged Damage</span>
-                                    <div className="btn-group btn-group-sm">
-                                        <button
-                                            className="btn btn-outline-secondary"
-                                            onClick={() => setBonusRangedDamage(Math.max(0, bonusRangedDamage - 1))}
-                                            disabled={bonusRangedDamage === 0}
-                                        >
-                                            −
-                                        </button>
-                                        <span className={`btn btn-outline-secondary ${styles.bonusRangeValue}`}>
-                                            {bonusRangedDamage * 2}
-                                        </span>
-                                        <button
-                                            className="btn btn-outline-secondary"
-                                            onClick={() => setBonusRangedDamage(Math.min(2, bonusRangedDamage + 1))}
-                                            disabled={bonusRangedDamage === 2}
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                </div>
+                                <CriticalControls
+                                    critical={criticalHit}
+                                    sniperLuck={sniperLuck}
+                                    onCriticalChange={setCriticalHit}
+                                    onSniperLuckChange={setSniperLuck}
+                                    idPrefix="cm"
+                                />
+                                <BonusRangedDamage value={bonusRangedDamage} onChange={setBonusRangedDamage} />
                             </div>
                             <DamageChart
-                                    weaponName={selectedWeapon}
-                                    ammoName={effectiveAmmo}
-                                    data={data}
-                                    mode={damageMode}
-                                    hiddenMods={hiddenMods}
-                                    onHiddenModsChange={setHiddenMods}
-                                    burst={effectiveBurst}
-                                    pointBlank={pointBlank}
-                                    critical={criticalHit}
-                                    allCrit={sniperLuck}
-                                    rangedBonus={bonusRangedDamage * 2}
-                                />
+                                weaponName={selectedWeapon}
+                                ammoName={effectiveAmmo}
+                                data={data}
+                                mode={damageMode}
+                                hiddenMods={hiddenMods}
+                                onHiddenModsChange={setHiddenMods}
+                                burst={effectiveBurst}
+                                pointBlank={pointBlank}
+                                critical={criticalHit}
+                                allCrit={sniperLuck}
+                                rangedBonus={bonusRangedDamage * 2}
+                            />
                         </>
                     )}
 
@@ -353,7 +271,7 @@ const App = () => {
                                     <select
                                         className="form-select"
                                         value={cwModId}
-                                        onChange={(e) => setCwModId(e.target.value)}
+                                        onChange={(e) => handleCwModChange(e.target.value)}
                                     >
                                         {modOrder.map((modId) => (
                                             <option key={modId} value={modId}>
@@ -366,7 +284,7 @@ const App = () => {
                                     <SearchableSelect
                                         options={cwWeapons.map((w) => w.name)}
                                         value={cwWeapon}
-                                        onChange={setCwWeapon}
+                                        onChange={handleCwWeaponChange}
                                     />
                                 </div>
                                 <div className="col-auto d-flex align-items-center gap-2">
@@ -431,123 +349,25 @@ const App = () => {
                             </div>
                             <div className="row mb-3 align-items-center justify-content-center">
                                 <div className="col-auto">
-                                    <div className="btn-group" role="group">
-                                        <button
-                                            className={`btn ${damageMode === 'min' ? 'btn-primary' : 'btn-outline-primary'}`}
-                                            onClick={() => setDamageMode('min')}
-                                        >
-                                            Min
-                                        </button>
-                                        <button
-                                            className={`btn ${damageMode === 'average' ? 'btn-primary' : 'btn-outline-primary'}`}
-                                            onClick={() => setDamageMode('average')}
-                                        >
-                                            Average
-                                        </button>
-                                        <button
-                                            className={`btn ${damageMode === 'max' ? 'btn-primary' : 'btn-outline-primary'}`}
-                                            onClick={() => setDamageMode('max')}
-                                        >
-                                            Max
-                                        </button>
-                                        <button
-                                            className={`btn ${damageMode === 'range' ? 'btn-primary' : 'btn-outline-primary'}`}
-                                            onClick={() => setDamageMode('range')}
-                                        >
-                                            Range
-                                        </button>
-                                    </div>
+                                    <DamageModeButtons mode={damageMode} onChange={setDamageMode} />
                                 </div>
                                 <div className="col-auto d-flex align-items-center">
-                                    <div className="btn-group btn-group-sm">
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            id="cwFireSingle"
-                                            checked={fireMode === 'single'}
-                                            onChange={() => setFireMode('single')}
-                                        />
-                                        <label className="btn btn-outline-primary" htmlFor="cwFireSingle">
-                                            Single
-                                        </label>
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            id="cwFireBurst"
-                                            checked={fireMode === 'burst'}
-                                            onChange={() => setFireMode('burst')}
-                                            title="Assume 1/3 of rounds hit"
-                                        />
-                                        <label className="btn btn-outline-primary" htmlFor="cwFireBurst">
-                                            Burst
-                                        </label>
-                                        <input
-                                            type="radio"
-                                            className="btn-check"
-                                            id="cwFirePointblank"
-                                            checked={fireMode === 'pointblank'}
-                                            onChange={() => setFireMode('pointblank')}
-                                            title="Assume all rounds hit"
-                                        />
-                                        <label className="btn btn-outline-primary" htmlFor="cwFirePointblank">
-                                            Point-blank burst
-                                        </label>
-                                    </div>
+                                    <FireModeSelector
+                                        mode={fireMode}
+                                        onChange={setFireMode}
+                                        hasBurst={true}
+                                        isBurstOnly={false}
+                                        idPrefix="cw"
+                                    />
                                 </div>
-                                <div className="col-auto d-flex align-items-center">
-                                    <div className="form-check mb-0" title="Assume armor bypass. On single shot, assume damage x3, on burst - x2">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            id="cwCriticalToggle"
-                                            checked={criticalHit}
-                                            onChange={() => setCriticalHit(!criticalHit)}
-                                        />
-                                        <label className="form-check-label" htmlFor="cwCriticalToggle">
-                                            Critical
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="col-auto d-flex align-items-center">
-                                    <div className="form-check mb-0" title="Every round is a critical hit">
-                                        <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            id="cwSniperLuckToggle"
-                                            checked={sniperLuck}
-                                            onChange={() => {
-                                                const newValue = !sniperLuck;
-                                                setSniperLuck(newValue);
-                                                if (newValue) setCriticalHit(true);
-                                            }}
-                                        />
-                                        <label className="form-check-label" htmlFor="cwSniperLuckToggle">
-                                            Sniper 10 Luck
-                                        </label>
-                                    </div>
-                                </div>
-                                <div className="col-auto d-flex align-items-center">
-                                    <span className="me-2">Bonus Ranged Damage</span>
-                                    <div className="btn-group btn-group-sm">
-                                        <button
-                                            className="btn btn-outline-secondary"
-                                            onClick={() => setBonusRangedDamage(Math.max(0, bonusRangedDamage - 1))}
-                                            disabled={bonusRangedDamage === 0}
-                                        >
-                                            −
-                                        </button>
-                                        <span className={`btn btn-outline-secondary ${styles.bonusRangeValue}`}>
-                                            {bonusRangedDamage * 2}
-                                        </span>
-                                        <button
-                                            className="btn btn-outline-secondary"
-                                            onClick={() => setBonusRangedDamage(Math.min(2, bonusRangedDamage + 1))}
-                                            disabled={bonusRangedDamage === 2}
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                </div>
+                                <CriticalControls
+                                    critical={criticalHit}
+                                    sniperLuck={sniperLuck}
+                                    onCriticalChange={setCriticalHit}
+                                    onSniperLuckChange={setSniperLuck}
+                                    idPrefix="cw"
+                                />
+                                <BonusRangedDamage value={bonusRangedDamage} onChange={setBonusRangedDamage} />
                             </div>
                             <CompareWeaponsChart
                                 entries={weaponEntries}

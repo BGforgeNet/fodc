@@ -16,9 +16,7 @@ interface DamageTableProps {
 const DamageTable = (props: DamageTableProps) => {
     const [filter, setFilter] = useState('');
 
-    const filteredWeapons = props.weapons.filter((weapon) =>
-        weapon.name.toLowerCase().includes(filter.toLowerCase())
-    );
+    const filteredWeapons = props.weapons.filter((weapon) => weapon.name.toLowerCase().includes(filter.toLowerCase()));
 
     // Build rows with weapon rowspan information
     const rows: Array<{
@@ -74,19 +72,30 @@ const DamageTable = (props: DamageTableProps) => {
                 <tbody>
                     {rows.map((row) => (
                         <tr key={`${row.weapon.name}-${row.ammo.name}`}>
-                            {row.isFirstAmmoForWeapon && (
-                                <td rowSpan={row.ammoCountForWeapon}>{row.weapon.name}</td>
-                            )}
+                            {row.isFirstAmmoForWeapon && <td rowSpan={row.ammoCountForWeapon}>{row.weapon.name}</td>}
                             <td title={row.ammo.name}>
                                 {ammoIcons[row.ammo.name] ? (
-                                    <img src={ammoIcons[row.ammo.name]} alt={row.ammo.name} className={styles.ammoIcon} />
+                                    <img
+                                        src={ammoIcons[row.ammo.name]}
+                                        alt={row.ammo.name}
+                                        className={styles.ammoIcon}
+                                    />
                                 ) : (
                                     row.ammo.name
                                 )}
                             </td>
                             {props.armor.map((armor) => (
                                 <td key={armor.name}>
-                                    {getDamageWithFormula(props.formula, row.weapon, row.ammo, armor, false, false, false, 0)}
+                                    {getDamageWithFormula(
+                                        props.formula,
+                                        row.weapon,
+                                        row.ammo,
+                                        armor,
+                                        false,
+                                        false,
+                                        false,
+                                        0
+                                    )}
                                 </td>
                             ))}
                         </tr>

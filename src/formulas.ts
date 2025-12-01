@@ -1,11 +1,27 @@
 import { Weapon, Ammo, Armor } from './types';
 
-type DamageCalculator = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, allCrit: boolean, rangedBonus: number) => string;
+type DamageCalculator = (
+    weapon: Weapon,
+    ammo: Ammo,
+    armor: Armor,
+    critical: boolean,
+    burst: boolean,
+    allCrit: boolean,
+    rangedBonus: number
+) => string;
 
 // Fallout 2 formula (standard rounding, damage never negative)
 // Critical: x3 multiplier (x6 total since base is x2), armor bypass (DR and DT to 20%)
 // Note: Penetrate and critical armor bypass are not cumulative
-const fallout2Formula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, _allCrit: boolean, rangedBonus: number): string => {
+const fallout2Formula = (
+    weapon: Weapon,
+    ammo: Ammo,
+    armor: Armor,
+    critical: boolean,
+    burst: boolean,
+    _allCrit: boolean,
+    rangedBonus: number
+): string => {
     const calculateDamage = (baseDamage: number): number => {
         // Critical multiplier: x3 for single (x6 total), x2 for burst (x4 total)
         const critMultiplier = critical ? (burst ? 2 : 3) : 1;
@@ -22,7 +38,8 @@ const fallout2Formula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boo
         }
 
         const effectiveDr = Math.max(0, Math.min(90, armorDr + ammo.dr_mod));
-        const damage = ((baseDamage + rangedBonus) * ammo.dmg_mod * critMultiplier - armorDt) * (100 - effectiveDr) / 100;
+        const damage =
+            (((baseDamage + rangedBonus) * ammo.dmg_mod * critMultiplier - armorDt) * (100 - effectiveDr)) / 100;
         return Math.max(0, Math.round(damage));
     };
 
@@ -45,7 +62,15 @@ const fallout2Formula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boo
 // Burst critical: 1 bullet at x4, rest at x2 (base)
 // Simplified (no ranged bonus, normal difficulty):
 //   damage = (rnd - dt) * ammo_mult * critical_mult * dr_mult
-const fo2tweaksFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, allCrit: boolean, rangedBonus: number): string => {
+const fo2tweaksFormula = (
+    weapon: Weapon,
+    ammo: Ammo,
+    armor: Armor,
+    critical: boolean,
+    burst: boolean,
+    allCrit: boolean,
+    rangedBonus: number
+): string => {
     const calculateDamage = (baseDamage: number, isCritical: boolean): number => {
         // Armor bypass: critical affects both DR and DT, penetrate only DT
         // Applied before dr_mod, not cumulative
@@ -116,7 +141,15 @@ const fo2tweaksFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: bo
 // Critical: multiplyDamage = 6 instead of 2, armor bypass (DR and DT to 20%)
 // Penetrate: DT to 20% (not cumulative with critical)
 // Normal difficulty (100), no perks, no ranged bonus
-const yaamFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, _allCrit: boolean, rangedBonus: number): string => {
+const yaamFormula = (
+    weapon: Weapon,
+    ammo: Ammo,
+    armor: Armor,
+    critical: boolean,
+    burst: boolean,
+    _allCrit: boolean,
+    rangedBonus: number
+): string => {
     const calculateDamage = (baseDamage: number): number => {
         // Armor bypass: critical affects both DR and DT, penetrate only DT
         // Not cumulative - critical takes precedence
@@ -134,10 +167,10 @@ const yaamFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean
         let _calcDT = calcDT;
 
         if (calcDT >= 0) {
-            _calcDT = 0;  // _calcDT becomes 0, calcDT stays as original
+            _calcDT = 0; // _calcDT becomes 0, calcDT stays as original
         } else {
-            _calcDT *= 10;  // _calcDT = negative * 10
-            calcDT = 0;     // calcDT becomes 0
+            _calcDT *= 10; // _calcDT = negative * 10
+            calcDT = 0; // calcDT becomes 0
         }
 
         // calcDR = armorDR + _calcDT (note: _calcDT is 0 or negative*10)
@@ -161,7 +194,7 @@ const yaamFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean
         // rawDamage *= difficulty / 100 (normal = 100, so no change)
 
         // resistedDamage = calcDR * rawDamage / 100
-        const resistedDamage = Math.floor(calcDR * rawDamage / 100);
+        const resistedDamage = Math.floor((calcDR * rawDamage) / 100);
         rawDamage -= resistedDamage;
 
         return Math.max(0, Math.floor(rawDamage));
@@ -182,7 +215,15 @@ const yaamFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean
 // Critical: multiplyDamage = 6 instead of 2, armor bypass (DR and DT to 20%)
 // Penetrate: DT to 20% (not cumulative with critical)
 // Normal difficulty (100), no perks
-const glovzFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, _allCrit: boolean, rangedBonus: number): string => {
+const glovzFormula = (
+    weapon: Weapon,
+    ammo: Ammo,
+    armor: Armor,
+    critical: boolean,
+    burst: boolean,
+    _allCrit: boolean,
+    rangedBonus: number
+): string => {
     const calculateDamage = (baseDamage: number): number => {
         // Armor bypass: critical affects both DR and DT, penetrate only DT
         // Not cumulative - critical takes precedence
@@ -224,7 +265,7 @@ const glovzFormula = (weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolea
 
         // resistedDamage = calcDR * rawDamage / 100
         if (armorDR > 0) {
-            const resistedDamage = Math.round(calcDR * rawDamage / 100);
+            const resistedDamage = Math.round((calcDR * rawDamage) / 100);
             rawDamage -= resistedDamage;
             if (rawDamage <= 0) return 0;
         }
@@ -249,7 +290,16 @@ const formulas: Record<string, DamageCalculator> = {
     glovz: glovzFormula,
 };
 
-export const getDamageWithFormula = (formulaName: string, weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, allCrit: boolean, rangedBonus: number): string => {
+export const getDamageWithFormula = (
+    formulaName: string,
+    weapon: Weapon,
+    ammo: Ammo,
+    armor: Armor,
+    critical: boolean,
+    burst: boolean,
+    allCrit: boolean,
+    rangedBonus: number
+): string => {
     const formula = formulas[formulaName];
     let result: string;
     if (!formula) {

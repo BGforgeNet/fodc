@@ -1,25 +1,58 @@
-import tsParser from "@typescript-eslint/parser";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
-});
+import tseslint from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
+import reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
 
 export default [
-    ...compat.extends("eslint:recommended", "prettier"),
     {
+        ignores: ["dist/**", "node_modules/**", "data/**"],
+    },
+    js.configs.recommended,
+    {
+        files: ["src/**/*.{ts,tsx}"],
         languageOptions: {
-            globals: {},
             parser: tsParser,
-            ecmaVersion: "latest",
-            sourceType: "module",
+            parserOptions: {
+                ecmaVersion: "latest",
+                sourceType: "module",
+                ecmaFeatures: {
+                    jsx: true,
+                },
+            },
+            globals: {
+                console: "readonly",
+                document: "readonly",
+                window: "readonly",
+                fetch: "readonly",
+                Response: "readonly",
+                Set: "readonly",
+                Map: "readonly",
+                Promise: "readonly",
+                Date: "readonly",
+                JSON: "readonly",
+                Math: "readonly",
+                Number: "readonly",
+                HTMLElement: "readonly",
+                HTMLInputElement: "readonly",
+                HTMLDivElement: "readonly",
+                MouseEvent: "readonly",
+                Node: "readonly",
+                KeyboardEvent: "readonly",
+            },
+        },
+        plugins: {
+            "@typescript-eslint": tseslint,
+            "react-hooks": reactHooks,
+            "react-refresh": reactRefresh,
+        },
+        rules: {
+            ...tseslint.configs.recommended.rules,
+            ...reactHooks.configs.recommended.rules,
+            "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+            "no-unused-vars": "off",
+            "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+            "@typescript-eslint/no-explicit-any": "warn",
         },
     },
 ];

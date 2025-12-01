@@ -1,9 +1,21 @@
 import Plot from 'react-plotly.js';
-import { Data, Layout } from 'plotly.js';
+import { Data, Layout, PlotlyHTMLElement } from 'plotly.js';
 import { Armor } from '../types';
 import { armorIcons } from '../icons/armorIcons';
 import styles from './DamageChart.module.css';
 import React, { useState, useCallback } from 'react';
+
+// Plotly internal types not exported in @types/plotly.js
+interface PlotlyAxis {
+    d2p: (v: string) => number;
+    _offset: number;
+}
+
+interface PlotlyGraphDiv extends PlotlyHTMLElement {
+    _fullLayout?: {
+        xaxis?: PlotlyAxis;
+    };
+}
 
 interface BaseDamageChartProps {
     traces: Data[];
@@ -19,40 +31,54 @@ const BaseDamageChart = ({ traces, title, armorList, hiddenItems, onHiddenItemsC
     const [tooltipPositions, setTooltipPositions] = useState<{ x: number; width: number }[]>([]);
     const lastPositionsRef = React.useRef<string>('');
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handlePlotUpdate = useCallback((_figure: any, graphDiv: any) => {
-        const xaxis = graphDiv._fullLayout?.xaxis;
-        if (!xaxis) return;
+    const handlePlotUpdate = useCallback(
+        (_figure: unknown, graphDiv: PlotlyGraphDiv) => {
+            const xaxis = graphDiv._fullLayout?.xaxis;
+            if (!xaxis) return;
 
-        const positions = armorList.map((armor, i) => ({
-            x: xaxis.d2p(armor.name) + xaxis._offset,
-            width: i < armorList.length - 1
-                ? xaxis.d2p(armorList[i + 1]?.name) - xaxis.d2p(armor.name)
-                : xaxis.d2p(armorList[1]?.name) - xaxis.d2p(armorList[0]?.name),
-        }));
+            const firstArmor = armorList[0];
+            const secondArmor = armorList[1];
+            if (!firstArmor || !secondArmor) return;
 
-        const posKey = JSON.stringify(positions);
-        if (posKey !== lastPositionsRef.current) {
-            lastPositionsRef.current = posKey;
-            setTooltipPositions(positions);
-        }
-    }, [armorList]);
+            const positions = armorList.map((armor, i) => {
+                const nextArmor = armorList[i + 1];
+                return {
+                    x: xaxis.d2p(armor.name) + xaxis._offset,
+                    width: nextArmor
+                        ? xaxis.d2p(nextArmor.name) - xaxis.d2p(armor.name)
+                        : xaxis.d2p(secondArmor.name) - xaxis.d2p(firstArmor.name),
+                };
+            });
 
-    const images: Partial<Layout>['images'] = armorList.map((armor) => {
-        const iconPath = armorIcons[armor.name];
-        if (!iconPath) return null;
-        return {
-            source: iconPath,
-            xref: 'x' as const,
-            yref: 'paper' as const,
-            x: armor.name,
-            y: -0.02,
-            sizex: 0.54,
-            sizey: 0.108,
-            xanchor: 'center' as const,
-            yanchor: 'top' as const,
-        };
-    }).filter((img): img is NonNullable<typeof img> => img !== null);
+            // Skip if any positions contain NaN (happens when chart has no data)
+            if (positions.some((p) => isNaN(p.x) || isNaN(p.width))) return;
+
+            const posKey = JSON.stringify(positions);
+            if (posKey !== lastPositionsRef.current) {
+                lastPositionsRef.current = posKey;
+                setTooltipPositions(positions);
+            }
+        },
+        [armorList]
+    );
+
+    const images: Partial<Layout>['images'] = armorList
+        .map((armor) => {
+            const iconPath = armorIcons[armor.name];
+            if (!iconPath) return null;
+            return {
+                source: iconPath,
+                xref: 'x' as const,
+                yref: 'paper' as const,
+                x: armor.name,
+                y: -0.02,
+                sizex: 0.54,
+                sizey: 0.108,
+                xanchor: 'center' as const,
+                yanchor: 'top' as const,
+            };
+        })
+        .filter((img): img is NonNullable<typeof img> => img !== null);
 
     const annotations: Partial<Layout>['annotations'] = armorList
         .filter((armor) => armor.abbrev)
@@ -60,7 +86,7 @@ const BaseDamageChart = ({ traces, title, armorList, hiddenItems, onHiddenItemsC
             xref: 'x' as const,
             yref: 'paper' as const,
             x: armor.name,
-            y: -0.20,
+            y: -0.2,
             text: armor.abbrev,
             showarrow: false,
             font: { size: 12, weight: 'bold' as const },
@@ -75,7 +101,16 @@ const BaseDamageChart = ({ traces, title, armorList, hiddenItems, onHiddenItemsC
                     toImageButtonOptions: {
                         filename: 'fallout_2_damage_calculator',
                     },
-                    modeBarButtonsToRemove: ['zoom2d', 'pan2d', 'select2d', 'lasso2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d'],
+                    modeBarButtonsToRemove: [
+                        'zoom2d',
+                        'pan2d',
+                        'select2d',
+                        'lasso2d',
+                        'zoomIn2d',
+                        'zoomOut2d',
+                        'autoScale2d',
+                        'resetScale2d',
+                    ],
                     displaylogo: false,
                 }}
                 layout={{
@@ -97,8 +132,8 @@ const BaseDamageChart = ({ traces, title, armorList, hiddenItems, onHiddenItemsC
                 }}
                 useResizeHandler={true}
                 style={{ width: '100%', height: '500px' }}
-                onInitialized={handlePlotUpdate}
-                onUpdate={handlePlotUpdate}
+                onInitialized={handlePlotUpdate as (figure: unknown, graphDiv: HTMLElement) => void}
+                onUpdate={handlePlotUpdate as (figure: unknown, graphDiv: HTMLElement) => void}
                 onLegendClick={(e) => {
                     const name = e.data[e.curveNumber]?.name;
                     if (name) {

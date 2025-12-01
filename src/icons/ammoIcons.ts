@@ -13,7 +13,7 @@ export const ammoIcons: Record<string, string> = {
     '10mm AP': '/images/ammo/10mmap.gif',
     '10mm JHP': '/images/ammo/10mmjhp.gif',
     '14mm AP': '/images/ammo/14mmap.gif',
-    'BBs': '/images/ammo/bbs.gif',
+    BBs: '/images/ammo/bbs.gif',
     '12 gauge shotgun shells': '/images/ammo/12ga.gif',
     'Explosive rocket': '/images/ammo/explosiverocket.gif',
     'Rocket AP': '/images/ammo/rocketap.gif',
