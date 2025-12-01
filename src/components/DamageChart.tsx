@@ -125,9 +125,14 @@ const DamageChart = ({ weaponName, ammoName, data, mode, hiddenMods, onHiddenMod
 
     const modeLabel = mode.charAt(0).toUpperCase() + mode.slice(1);
     const burstLabel = burst && weapon.burst
-        ? ` Burst${pointBlank ? ' (Point blank)' : ''}`
+        ? (pointBlank ? ' Point-blank burst' : ' Burst')
         : '';
-    const criticalLabel = critical ? ' Critical' : '';
+    const modifiers = [
+        critical && 'Critical',
+        allCrit && 'Sniper 10 Luck',
+        rangedBonus > 0 && `BRD ${rangedBonus}`,
+    ].filter(Boolean);
+    const modifiersLabel = modifiers.length > 0 ? `, ${modifiers.join(', ')}` : '';
 
     const [tooltipPositions, setTooltipPositions] = useState<{ x: number; width: number }[]>([]);
     const lastPositionsRef = React.useRef<string>('');
@@ -186,7 +191,7 @@ const DamageChart = ({ weaponName, ammoName, data, mode, hiddenMods, onHiddenMod
                 className="plotly-chart"
                 data={traces}
                 layout={{
-                    title: { text: `${weapon.name} + ${ammoName} (${modeLabel})${burstLabel}${criticalLabel}` },
+                    title: { text: `${weapon.name} + ${ammoName} (${modeLabel})${burstLabel}${modifiersLabel}` },
                     xaxis: {
                         showticklabels: false,
                         showgrid: true,

@@ -263,7 +263,7 @@ const App = () => {
                                             −
                                         </button>
                                         <span className={`btn btn-outline-secondary ${styles.bonusRangeValue}`}>
-                                            {bonusRangedDamage}
+                                            {bonusRangedDamage * 2}
                                         </span>
                                         <button
                                             className="btn btn-outline-secondary"
