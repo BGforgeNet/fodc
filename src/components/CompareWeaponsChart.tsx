@@ -62,8 +62,11 @@ const CompareWeaponsChart = ({
         const ammo = mod.ammo.find((a) => a.name === entry.ammoName && a.caliber === weapon.caliber);
         if (!ammo) return;
 
-        const burstRounds = burst && weapon.burst ? weapon.burst : 1;
-        const hitsMultiplier = calculateHitsMultiplier(burst, pointBlank, burstRounds);
+        // Fall back to single-shot if weapon has no burst mode
+        const weaponHasBurst = !!weapon.burst;
+        const effectiveBurst = burst && weaponHasBurst;
+        const burstRounds = effectiveBurst ? weapon.burst : 1;
+        const hitsMultiplier = calculateHitsMultiplier(effectiveBurst, pointBlank, burstRounds);
 
         const damageData = armorList.map((armor) => {
             const modArmor = mod.armor.find((a) => a.name === armor.name) ?? armor;
@@ -73,7 +76,7 @@ const CompareWeaponsChart = ({
                 ammo,
                 modArmor,
                 critical,
-                burst,
+                effectiveBurst,
                 allCrit,
                 rangedBonus
             );

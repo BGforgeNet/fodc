@@ -335,16 +335,23 @@ const App = () => {
                             </div>
                             <div className={`row mb-3 justify-content-center ${styles.badgesRow}`}>
                                 <div className="col-auto d-flex flex-wrap gap-2">
-                                    {weaponEntries.map((entry) => (
-                                        <span key={entry.id} className={`badge bg-secondary ${styles.weaponBadge}`}>
-                                            {entry.weaponName} ({modConfigs[entry.modId]?.name})
-                                            <button
-                                                type="button"
-                                                className="btn-close btn-close-white ms-2"
-                                                onClick={() => removeWeaponEntry(entry.id)}
-                                            />
-                                        </span>
-                                    ))}
+                                    {weaponEntries.map((entry) => {
+                                        const mod = data?.mods[entry.modId];
+                                        const weapon = mod?.weapons.find((w) => w.name === entry.weaponName);
+                                        const ammoCount = mod?.ammo.filter((a) => a.caliber === weapon?.caliber).length ?? 0;
+                                        const showAmmo = ammoCount > 1;
+                                        return (
+                                            <span key={entry.id} className={`badge bg-secondary ${styles.weaponBadge}`}>
+                                                {entry.weaponName}
+                                                {showAmmo && ` + ${entry.ammoName}`} ({modConfigs[entry.modId]?.name})
+                                                <button
+                                                    type="button"
+                                                    className="btn-close btn-close-white ms-2"
+                                                    onClick={() => removeWeaponEntry(entry.id)}
+                                                />
+                                            </span>
+                                        );
+                                    })}
                                 </div>
                             </div>
                             <div className="row mb-3 align-items-center justify-content-center">
