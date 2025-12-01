@@ -53,28 +53,18 @@ export function createDamageTraces(
 
     if (mode === 'range') {
         const rangeText = damageData.map((d) => `${d.min}-${d.max}`);
-        // Min line (bottom)
+        // Single trace with fill between min and max using null gap
+        const xValues = [...armorNames, ...armorNames.slice().reverse()];
+        const yValues = [...damageData.map((d) => d.min), ...damageData.map((d) => d.max).reverse()];
         traces.push({
-            x: armorNames,
-            y: damageData.map((d) => d.min),
+            x: xValues,
+            y: yValues,
             type: 'scatter',
             mode: 'lines',
+            fill: 'toself',
             name: legendName,
             legendgroup: legendName,
-            hoverinfo: 'skip',
-            visible,
-        } as Data);
-        // Max line (top) with fill to min
-        traces.push({
-            x: armorNames,
-            y: damageData.map((d) => d.max),
-            type: 'scatter',
-            mode: 'lines',
-            fill: 'tonexty',
-            name: legendName,
-            legendgroup: legendName,
-            showlegend: false,
-            text: rangeText,
+            text: [...rangeText, ...rangeText.slice().reverse()],
             hovertemplate: '%{text}<extra>%{fullData.name}</extra>',
             visible,
         });
