@@ -47,7 +47,6 @@ export function createDamageTraces(
     damageData: DamageRange[],
     mode: DamageMode,
     legendName: string,
-    color: string,
     visible: boolean | 'legendonly'
 ): Data[] {
     const traces: Data[] = [];
@@ -60,7 +59,6 @@ export function createDamageTraces(
             y: damageData.map((d) => d.min),
             type: 'scatter',
             mode: 'lines',
-            line: { color },
             name: legendName,
             legendgroup: legendName,
             hoverinfo: 'skip',
@@ -72,9 +70,7 @@ export function createDamageTraces(
             y: damageData.map((d) => d.max),
             type: 'scatter',
             mode: 'lines',
-            line: { color },
             fill: 'tonexty',
-            fillcolor: `${color}33`,
             name: legendName,
             legendgroup: legendName,
             showlegend: false,
@@ -94,7 +90,6 @@ export function createDamageTraces(
             y: damages,
             type: 'scatter',
             mode: 'lines',
-            line: { color },
             name: legendName,
             legendgroup: legendName,
             hovertemplate: '%{y:.6~g}<extra>%{fullData.name}</extra>',
@@ -123,17 +118,3 @@ export function buildChartTitle(
     return `${baseTitle} (${modeLabel})${burstLabel}${modifiersLabel}`;
 }
 
-export const CHART_COLORS = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728'];
-
-export const EXTENDED_COLORS = [
-    '#1f77b4',
-    '#ff7f0e',
-    '#2ca02c',
-    '#d62728',
-    '#9467bd',
-    '#8c564b',
-    '#e377c2',
-    '#7f7f7f',
-    '#bcbd22',
-    '#17becf',
-];

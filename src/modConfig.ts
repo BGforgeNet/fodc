@@ -21,22 +21,22 @@ export const modConfigs: Record<string, ModConfig> = {
     fo2tweaks: {
         id: 'fo2tweaks',
         name: 'FO2tweaks',
-        description: 'FO2tweaks (vanilla data)',
+        description: 'FO2tweaks',
         formula: 'fo2tweaks',
     },
     yaam: {
         id: 'yaam',
         name: 'YAAM',
-        description: 'Yet Another Ammo Mod (vanilla data)',
+        description: 'Yet Another Ammo Mod',
         formula: 'yaam',
     },
     glovz: {
         id: 'glovz',
         name: 'Glovz',
-        description: 'Glovz Damage Formula (vanilla data)',
+        description: "Glovz's Damage Formula",
         formula: 'glovz',
     },
 };
 
 // Order mods will be displayed
-export const modOrder = ['vanilla', 'ecco', 'fo2tweaks', 'yaam', 'glovz'];
+export const modOrder = ['vanilla', 'glovz', 'yaam', 'fo2tweaks', 'ecco'];

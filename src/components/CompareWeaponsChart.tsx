@@ -9,7 +9,6 @@ import {
     calculateHitsMultiplier,
     createDamageTraces,
     buildChartTitle,
-    EXTENDED_COLORS,
 } from '../chartUtils';
 
 export interface WeaponEntry {
@@ -49,7 +48,7 @@ const CompareWeaponsChart = ({
     const armorNames = armorList.map((a) => a.name);
     const traces: Data[] = [];
 
-    entries.forEach((entry, entryIndex) => {
+    entries.forEach((entry) => {
         const mod = data.mods[entry.modId];
         const config = modConfigs[entry.modId];
         if (!mod || !config) return;
@@ -87,9 +86,8 @@ const CompareWeaponsChart = ({
                 : `${entry.weaponName} (${config.name})`;
 
         const visible = hiddenItems.has(legendName) ? 'legendonly' : true;
-        const color = EXTENDED_COLORS[entryIndex % EXTENDED_COLORS.length] ?? '#1f77b4';
 
-        traces.push(...createDamageTraces(armorNames, damageData, mode, legendName, color, visible));
+        traces.push(...createDamageTraces(armorNames, damageData, mode, legendName, visible));
     });
 
     const title = buildChartTitle('Compare Weapons', mode, burst, pointBlank, critical, rangedBonus);

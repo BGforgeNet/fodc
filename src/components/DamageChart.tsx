@@ -9,7 +9,6 @@ import {
     calculateHitsMultiplier,
     createDamageTraces,
     buildChartTitle,
-    CHART_COLORS,
 } from '../chartUtils';
 
 interface DamageChartProps {
@@ -47,7 +46,7 @@ const DamageChart = ({
     const armorNames = armorList.map((a) => a.name);
     const traces: Data[] = [];
 
-    modOrder.forEach((modId, modIndex) => {
+    modOrder.forEach((modId) => {
         const mod = data.mods[modId];
         const config = modConfigs[modId];
         if (!mod || !config) return;
@@ -73,9 +72,8 @@ const DamageChart = ({
         });
 
         const visible = hiddenMods.has(config.name) ? 'legendonly' : true;
-        const color = CHART_COLORS[modIndex % CHART_COLORS.length] ?? '#1f77b4';
 
-        traces.push(...createDamageTraces(armorNames, damageData, mode, config.name, color, visible));
+        traces.push(...createDamageTraces(armorNames, damageData, mode, config.name, visible));
     });
 
     const hasBurst = burst && weapon.burst !== undefined;
