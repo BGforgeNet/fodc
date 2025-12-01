@@ -40,7 +40,7 @@ const DamageChart = ({ weaponName, ammoName, data, mode, hiddenMods, onHiddenMod
         if (!ammo) return;
 
         const burstRounds = burst && weapon.burst ? weapon.burst : 1;
-        const hitsMultiplier = burst ? (pointBlank ? burstRounds : burstRounds / 3) : 1;
+        const hitsMultiplier = burst ? (pointBlank ? burstRounds : Math.round(burstRounds / 3)) : 1;
         const damageData = armorList.map((armor) => {
             const modArmor = mod.armor.find((a) => a.name === armor.name) ?? armor;
             const damageStr = getDamageWithFormula(config.formula, weapon, ammo, modArmor, critical, burst, allCrit, rangedBonus);
