@@ -197,7 +197,7 @@
       ],
       "armor": [
         {
-          "name": "None",
+          "name": "No armor",
           "abbrev": "",
           "dr": 0,
           "dt": 0,
@@ -1029,7 +1029,7 @@
       ],
       "armor": [
         {
-          "name": "None",
+          "name": "No armor",
           "abbrev": "",
           "dr": 0,
           "dt": 0,
@@ -1861,7 +1861,7 @@
       ],
       "armor": [
         {
-          "name": "None",
+          "name": "No armor",
           "abbrev": "",
           "dr": 0,
           "dt": 0,
@@ -2693,7 +2693,7 @@
       ],
       "armor": [
         {
-          "name": "None",
+          "name": "No armor",
           "abbrev": "",
           "dr": 0,
           "dt": 0,
