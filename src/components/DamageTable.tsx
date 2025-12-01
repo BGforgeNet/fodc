@@ -1,5 +1,6 @@
 import { Ammo, Armor, Weapon } from '../types';
 import { getDamageWithFormula } from '../formulas';
+import { armorIcons } from '../armorIcons';
 import styles from './DamageTable.module.css';
 
 interface DamageTableProps {
@@ -40,9 +41,18 @@ const DamageTable = (props: DamageTableProps) => {
                     <tr>
                         <th>Weapon</th>
                         <th>Ammo</th>
-                        {props.armor.map((armor) => (
-                            <th key={armor.name}>{armor.name}</th>
-                        ))}
+                        {props.armor.map((armor) => {
+                            const iconPath = armorIcons[armor.name];
+                            return (
+                                <th key={armor.name} title={armor.name}>
+                                    {iconPath ? (
+                                        <img src={iconPath} alt={armor.name} className={styles.armorIcon} />
+                                    ) : (
+                                        armor.name
+                                    )}
+                                </th>
+                            );
+                        })}
                     </tr>
                 </thead>
                 <tbody>
