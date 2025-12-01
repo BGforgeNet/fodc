@@ -4,6 +4,8 @@ import DamageTable from './components/DamageTable';
 import DamageChart, { DamageMode } from './components/DamageChart';
 import SearchableSelect from './components/SearchableSelect';
 import { modOrder, modConfigs } from './modConfig';
+import { weaponIcons } from './icons/weaponIcons';
+import { ammoIcons } from './icons/ammoIcons';
 import styles from './App.module.css';
 
 const fetchModData = async (): Promise<ModData> => {
@@ -118,6 +120,24 @@ const App = () => {
                                         value={selectedWeapon}
                                         onChange={setSelectedWeapon}
                                     />
+                                </div>
+                                <div className="col-auto d-flex align-items-center gap-3">
+                                    {weaponIcons[selectedWeapon] && (
+                                        <img
+                                            src={weaponIcons[selectedWeapon]}
+                                            alt={selectedWeapon}
+                                            title={selectedWeapon}
+                                            className={styles.weaponIcon}
+                                        />
+                                    )}
+                                    {ammoIcons[effectiveAmmo] && (
+                                        <img
+                                            src={ammoIcons[effectiveAmmo]}
+                                            alt={effectiveAmmo}
+                                            title={effectiveAmmo}
+                                            className={styles.ammoIcon}
+                                        />
+                                    )}
                                 </div>
                                 <div className="col-auto">
                                     <select

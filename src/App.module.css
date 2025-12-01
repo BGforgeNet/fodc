@@ -6,3 +6,11 @@
     min-width: 32px;
     pointer-events: none;
 }
+
+.weaponIcon {
+    height: 32px;
+}
+
+.ammoIcon {
+    height: 24px;
+}

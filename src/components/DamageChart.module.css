@@ -1,0 +1,12 @@
+.wrapper {
+    position: relative;
+    overflow: visible;
+}
+
+.tooltipOverlay {
+    position: absolute;
+    bottom: 20px;
+    height: 100px;
+    cursor: pointer;
+    z-index: 10;
+}

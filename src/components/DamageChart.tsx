@@ -4,6 +4,7 @@ import { ModData } from '../types';
 import { getDamageWithFormula } from '../formulas';
 import { modOrder, modConfigs } from '../modConfig';
 import { armorIcons } from '../icons/armorIcons';
+import styles from './DamageChart.module.css';
 import React, { useState, useCallback } from 'react';
 
 type DamageMode = 'average' | 'min' | 'max' | 'range';
@@ -180,7 +181,7 @@ const DamageChart = ({ weaponName, ammoName, data, mode, hiddenMods, onHiddenMod
         }));
 
     return (
-        <div style={{ position: 'relative', overflow: 'visible' }}>
+        <div className={styles.wrapper}>
             <Plot
                 className="plotly-chart"
                 data={traces}
@@ -224,15 +225,8 @@ const DamageChart = ({ weaponName, ammoName, data, mode, hiddenMods, onHiddenMod
                 <div
                     key={armorList[i]?.name}
                     title={armorList[i]?.name}
-                    style={{
-                        position: 'absolute',
-                        left: pos.x - pos.width / 2,
-                        bottom: 20,
-                        width: pos.width,
-                        height: 100,
-                        cursor: 'pointer',
-                        zIndex: 10,
-                    }}
+                    className={styles.tooltipOverlay}
+                    style={{ left: pos.x - pos.width / 2, width: pos.width }}
                 />
             ))}
         </div>
