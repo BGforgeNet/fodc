@@ -3,7 +3,7 @@ import { Data, Layout } from 'plotly.js';
 import { ModData } from '../types';
 import { getDamageWithFormula } from '../formulas';
 import { modOrder, modConfigs } from '../modConfig';
-import { armorIcons } from '../armorIcons';
+import { armorIcons } from '../icons/armorIcons';
 import React, { useState, useCallback } from 'react';
 
 type DamageMode = 'average' | 'min' | 'max' | 'range';

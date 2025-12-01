@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { Ammo, Armor, Weapon } from '../types';
 import { getDamageWithFormula } from '../formulas';
-import { armorIcons } from '../armorIcons';
+import { armorIcons } from '../icons/armorIcons';
+import { ammoIcons } from '../icons/ammoIcons';
 import styles from './DamageTable.module.css';
 
 interface DamageTableProps {
@@ -12,6 +14,12 @@ interface DamageTableProps {
 }
 
 const DamageTable = (props: DamageTableProps) => {
+    const [filter, setFilter] = useState('');
+
+    const filteredWeapons = props.weapons.filter((weapon) =>
+        weapon.name.toLowerCase().includes(filter.toLowerCase())
+    );
+
     // Build rows with weapon rowspan information
     const rows: Array<{
         weapon: Weapon;
@@ -20,7 +28,7 @@ const DamageTable = (props: DamageTableProps) => {
         ammoCountForWeapon: number;
     }> = [];
 
-    props.weapons.forEach((weapon) => {
+    filteredWeapons.forEach((weapon) => {
         const matchingAmmo = props.ammo.filter((ammo) => weapon.caliber === ammo.caliber);
         matchingAmmo.forEach((ammo, index) => {
             rows.push({
@@ -39,7 +47,15 @@ const DamageTable = (props: DamageTableProps) => {
             <table className={`table table-striped table-bordered ${styles.table}`}>
                 <thead className="table-light">
                     <tr>
-                        <th>Weapon</th>
+                        <th>
+                            <input
+                                type="text"
+                                className={`form-control form-control-sm ${styles.filter}`}
+                                placeholder="Weapon"
+                                value={filter}
+                                onChange={(e) => setFilter(e.target.value)}
+                            />
+                        </th>
                         <th>Ammo</th>
                         {props.armor.map((armor) => {
                             const iconPath = armorIcons[armor.name];
@@ -61,7 +77,13 @@ const DamageTable = (props: DamageTableProps) => {
                             {row.isFirstAmmoForWeapon && (
                                 <td rowSpan={row.ammoCountForWeapon}>{row.weapon.name}</td>
                             )}
-                            <td>{row.ammo.name}</td>
+                            <td title={row.ammo.name}>
+                                {ammoIcons[row.ammo.name] ? (
+                                    <img src={ammoIcons[row.ammo.name]} alt={row.ammo.name} className={styles.ammoIcon} />
+                                ) : (
+                                    row.ammo.name
+                                )}
+                            </td>
                             {props.armor.map((armor) => (
                                 <td key={armor.name}>
                                     {getDamageWithFormula(props.formula, row.weapon, row.ammo, armor, false, false, false, 0)}

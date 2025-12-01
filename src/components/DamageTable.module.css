@@ -21,6 +21,15 @@
 }
 
 .armorIcon {
-    height: 36px;
+    height: 28px;
     width: auto;
+}
+
+.ammoIcon {
+    height: 28px;
+    width: auto;
+}
+
+.filter {
+    min-width: 120px;
 }
