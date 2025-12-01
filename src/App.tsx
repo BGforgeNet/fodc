@@ -23,8 +23,7 @@ const App = () => {
     const [selectedWeapon, setSelectedWeapon] = useState<string>('10mm SMG');
     const [selectedAmmo, setSelectedAmmo] = useState<string>('10mm AP');
     const [hiddenMods, setHiddenMods] = useState<Set<string>>(new Set());
-    const [burstEnabled, setBurstEnabled] = useState(false);
-    const [pointBlank, setPointBlank] = useState(false);
+    const [fireMode, setFireMode] = useState<'single' | 'burst' | 'pointblank'>('single');
     const [criticalHit, setCriticalHit] = useState(false);
     const [sniperLuck, setSniperLuck] = useState(false);
     const [bonusRangedDamage, setBonusRangedDamage] = useState(0);
@@ -54,10 +53,21 @@ const App = () => {
         }
     }, [effectiveAmmo, selectedAmmo]);
 
-    // Burst: force enabled for burst-only weapons, otherwise use toggle
+    // Burst: force enabled for burst-only weapons, otherwise use fire mode
     const hasBurst = weapon?.burst !== undefined;
     const isBurstOnly = weapon?.burst_only === true;
-    const effectiveBurst = isBurstOnly || (hasBurst && burstEnabled);
+    const effectiveBurst = isBurstOnly || (hasBurst && fireMode !== 'single');
+    const pointBlank = fireMode === 'pointblank';
+    const effectiveFireMode = isBurstOnly && fireMode === 'single' ? 'burst' : fireMode;
+
+    // Switch to valid fire mode when weapon changes
+    useEffect(() => {
+        if (isBurstOnly && fireMode === 'single') {
+            setFireMode('burst');
+        } else if (!hasBurst && fireMode !== 'single') {
+            setFireMode('single');
+        }
+    }, [hasBurst, isBurstOnly, fireMode]);
 
     return (
         <div className="container-fluid">
@@ -101,7 +111,7 @@ const App = () => {
 
                     {activeTab === 'charts' && (
                         <>
-                            <div className="row mb-3 align-items-center">
+                            <div className="row mb-3 align-items-center justify-content-center">
                                 <div className="col-auto">
                                     <SearchableSelect
                                         options={weapons.map((w) => w.name)}
@@ -123,6 +133,8 @@ const App = () => {
                                         ))}
                                     </select>
                                 </div>
+                            </div>
+                            <div className="row mb-3 align-items-center justify-content-center">
                                 <div className="col-auto">
                                     <div className="btn-group" role="group">
                                         <button
@@ -152,38 +164,41 @@ const App = () => {
                                     </div>
                                 </div>
                                 <div className="col-auto d-flex align-items-center">
-                                    <div className="form-check mb-0" title="If not point blank, assume only 1/3 of rounds hit">
+                                    <div className="btn-group btn-group-sm">
                                         <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            id="burstToggle"
-                                            checked={effectiveBurst}
-                                            onChange={() => setBurstEnabled(!burstEnabled)}
-                                            disabled={!hasBurst || isBurstOnly}
+                                            type="radio"
+                                            className="btn-check"
+                                            id="fireSingle"
+                                            checked={effectiveFireMode === 'single'}
+                                            onChange={() => setFireMode('single')}
+                                            disabled={isBurstOnly}
                                         />
-                                        <label
-                                            className={`form-check-label ${!hasBurst ? 'text-muted' : ''}`}
-                                            htmlFor="burstToggle"
-                                        >
+                                        <label className="btn btn-outline-primary" htmlFor="fireSingle">
+                                            Single
+                                        </label>
+                                        <input
+                                            type="radio"
+                                            className="btn-check"
+                                            id="fireBurst"
+                                            checked={effectiveFireMode === 'burst'}
+                                            onChange={() => setFireMode('burst')}
+                                            disabled={!hasBurst}
+                                            title="Assume 1/3 of rounds hit"
+                                        />
+                                        <label className={`btn btn-outline-primary ${!hasBurst ? 'disabled' : ''}`} htmlFor="fireBurst">
                                             Burst
                                         </label>
-                                    </div>
-                                </div>
-                                <div className="col-auto d-flex align-items-center">
-                                    <div className="form-check mb-0" title="Assume all rounds hit">
                                         <input
-                                            type="checkbox"
-                                            className="form-check-input"
-                                            id="pointBlankToggle"
-                                            checked={pointBlank}
-                                            onChange={() => setPointBlank(!pointBlank)}
-                                            disabled={!effectiveBurst}
+                                            type="radio"
+                                            className="btn-check"
+                                            id="firePointblank"
+                                            checked={effectiveFireMode === 'pointblank'}
+                                            onChange={() => setFireMode('pointblank')}
+                                            disabled={!hasBurst}
+                                            title="Assume all rounds hit"
                                         />
-                                        <label
-                                            className={`form-check-label ${!effectiveBurst ? 'text-muted' : ''}`}
-                                            htmlFor="pointBlankToggle"
-                                        >
-                                            Point blank
+                                        <label className={`btn btn-outline-primary ${!hasBurst ? 'disabled' : ''}`} htmlFor="firePointblank">
+                                            Point-blank burst
                                         </label>
                                     </div>
                                 </div>
