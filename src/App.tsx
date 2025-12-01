@@ -163,15 +163,7 @@ const App = () => {
                     {activeTab === 'compare-mods' && (
                         <>
                             <div className="row mb-3 align-items-center justify-content-center">
-                                <div className="col-auto d-flex align-items-center gap-2">
-                                    {weaponIcons[selectedWeapon] && (
-                                        <img
-                                            src={weaponIcons[selectedWeapon]}
-                                            alt={selectedWeapon}
-                                            title={selectedWeapon}
-                                            className={styles.weaponIcon}
-                                        />
-                                    )}
+                                <div className="col-auto">
                                     <SearchableSelect
                                         options={weapons.map((w) => w.name)}
                                         value={selectedWeapon}
@@ -179,6 +171,28 @@ const App = () => {
                                     />
                                 </div>
                                 <div className="col-auto d-flex align-items-center gap-2">
+                                    <div className={styles.weaponIconPlaceholder}>
+                                        {weaponIcons[selectedWeapon] && (
+                                            <img
+                                                src={weaponIcons[selectedWeapon]}
+                                                alt={selectedWeapon}
+                                                title={selectedWeapon}
+                                                className={styles.weaponIcon}
+                                            />
+                                        )}
+                                    </div>
+                                    <div className={styles.ammoIconPlaceholder}>
+                                        {ammoIcons[effectiveAmmo] && (
+                                            <img
+                                                src={ammoIcons[effectiveAmmo]}
+                                                alt={effectiveAmmo}
+                                                title={effectiveAmmo}
+                                                className={styles.ammoIcon}
+                                            />
+                                        )}
+                                    </div>
+                                </div>
+                                <div className="col-auto">
                                     <select
                                         className={`form-select ${styles.ammoSelect}`}
                                         value={effectiveAmmo}
@@ -191,14 +205,6 @@ const App = () => {
                                             </option>
                                         ))}
                                     </select>
-                                    {ammoIcons[effectiveAmmo] && (
-                                        <img
-                                            src={ammoIcons[effectiveAmmo]}
-                                            alt={effectiveAmmo}
-                                            title={effectiveAmmo}
-                                            className={styles.ammoIcon}
-                                        />
-                                    )}
                                 </div>
                             </div>
                             <div className="row mb-3 align-items-center justify-content-center">
@@ -356,6 +362,13 @@ const App = () => {
                                         ))}
                                     </select>
                                 </div>
+                                <div className="col-auto">
+                                    <SearchableSelect
+                                        options={cwWeapons.map((w) => w.name)}
+                                        value={cwWeapon}
+                                        onChange={setCwWeapon}
+                                    />
+                                </div>
                                 <div className="col-auto d-flex align-items-center gap-2">
                                     <div className={styles.weaponIconPlaceholder}>
                                         {weaponIcons[cwWeapon] && (
@@ -367,13 +380,18 @@ const App = () => {
                                             />
                                         )}
                                     </div>
-                                    <SearchableSelect
-                                        options={cwWeapons.map((w) => w.name)}
-                                        value={cwWeapon}
-                                        onChange={setCwWeapon}
-                                    />
+                                    <div className={styles.ammoIconPlaceholder}>
+                                        {ammoIcons[cwAmmo] && (
+                                            <img
+                                                src={ammoIcons[cwAmmo]}
+                                                alt={cwAmmo}
+                                                title={cwAmmo}
+                                                className={styles.ammoIcon}
+                                            />
+                                        )}
+                                    </div>
                                 </div>
-                                <div className="col-auto d-flex align-items-center gap-2">
+                                <div className="col-auto">
                                     <select
                                         className={`form-select ${styles.ammoSelect}`}
                                         value={cwAmmo}
@@ -386,16 +404,6 @@ const App = () => {
                                             </option>
                                         ))}
                                     </select>
-                                    <div className={styles.ammoIconPlaceholder}>
-                                        {ammoIcons[cwAmmo] && (
-                                            <img
-                                                src={ammoIcons[cwAmmo]}
-                                                alt={cwAmmo}
-                                                title={cwAmmo}
-                                                className={styles.ammoIcon}
-                                            />
-                                        )}
-                                    </div>
                                 </div>
                                 <div className="col-auto">
                                     <button

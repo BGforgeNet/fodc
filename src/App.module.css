@@ -9,10 +9,14 @@
 
 .weaponIcon {
     height: 32px;
+    max-width: 60px;
+    object-fit: contain;
 }
 
 .ammoIcon {
     height: 24px;
+    max-width: 40px;
+    object-fit: contain;
 }
 
 .weaponBadge {
