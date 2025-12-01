@@ -1,0 +1,8 @@
+.ammoSelect {
+    width: 280px;
+}
+
+.bonusRangeValue {
+    min-width: 32px;
+    pointer-events: none;
+}

@@ -4,6 +4,7 @@ import DamageTable from './components/DamageTable';
 import DamageChart, { DamageMode } from './components/DamageChart';
 import SearchableSelect from './components/SearchableSelect';
 import { modOrder, modConfigs } from './modConfig';
+import styles from './App.module.css';
 
 const fetchModData = async (): Promise<ModData> => {
     const response = await fetch('/data/out/data.json');
@@ -109,8 +110,7 @@ const App = () => {
                                 </div>
                                 <div className="col-auto">
                                     <select
-                                        className="form-select"
-                                        style={{ width: '280px' }}
+                                        className={`form-select ${styles.ammoSelect}`}
                                         value={effectiveAmmo}
                                         onChange={(e) => setSelectedAmmo(e.target.value)}
                                         disabled={compatibleAmmo.length <= 1}
@@ -151,7 +151,7 @@ const App = () => {
                                     </div>
                                 </div>
                                 <div className="col-auto d-flex align-items-center">
-                                    <div className="form-check" title="If not point blank, assume only 1/3 of rounds hit">
+                                    <div className="form-check mb-0" title="If not point blank, assume only 1/3 of rounds hit">
                                         <input
                                             type="checkbox"
                                             className="form-check-input"
@@ -169,7 +169,7 @@ const App = () => {
                                     </div>
                                 </div>
                                 <div className="col-auto d-flex align-items-center">
-                                    <div className="form-check" title="Assume all rounds hit">
+                                    <div className="form-check mb-0" title="Assume all rounds hit">
                                         <input
                                             type="checkbox"
                                             className="form-check-input"
@@ -187,7 +187,7 @@ const App = () => {
                                     </div>
                                 </div>
                                 <div className="col-auto d-flex align-items-center">
-                                    <div className="form-check" title="Assume armor bypass. On single shot, assume damage x3, on burst - x2">
+                                    <div className="form-check mb-0" title="Assume armor bypass. On single shot, assume damage x3, on burst - x2">
                                         <input
                                             type="checkbox"
                                             className="form-check-input"
@@ -201,20 +201,26 @@ const App = () => {
                                     </div>
                                 </div>
                                 <div className="col-auto d-flex align-items-center">
-                                    <label className="me-2" htmlFor="bonusRangedDamage">
-                                        Bonus Ranged Damage rank
-                                    </label>
-                                    <select
-                                        id="bonusRangedDamage"
-                                        className="form-select form-select-sm"
-                                        style={{ width: '60px' }}
-                                        value={bonusRangedDamage}
-                                        onChange={(e) => setBonusRangedDamage(Number(e.target.value))}
-                                    >
-                                        <option value={0}>0</option>
-                                        <option value={1}>1</option>
-                                        <option value={2}>2</option>
-                                    </select>
+                                    <span className="me-2">Bonus Ranged Damage</span>
+                                    <div className="btn-group btn-group-sm">
+                                        <button
+                                            className="btn btn-outline-secondary"
+                                            onClick={() => setBonusRangedDamage(Math.max(0, bonusRangedDamage - 1))}
+                                            disabled={bonusRangedDamage === 0}
+                                        >
+                                            −
+                                        </button>
+                                        <span className={`btn btn-outline-secondary ${styles.bonusRangeValue}`}>
+                                            {bonusRangedDamage}
+                                        </span>
+                                        <button
+                                            className="btn btn-outline-secondary"
+                                            onClick={() => setBonusRangedDamage(Math.min(2, bonusRangedDamage + 1))}
+                                            disabled={bonusRangedDamage === 2}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <DamageChart
