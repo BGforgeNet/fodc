@@ -90,7 +90,7 @@ const App = () => {
 
             {data && (
                 <>
-                    <ul className="nav nav-tabs mb-4">
+                    <ul className="nav nav-tabs mb-4 justify-content-center">
                         <li className="nav-item">
                             <button
                                 className={`nav-link ${activeTab === 'charts' ? 'active' : ''}`}
