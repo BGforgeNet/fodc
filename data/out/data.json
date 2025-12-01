@@ -550,6 +550,16 @@
           "penetrate": false
         },
         {
+          "name": "FN FAL HPFA",
+          "caliber": "7.62mm",
+          "min_dmg": 11,
+          "max_dmg": 22,
+          "dmg_type": "normal",
+          "burst": 20,
+          "burst_only": false,
+          "penetrate": false
+        },
+        {
           "name": "Hunting rifle",
           "caliber": ".223",
           "min_dmg": 8,
@@ -572,6 +582,15 @@
           "caliber": "BBs",
           "min_dmg": 1,
           "max_dmg": 3,
+          "dmg_type": "normal",
+          "burst_only": false,
+          "penetrate": false
+        },
+        {
+          "name": "Red Ryder LE BB gun",
+          "caliber": "BBs",
+          "min_dmg": 25,
+          "max_dmg": 25,
           "dmg_type": "normal",
           "burst_only": false,
           "penetrate": false
@@ -1363,6 +1382,16 @@
           "penetrate": false
         },
         {
+          "name": "FN FAL HPFA",
+          "caliber": "7.62mm",
+          "min_dmg": 11,
+          "max_dmg": 22,
+          "dmg_type": "normal",
+          "burst": 20,
+          "burst_only": false,
+          "penetrate": false
+        },
+        {
           "name": "Hunting rifle",
           "caliber": ".223",
           "min_dmg": 8,
@@ -1385,6 +1414,15 @@
           "caliber": "BBs",
           "min_dmg": 1,
           "max_dmg": 3,
+          "dmg_type": "normal",
+          "burst_only": false,
+          "penetrate": false
+        },
+        {
+          "name": "Red Ryder LE BB gun",
+          "caliber": "BBs",
+          "min_dmg": 25,
+          "max_dmg": 25,
           "dmg_type": "normal",
           "burst_only": false,
           "penetrate": false
@@ -2176,6 +2214,16 @@
           "penetrate": false
         },
         {
+          "name": "FN FAL HPFA",
+          "caliber": "7.62mm",
+          "min_dmg": 11,
+          "max_dmg": 22,
+          "dmg_type": "normal",
+          "burst": 20,
+          "burst_only": false,
+          "penetrate": false
+        },
+        {
           "name": "Hunting rifle",
           "caliber": ".223",
           "min_dmg": 8,
@@ -2198,6 +2246,15 @@
           "caliber": "BBs",
           "min_dmg": 1,
           "max_dmg": 3,
+          "dmg_type": "normal",
+          "burst_only": false,
+          "penetrate": false
+        },
+        {
+          "name": "Red Ryder LE BB gun",
+          "caliber": "BBs",
+          "min_dmg": 25,
+          "max_dmg": 25,
           "dmg_type": "normal",
           "burst_only": false,
           "penetrate": false
@@ -2989,6 +3046,16 @@
           "penetrate": false
         },
         {
+          "name": "FN FAL HPFA",
+          "caliber": "7.62mm",
+          "min_dmg": 11,
+          "max_dmg": 22,
+          "dmg_type": "normal",
+          "burst": 20,
+          "burst_only": false,
+          "penetrate": false
+        },
+        {
           "name": "Hunting rifle",
           "caliber": ".223",
           "min_dmg": 8,
@@ -3011,6 +3078,15 @@
           "caliber": "BBs",
           "min_dmg": 1,
           "max_dmg": 3,
+          "dmg_type": "normal",
+          "burst_only": false,
+          "penetrate": false
+        },
+        {
+          "name": "Red Ryder LE BB gun",
+          "caliber": "BBs",
+          "min_dmg": 25,
+          "max_dmg": 25,
           "dmg_type": "normal",
           "burst_only": false,
           "penetrate": false
