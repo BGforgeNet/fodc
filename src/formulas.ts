@@ -251,9 +251,12 @@ const formulas: Record<string, DamageCalculator> = {
 
 export const getDamageWithFormula = (formulaName: string, weapon: Weapon, ammo: Ammo, armor: Armor, critical: boolean, burst: boolean, allCrit: boolean, rangedBonus: number): string => {
     const formula = formulas[formulaName];
+    let result: string;
     if (!formula) {
         console.warn(`Unknown formula: ${formulaName}, falling back to fallout2`);
-        return fallout2Formula(weapon, ammo, armor, critical, burst, allCrit, rangedBonus);
+        result = fallout2Formula(weapon, ammo, armor, critical, burst, allCrit, rangedBonus);
+    } else {
+        result = formula(weapon, ammo, armor, critical, burst, allCrit, rangedBonus);
     }
-    return formula(weapon, ammo, armor, critical, burst, allCrit, rangedBonus);
+    return result === '0-0' ? '0' : result;
 };
