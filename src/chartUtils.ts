@@ -114,16 +114,11 @@ export function buildChartTitle(
     burst: boolean,
     pointBlank: boolean,
     critical: boolean,
-    allCrit: boolean,
     rangedBonus: number
 ): string {
     const modeLabel = mode.charAt(0).toUpperCase() + mode.slice(1);
     const burstLabel = burst ? (pointBlank ? ' Point-blank burst' : ' Burst') : '';
-    const modifiers = [
-        critical && 'Critical',
-        allCrit && 'Sniper 10 Luck',
-        rangedBonus > 0 && `BRD ${rangedBonus}`,
-    ].filter(Boolean);
+    const modifiers = [critical && 'Critical', rangedBonus > 0 && `BRD ${rangedBonus}`].filter(Boolean);
     const modifiersLabel = modifiers.length > 0 ? `, ${modifiers.join(', ')}` : '';
     return `${baseTitle} (${modeLabel})${burstLabel}${modifiersLabel}`;
 }

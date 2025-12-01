@@ -93,7 +93,6 @@ const DamageTable = (props: DamageTableProps) => {
                                         armor,
                                         false,
                                         false,
-                                        false,
                                         0
                                     )}
                                 </td>

@@ -28,7 +28,6 @@ interface CompareWeaponsChartProps {
     burst: boolean;
     pointBlank: boolean;
     critical: boolean;
-    allCrit: boolean;
     rangedBonus: number;
 }
 
@@ -41,7 +40,6 @@ const CompareWeaponsChart = ({
     burst,
     pointBlank,
     critical,
-    allCrit,
     rangedBonus,
 }: CompareWeaponsChartProps) => {
     const vanillaMod = data.mods['vanilla'];
@@ -65,7 +63,7 @@ const CompareWeaponsChart = ({
         // Fall back to single-shot if weapon has no burst mode
         const weaponHasBurst = !!weapon.burst;
         const effectiveBurst = burst && weaponHasBurst;
-        const burstRounds = effectiveBurst ? weapon.burst : 1;
+        const burstRounds = effectiveBurst && weapon.burst ? weapon.burst : 1;
         const hitsMultiplier = calculateHitsMultiplier(effectiveBurst, pointBlank, burstRounds);
 
         const damageData = armorList.map((armor) => {
@@ -77,7 +75,6 @@ const CompareWeaponsChart = ({
                 modArmor,
                 critical,
                 effectiveBurst,
-                allCrit,
                 rangedBonus
             );
             return parseDamageString(damageStr, hitsMultiplier);
@@ -95,7 +92,7 @@ const CompareWeaponsChart = ({
         traces.push(...createDamageTraces(armorNames, damageData, mode, legendName, color, visible));
     });
 
-    const title = buildChartTitle('Compare Weapons', mode, burst, pointBlank, critical, allCrit, rangedBonus);
+    const title = buildChartTitle('Compare Weapons', mode, burst, pointBlank, critical, rangedBonus);
 
     // Add invisible trace to establish x-axis categories when no entries
     if (traces.length === 0) {

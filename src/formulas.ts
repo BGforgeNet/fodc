@@ -6,7 +6,6 @@ type DamageCalculator = (
     armor: Armor,
     critical: boolean,
     burst: boolean,
-    allCrit: boolean,
     rangedBonus: number
 ) => string;
 
@@ -19,7 +18,6 @@ const fallout2Formula = (
     armor: Armor,
     critical: boolean,
     burst: boolean,
-    _allCrit: boolean,
     rangedBonus: number
 ): string => {
     const calculateDamage = (baseDamage: number): number => {
@@ -68,7 +66,6 @@ const fo2tweaksFormula = (
     armor: Armor,
     critical: boolean,
     burst: boolean,
-    allCrit: boolean,
     rangedBonus: number
 ): string => {
     const calculateDamage = (baseDamage: number, isCritical: boolean): number => {
@@ -105,10 +102,9 @@ const fo2tweaksFormula = (
     };
 
     // For burst critical: 1 bullet at x4, rest at x2
-    // With allCrit (Sniper + 10 Luck): all bullets at x4
     // For single critical: x4
     // For non-critical: x2
-    if (burst && critical && !allCrit) {
+    if (burst && critical) {
         const minCrit = calculateDamage(weapon.min_dmg, true);
         const maxCrit = calculateDamage(weapon.max_dmg, true);
         const minNonCrit = calculateDamage(weapon.min_dmg, false);
@@ -147,7 +143,6 @@ const yaamFormula = (
     armor: Armor,
     critical: boolean,
     burst: boolean,
-    _allCrit: boolean,
     rangedBonus: number
 ): string => {
     const calculateDamage = (baseDamage: number): number => {
@@ -221,7 +216,6 @@ const glovzFormula = (
     armor: Armor,
     critical: boolean,
     burst: boolean,
-    _allCrit: boolean,
     rangedBonus: number
 ): string => {
     const calculateDamage = (baseDamage: number): number => {
@@ -297,16 +291,15 @@ export const getDamageWithFormula = (
     armor: Armor,
     critical: boolean,
     burst: boolean,
-    allCrit: boolean,
     rangedBonus: number
 ): string => {
     const formula = formulas[formulaName];
     let result: string;
     if (!formula) {
         console.warn(`Unknown formula: ${formulaName}, falling back to fallout2`);
-        result = fallout2Formula(weapon, ammo, armor, critical, burst, allCrit, rangedBonus);
+        result = fallout2Formula(weapon, ammo, armor, critical, burst, rangedBonus);
     } else {
-        result = formula(weapon, ammo, armor, critical, burst, allCrit, rangedBonus);
+        result = formula(weapon, ammo, armor, critical, burst, rangedBonus);
     }
     return result === '0-0' ? '0' : result;
 };

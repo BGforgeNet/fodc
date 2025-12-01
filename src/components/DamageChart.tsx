@@ -22,7 +22,6 @@ interface DamageChartProps {
     burst: boolean;
     pointBlank: boolean;
     critical: boolean;
-    allCrit: boolean;
     rangedBonus: number;
 }
 
@@ -36,7 +35,6 @@ const DamageChart = ({
     burst,
     pointBlank,
     critical,
-    allCrit,
     rangedBonus,
 }: DamageChartProps) => {
     const vanillaMod = data.mods['vanilla'];
@@ -69,7 +67,6 @@ const DamageChart = ({
                 modArmor,
                 critical,
                 burst,
-                allCrit,
                 rangedBonus
             );
             return parseDamageString(damageStr, hitsMultiplier);
@@ -82,15 +79,7 @@ const DamageChart = ({
     });
 
     const hasBurst = burst && weapon.burst !== undefined;
-    const title = buildChartTitle(
-        `${weapon.name} + ${ammoName}`,
-        mode,
-        hasBurst,
-        pointBlank,
-        critical,
-        allCrit,
-        rangedBonus
-    );
+    const title = buildChartTitle(`${weapon.name} + ${ammoName}`, mode, hasBurst, pointBlank, critical, rangedBonus);
 
     return (
         <BaseDamageChart

@@ -97,56 +97,28 @@ export const FireModeSelector = ({ mode, onChange, hasBurst, isBurstOnly, idPref
 
 interface CriticalControlsProps {
     critical: boolean;
-    sniperLuck: boolean;
     onCriticalChange: (value: boolean) => void;
-    onSniperLuckChange: (value: boolean) => void;
     idPrefix?: string;
 }
 
-export const CriticalControls = ({
-    critical,
-    sniperLuck,
-    onCriticalChange,
-    onSniperLuckChange,
-    idPrefix = '',
-}: CriticalControlsProps) => (
-    <>
-        <div className="col-auto d-flex align-items-center">
-            <div
-                className="form-check mb-0"
-                title="Assume armor bypass. On single shot, assume damage x3, on burst - x2"
-            >
-                <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id={`${idPrefix}criticalToggle`}
-                    checked={critical}
-                    onChange={() => onCriticalChange(!critical)}
-                />
-                <label className="form-check-label" htmlFor={`${idPrefix}criticalToggle`}>
-                    Critical
-                </label>
-            </div>
+export const CriticalControls = ({ critical, onCriticalChange, idPrefix = '' }: CriticalControlsProps) => (
+    <div className="col-auto d-flex align-items-center">
+        <div
+            className="form-check mb-0"
+            title="Assume armor bypass. On single shot, assume damage x3, on burst - x2"
+        >
+            <input
+                type="checkbox"
+                className="form-check-input"
+                id={`${idPrefix}criticalToggle`}
+                checked={critical}
+                onChange={() => onCriticalChange(!critical)}
+            />
+            <label className="form-check-label" htmlFor={`${idPrefix}criticalToggle`}>
+                Critical
+            </label>
         </div>
-        <div className="col-auto d-flex align-items-center">
-            <div className="form-check mb-0" title="Every round is a critical hit">
-                <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id={`${idPrefix}sniperLuckToggle`}
-                    checked={sniperLuck}
-                    onChange={() => {
-                        const newValue = !sniperLuck;
-                        onSniperLuckChange(newValue);
-                        if (newValue) onCriticalChange(true);
-                    }}
-                />
-                <label className="form-check-label" htmlFor={`${idPrefix}sniperLuckToggle`}>
-                    Sniper 10 Luck
-                </label>
-            </div>
-        </div>
-    </>
+    </div>
 );
 
 interface BonusRangedDamageProps {

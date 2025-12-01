@@ -30,7 +30,6 @@ const App = () => {
     const [hiddenMods, setHiddenMods] = useState<Set<string>>(new Set());
     const [fireMode, setFireMode] = useState<'single' | 'burst' | 'pointblank'>('single');
     const [criticalHit, setCriticalHit] = useState(false);
-    const [sniperLuck, setSniperLuck] = useState(false);
     const [bonusRangedDamage, setBonusRangedDamage] = useState(0);
 
     // Compare weapons state
@@ -241,9 +240,7 @@ const App = () => {
                                 </div>
                                 <CriticalControls
                                     critical={criticalHit}
-                                    sniperLuck={sniperLuck}
                                     onCriticalChange={setCriticalHit}
-                                    onSniperLuckChange={setSniperLuck}
                                     idPrefix="cm"
                                 />
                                 <BonusRangedDamage value={bonusRangedDamage} onChange={setBonusRangedDamage} />
@@ -258,7 +255,6 @@ const App = () => {
                                 burst={effectiveBurst}
                                 pointBlank={pointBlank}
                                 critical={criticalHit}
-                                allCrit={sniperLuck}
                                 rangedBonus={bonusRangedDamage * 2}
                             />
                         </>
@@ -369,9 +365,7 @@ const App = () => {
                                 </div>
                                 <CriticalControls
                                     critical={criticalHit}
-                                    sniperLuck={sniperLuck}
                                     onCriticalChange={setCriticalHit}
-                                    onSniperLuckChange={setSniperLuck}
                                     idPrefix="cw"
                                 />
                                 <BonusRangedDamage value={bonusRangedDamage} onChange={setBonusRangedDamage} />
@@ -385,7 +379,6 @@ const App = () => {
                                 burst={fireMode !== 'single'}
                                 pointBlank={fireMode === 'pointblank'}
                                 critical={criticalHit}
-                                allCrit={sniperLuck}
                                 rangedBonus={bonusRangedDamage * 2}
                             />
                         </>
