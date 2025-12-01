@@ -44,14 +44,8 @@ Gauss pistol,2mm,22,32,,,,
 Vindicator minigun,4.7mm,16,22,,20,true,true
 Pulse pistol,SEC,32,46,electrical,,,true
 Pulse rifle,MFC,54,78,electrical,,,true
-.44 Magnum (Speed Load),.44,12,18,,,,
 Improved Flamer,Flamer,60,90,fire,,,
-Laser rifle (Ext. Cap.),MFC,35,50,laser,,,
 Magneto-laser pistol,SEC,16,26,laser,,,true
-FN FAL (Night Sight),7.62mm,18,26,,5,,
-Desert Eagle (Exp. Mag.),.44,10,18,,,,
-Assault rifle (Exp. Mag.),5mm,10,16,,8,,
-Plasma pistol (Ext. Cap.),SEC,20,35,plasma,,,
 FN FAL HPFA,7.62mm,18,26,,8,,
 9mm SMG,9mm,5,10,,8,,
 Grenade launcher,40mm,20,40,explosive,,,

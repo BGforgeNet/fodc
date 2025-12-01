@@ -821,29 +821,11 @@
           "penetrate": true
         },
         {
-          "name": ".44 Magnum (Speed Load)",
-          "caliber": ".44",
-          "min_dmg": 12,
-          "max_dmg": 18,
-          "dmg_type": "normal",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
           "name": "Improved Flamer",
           "caliber": "Flamer",
           "min_dmg": 45,
           "max_dmg": 90,
           "dmg_type": "fire",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Laser rifle (Ext. Cap.)",
-          "caliber": "MFC",
-          "min_dmg": 25,
-          "max_dmg": 50,
-          "dmg_type": "laser",
           "burst_only": false,
           "penetrate": false
         },
@@ -855,44 +837,6 @@
           "dmg_type": "laser",
           "burst_only": false,
           "penetrate": true
-        },
-        {
-          "name": "FN FAL (Night Sight)",
-          "caliber": "7.62mm",
-          "min_dmg": 9,
-          "max_dmg": 18,
-          "dmg_type": "normal",
-          "burst": 10,
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Desert Eagle (Exp. Mag.)",
-          "caliber": ".44",
-          "min_dmg": 10,
-          "max_dmg": 16,
-          "dmg_type": "normal",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Assault rifle (Exp. Mag.)",
-          "caliber": "5mm",
-          "min_dmg": 8,
-          "max_dmg": 16,
-          "dmg_type": "normal",
-          "burst": 8,
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Plasma pistol (Ext. Cap.)",
-          "caliber": "SEC",
-          "min_dmg": 15,
-          "max_dmg": 35,
-          "dmg_type": "plasma",
-          "burst_only": false,
-          "penetrate": false
         },
         {
           "name": "FN FAL HPFA",
@@ -1772,29 +1716,11 @@
           "penetrate": true
         },
         {
-          "name": ".44 Magnum (Speed Load)",
-          "caliber": ".44",
-          "min_dmg": 12,
-          "max_dmg": 18,
-          "dmg_type": "normal",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
           "name": "Improved Flamer",
           "caliber": "Flamer",
           "min_dmg": 60,
           "max_dmg": 90,
           "dmg_type": "fire",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Laser rifle (Ext. Cap.)",
-          "caliber": "MFC",
-          "min_dmg": 35,
-          "max_dmg": 50,
-          "dmg_type": "laser",
           "burst_only": false,
           "penetrate": false
         },
@@ -1806,44 +1732,6 @@
           "dmg_type": "laser",
           "burst_only": false,
           "penetrate": true
-        },
-        {
-          "name": "FN FAL (Night Sight)",
-          "caliber": "7.62mm",
-          "min_dmg": 18,
-          "max_dmg": 26,
-          "dmg_type": "normal",
-          "burst": 5,
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Desert Eagle (Exp. Mag.)",
-          "caliber": ".44",
-          "min_dmg": 10,
-          "max_dmg": 18,
-          "dmg_type": "normal",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Assault rifle (Exp. Mag.)",
-          "caliber": "5mm",
-          "min_dmg": 10,
-          "max_dmg": 16,
-          "dmg_type": "normal",
-          "burst": 8,
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Plasma pistol (Ext. Cap.)",
-          "caliber": "SEC",
-          "min_dmg": 20,
-          "max_dmg": 35,
-          "dmg_type": "plasma",
-          "burst_only": false,
-          "penetrate": false
         },
         {
           "name": "FN FAL HPFA",
@@ -2743,29 +2631,11 @@
           "penetrate": true
         },
         {
-          "name": ".44 Magnum (Speed Load)",
-          "caliber": ".44",
-          "min_dmg": 12,
-          "max_dmg": 18,
-          "dmg_type": "normal",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
           "name": "Improved Flamer",
           "caliber": "Flamer",
           "min_dmg": 45,
           "max_dmg": 90,
           "dmg_type": "fire",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Laser rifle (Ext. Cap.)",
-          "caliber": "MFC",
-          "min_dmg": 25,
-          "max_dmg": 50,
-          "dmg_type": "laser",
           "burst_only": false,
           "penetrate": false
         },
@@ -2777,44 +2647,6 @@
           "dmg_type": "laser",
           "burst_only": false,
           "penetrate": true
-        },
-        {
-          "name": "FN FAL (Night Sight)",
-          "caliber": "7.62mm",
-          "min_dmg": 9,
-          "max_dmg": 18,
-          "dmg_type": "normal",
-          "burst": 10,
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Desert Eagle (Exp. Mag.)",
-          "caliber": ".44",
-          "min_dmg": 10,
-          "max_dmg": 16,
-          "dmg_type": "normal",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Assault rifle (Exp. Mag.)",
-          "caliber": "5mm",
-          "min_dmg": 8,
-          "max_dmg": 16,
-          "dmg_type": "normal",
-          "burst": 8,
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Plasma pistol (Ext. Cap.)",
-          "caliber": "SEC",
-          "min_dmg": 15,
-          "max_dmg": 35,
-          "dmg_type": "plasma",
-          "burst_only": false,
-          "penetrate": false
         },
         {
           "name": "FN FAL HPFA",
@@ -3649,29 +3481,11 @@
           "penetrate": true
         },
         {
-          "name": ".44 Magnum (Speed Load)",
-          "caliber": ".44",
-          "min_dmg": 12,
-          "max_dmg": 18,
-          "dmg_type": "normal",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
           "name": "Improved Flamer",
           "caliber": "Flamer",
           "min_dmg": 45,
           "max_dmg": 90,
           "dmg_type": "fire",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Laser rifle (Ext. Cap.)",
-          "caliber": "MFC",
-          "min_dmg": 25,
-          "max_dmg": 50,
-          "dmg_type": "laser",
           "burst_only": false,
           "penetrate": false
         },
@@ -3683,44 +3497,6 @@
           "dmg_type": "laser",
           "burst_only": false,
           "penetrate": true
-        },
-        {
-          "name": "FN FAL (Night Sight)",
-          "caliber": "7.62mm",
-          "min_dmg": 9,
-          "max_dmg": 18,
-          "dmg_type": "normal",
-          "burst": 10,
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Desert Eagle (Exp. Mag.)",
-          "caliber": ".44",
-          "min_dmg": 10,
-          "max_dmg": 16,
-          "dmg_type": "normal",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Assault rifle (Exp. Mag.)",
-          "caliber": "5mm",
-          "min_dmg": 8,
-          "max_dmg": 16,
-          "dmg_type": "normal",
-          "burst": 8,
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Plasma pistol (Ext. Cap.)",
-          "caliber": "SEC",
-          "min_dmg": 15,
-          "max_dmg": 35,
-          "dmg_type": "plasma",
-          "burst_only": false,
-          "penetrate": false
         },
         {
           "name": "FN FAL HPFA",
@@ -4555,29 +4331,11 @@
           "penetrate": true
         },
         {
-          "name": ".44 Magnum (Speed Load)",
-          "caliber": ".44",
-          "min_dmg": 12,
-          "max_dmg": 18,
-          "dmg_type": "normal",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
           "name": "Improved Flamer",
           "caliber": "Flamer",
           "min_dmg": 45,
           "max_dmg": 90,
           "dmg_type": "fire",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Laser rifle (Ext. Cap.)",
-          "caliber": "MFC",
-          "min_dmg": 25,
-          "max_dmg": 50,
-          "dmg_type": "laser",
           "burst_only": false,
           "penetrate": false
         },
@@ -4589,44 +4347,6 @@
           "dmg_type": "laser",
           "burst_only": false,
           "penetrate": true
-        },
-        {
-          "name": "FN FAL (Night Sight)",
-          "caliber": "7.62mm",
-          "min_dmg": 9,
-          "max_dmg": 18,
-          "dmg_type": "normal",
-          "burst": 10,
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Desert Eagle (Exp. Mag.)",
-          "caliber": ".44",
-          "min_dmg": 10,
-          "max_dmg": 16,
-          "dmg_type": "normal",
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Assault rifle (Exp. Mag.)",
-          "caliber": "5mm",
-          "min_dmg": 8,
-          "max_dmg": 16,
-          "dmg_type": "normal",
-          "burst": 8,
-          "burst_only": false,
-          "penetrate": false
-        },
-        {
-          "name": "Plasma pistol (Ext. Cap.)",
-          "caliber": "SEC",
-          "min_dmg": 15,
-          "max_dmg": 35,
-          "dmg_type": "plasma",
-          "burst_only": false,
-          "penetrate": false
         },
         {
           "name": "FN FAL HPFA",
