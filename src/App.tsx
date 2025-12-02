@@ -44,6 +44,7 @@ const App = () => {
     const [calModId, setCalModId] = useState<string>('vanilla');
     const [calCaliber, setCalCaliber] = useState<string>('');
     const [calHiddenItems, setCalHiddenItems] = useState<Set<string>>(new Set());
+    const [calHiddenAmmo, setCalHiddenAmmo] = useState<Set<string>>(new Set());
 
     useEffect(() => {
         fetchModData()
@@ -154,6 +155,20 @@ const App = () => {
         if (newCalibers.length > 0 && !newCalibers.includes(calCaliber)) {
             setCalCaliber(newCalibers[0] ?? '');
         }
+        setCalHiddenAmmo(new Set());
+    };
+
+    // Handler for toggling ammo visibility
+    const toggleCalAmmoVisibility = (ammoName: string) => {
+        setCalHiddenAmmo((prev) => {
+            const next = new Set(prev);
+            if (next.has(ammoName)) {
+                next.delete(ammoName);
+            } else {
+                next.add(ammoName);
+            }
+            return next;
+        });
     };
 
     const addWeaponEntry = () => {
@@ -328,9 +343,17 @@ const App = () => {
                                     />
                                 </div>
                                 <div className="col-auto d-flex align-items-center gap-2">
-                                    {calAmmoList.map((a) =>
-                                        ammoIcons[a.name] ? (
-                                            <div key={a.name} className={styles.ammoIconPlaceholder} title={a.name}>
+                                    {calAmmoList.map((a) => {
+                                        const isHidden = calHiddenAmmo.has(a.name);
+                                        const canToggle = calAmmoList.length > 1;
+                                        return ammoIcons[a.name] ? (
+                                            <div
+                                                key={a.name}
+                                                className={styles.ammoIconPlaceholder}
+                                                title={a.name}
+                                                onClick={canToggle ? () => toggleCalAmmoVisibility(a.name) : undefined}
+                                                style={{ cursor: canToggle ? 'pointer' : 'default', opacity: isHidden ? 0.3 : 1 }}
+                                            >
                                                 <img
                                                     src={ammoIcons[a.name]}
                                                     alt={a.name}
@@ -338,9 +361,16 @@ const App = () => {
                                                 />
                                             </div>
                                         ) : (
-                                            <span key={a.name} className="badge bg-secondary">{a.name}</span>
-                                        )
-                                    )}
+                                            <span
+                                                key={a.name}
+                                                className={`badge ${isHidden ? 'bg-secondary' : 'bg-success'}`}
+                                                onClick={canToggle ? () => toggleCalAmmoVisibility(a.name) : undefined}
+                                                style={{ cursor: canToggle ? 'pointer' : 'default', opacity: isHidden ? 0.5 : 1 }}
+                                            >
+                                                {a.name}
+                                            </span>
+                                        );
+                                    })}
                                 </div>
                             </div>
                             <div className="row mb-3 align-items-center justify-content-center">
@@ -370,6 +400,7 @@ const App = () => {
                                 mode={damageMode}
                                 hiddenItems={calHiddenItems}
                                 onHiddenItemsChange={setCalHiddenItems}
+                                hiddenAmmo={calHiddenAmmo}
                                 burst={fireMode !== 'single'}
                                 pointBlank={fireMode === 'pointblank'}
                                 critical={criticalHit}
