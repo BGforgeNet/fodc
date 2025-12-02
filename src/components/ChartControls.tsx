@@ -35,18 +35,16 @@ export const DamageModeButtons = ({ mode, onChange }: DamageModeButtonsProps) =>
     </div>
 );
 
-type FireMode = 'single' | 'burst' | 'pointblank';
-
 interface FireModeSelectorProps {
-    mode: FireMode;
-    onChange: (mode: FireMode) => void;
+    burst: boolean;
+    onChange: (burst: boolean) => void;
     hasBurst: boolean;
     isBurstOnly: boolean;
     idPrefix?: string;
 }
 
-export const FireModeSelector = ({ mode, onChange, hasBurst, isBurstOnly, idPrefix = '' }: FireModeSelectorProps) => {
-    const effectiveMode = isBurstOnly && mode === 'single' ? 'burst' : mode;
+export const FireModeSelector = ({ burst, onChange, hasBurst, isBurstOnly, idPrefix = '' }: FireModeSelectorProps) => {
+    const effectiveBurst = isBurstOnly || burst;
 
     return (
         <div className="btn-group btn-group-sm">
@@ -54,8 +52,8 @@ export const FireModeSelector = ({ mode, onChange, hasBurst, isBurstOnly, idPref
                 type="radio"
                 className="btn-check"
                 id={`${idPrefix}fireSingle`}
-                checked={effectiveMode === 'single'}
-                onChange={() => onChange('single')}
+                checked={!effectiveBurst}
+                onChange={() => onChange(false)}
                 disabled={isBurstOnly}
             />
             <label className="btn btn-outline-primary" htmlFor={`${idPrefix}fireSingle`}>
@@ -65,10 +63,10 @@ export const FireModeSelector = ({ mode, onChange, hasBurst, isBurstOnly, idPref
                 type="radio"
                 className="btn-check"
                 id={`${idPrefix}fireBurst`}
-                checked={effectiveMode === 'burst'}
-                onChange={() => onChange('burst')}
+                checked={effectiveBurst}
+                onChange={() => onChange(true)}
                 disabled={!hasBurst}
-                title="Assume 1/3 of rounds hit"
+                title="Assume 1/3 of rounds hit (all rounds if point-blank)"
             />
             <label
                 className={`btn btn-outline-primary ${!hasBurst ? 'disabled' : ''}`}
@@ -76,24 +74,34 @@ export const FireModeSelector = ({ mode, onChange, hasBurst, isBurstOnly, idPref
             >
                 Burst
             </label>
-            <input
-                type="radio"
-                className="btn-check"
-                id={`${idPrefix}firePointblank`}
-                checked={effectiveMode === 'pointblank'}
-                onChange={() => onChange('pointblank')}
-                disabled={!hasBurst}
-                title="Assume all rounds hit"
-            />
-            <label
-                className={`btn btn-outline-primary ${!hasBurst ? 'disabled' : ''}`}
-                htmlFor={`${idPrefix}firePointblank`}
-            >
-                Point-blank burst
-            </label>
         </div>
     );
 };
+
+interface PointBlankCheckboxProps {
+    checked: boolean;
+    onChange: (value: boolean) => void;
+    disabled: boolean;
+    idPrefix?: string;
+}
+
+export const PointBlankCheckbox = ({ checked, onChange, disabled, idPrefix = '' }: PointBlankCheckboxProps) => (
+    <div className="col-auto d-flex align-items-center">
+        <div className="form-check mb-0" title="If burst is point-blank, assume all rounds hit. Otherwise, only 1/3. For single shots, no difference.">
+            <input
+                type="checkbox"
+                className="form-check-input"
+                id={`${idPrefix}pointBlankToggle`}
+                checked={checked}
+                onChange={() => onChange(!checked)}
+                disabled={disabled}
+            />
+            <label className="form-check-label" htmlFor={`${idPrefix}pointBlankToggle`}>
+                Point-blank
+            </label>
+        </div>
+    </div>
+);
 
 interface CriticalControlsProps {
     critical: boolean;

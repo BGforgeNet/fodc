@@ -6,7 +6,7 @@ import DamageChart from './components/DamageChart';
 import CompareWeaponsChart, { WeaponEntry } from './components/CompareWeaponsChart';
 import CaliberChart from './components/CaliberChart';
 import SearchableSelect from './components/SearchableSelect';
-import { DamageModeButtons, FireModeSelector, CriticalControls, BonusRangedDamage } from './components/ChartControls';
+import { DamageModeButtons, FireModeSelector, PointBlankCheckbox, CriticalControls, BonusRangedDamage } from './components/ChartControls';
 import { modOrder, modConfigs } from './modConfig';
 import { weaponIcons } from './icons/weaponIcons';
 import { ammoIcons } from './icons/ammoIcons';
@@ -29,7 +29,8 @@ const App = () => {
     const [selectedWeapon, setSelectedWeapon] = useState<string>('10mm SMG');
     const [selectedAmmo, setSelectedAmmo] = useState<string>('10mm AP');
     const [hiddenMods, setHiddenMods] = useState<Set<string>>(new Set());
-    const [fireMode, setFireMode] = useState<'single' | 'burst' | 'pointblank'>('single');
+    const [burst, setBurst] = useState(false);
+    const [pointBlank, setPointBlank] = useState(false);
     const [criticalHit, setCriticalHit] = useState(false);
     const [bonusRangedDamage, setBonusRangedDamage] = useState(0);
 
@@ -72,13 +73,12 @@ const App = () => {
     const currentAmmoValid = compatibleAmmo.some((a) => a.name === selectedAmmo);
     const effectiveAmmo = currentAmmoValid ? selectedAmmo : compatibleAmmo[0]?.name ?? '';
 
-    // Burst: force enabled for burst-only weapons, otherwise use fire mode
+    // Burst: force enabled for burst-only weapons, otherwise use burst state
     const hasBurst = weapon?.burst !== undefined;
     const isBurstOnly = weapon?.burst_only === true;
-    const effectiveBurst = isBurstOnly || (hasBurst && fireMode !== 'single');
-    const pointBlank = fireMode === 'pointblank';
+    const effectiveBurst = isBurstOnly || (hasBurst && burst);
 
-    // Handler for weapon change - also updates ammo and fire mode if needed
+    // Handler for weapon change - also updates ammo and burst if needed
     const handleWeaponChange = (newWeapon: string) => {
         setSelectedWeapon(newWeapon);
         const newWeaponData = weapons.find((w) => w.name === newWeapon);
@@ -88,13 +88,13 @@ const App = () => {
             if (!newCompatibleAmmo.some((a) => a.name === selectedAmmo)) {
                 setSelectedAmmo(newCompatibleAmmo[0]?.name ?? '');
             }
-            // Update fire mode if needed
+            // Update burst if needed
             const newHasBurst = newWeaponData.burst !== undefined;
             const newIsBurstOnly = newWeaponData.burst_only === true;
-            if (newIsBurstOnly && fireMode === 'single') {
-                setFireMode('burst');
-            } else if (!newHasBurst && fireMode !== 'single') {
-                setFireMode('single');
+            if (newIsBurstOnly && !burst) {
+                setBurst(true);
+            } else if (!newHasBurst && burst) {
+                setBurst(false);
             }
         }
     };
@@ -290,13 +290,19 @@ const App = () => {
                                 </div>
                                 <div className="col-auto d-flex align-items-center">
                                     <FireModeSelector
-                                        mode={fireMode}
-                                        onChange={setFireMode}
+                                        burst={burst}
+                                        onChange={setBurst}
                                         hasBurst={hasBurst}
                                         isBurstOnly={isBurstOnly}
                                         idPrefix="cm"
                                     />
                                 </div>
+                                <PointBlankCheckbox
+                                    checked={pointBlank}
+                                    onChange={setPointBlank}
+                                    disabled={false}
+                                    idPrefix="cm"
+                                />
                                 <CriticalControls
                                     critical={criticalHit}
                                     onCriticalChange={setCriticalHit}
@@ -379,13 +385,19 @@ const App = () => {
                                 </div>
                                 <div className="col-auto d-flex align-items-center">
                                     <FireModeSelector
-                                        mode={fireMode}
-                                        onChange={setFireMode}
+                                        burst={burst}
+                                        onChange={setBurst}
                                         hasBurst={true}
                                         isBurstOnly={false}
                                         idPrefix="cal"
                                     />
                                 </div>
+                                <PointBlankCheckbox
+                                    checked={pointBlank}
+                                    onChange={setPointBlank}
+                                    disabled={false}
+                                    idPrefix="cal"
+                                />
                                 <CriticalControls
                                     critical={criticalHit}
                                     onCriticalChange={setCriticalHit}
@@ -401,8 +413,8 @@ const App = () => {
                                 hiddenItems={calHiddenItems}
                                 onHiddenItemsChange={setCalHiddenItems}
                                 hiddenAmmo={calHiddenAmmo}
-                                burst={fireMode !== 'single'}
-                                pointBlank={fireMode === 'pointblank'}
+                                burst={burst}
+                                pointBlank={pointBlank}
                                 critical={criticalHit}
                                 rangedBonus={bonusRangedDamage * 2}
                             />
@@ -505,13 +517,19 @@ const App = () => {
                                 </div>
                                 <div className="col-auto d-flex align-items-center">
                                     <FireModeSelector
-                                        mode={fireMode}
-                                        onChange={setFireMode}
+                                        burst={burst}
+                                        onChange={setBurst}
                                         hasBurst={true}
                                         isBurstOnly={false}
                                         idPrefix="cw"
                                     />
                                 </div>
+                                <PointBlankCheckbox
+                                    checked={pointBlank}
+                                    onChange={setPointBlank}
+                                    disabled={false}
+                                    idPrefix="cw"
+                                />
                                 <CriticalControls
                                     critical={criticalHit}
                                     onCriticalChange={setCriticalHit}
@@ -525,8 +543,8 @@ const App = () => {
                                 mode={damageMode}
                                 hiddenItems={cwHiddenItems}
                                 onHiddenItemsChange={setCwHiddenItems}
-                                burst={fireMode !== 'single'}
-                                pointBlank={fireMode === 'pointblank'}
+                                burst={burst}
+                                pointBlank={pointBlank}
                                 critical={criticalHit}
                                 rangedBonus={bonusRangedDamage * 2}
                             />
