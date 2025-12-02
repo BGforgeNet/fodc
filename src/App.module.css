@@ -45,3 +45,42 @@
 .badgesRow {
     min-height: 32px;
 }
+
+.headerSpacer {
+    width: 200px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.title::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: url('/logo/radioactive.svg') no-repeat center;
+    background-size: contain;
+}
+
+.poweredBy {
+    width: 200px;
+    justify-content: flex-end;
+    padding-right: 1rem;
+    font-size: 0.95rem;
+}
+
+.bgforgeLogo {
+    height: 32px;
+}
+
+.bgforgeLink {
+    color: #333;
+    text-decoration: none;
+}
+
+.bgforgeLink:hover {
+    text-decoration: underline;
+}

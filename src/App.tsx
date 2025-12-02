@@ -183,7 +183,17 @@ const App = () => {
 
     return (
         <div className="container-fluid">
-            <h1 className="text-center my-4">Fallout 2 Damage Calculator</h1>
+            <div className="d-flex justify-content-between align-items-center my-4">
+                <div className={styles.headerSpacer}></div>
+                <h1 className={`text-center mb-0 ${styles.title}`}>Fallout 2 Damage Calculator</h1>
+                <div className={`d-flex align-items-center gap-1 ${styles.poweredBy}`}>
+                    <span className="text-muted">Powered by</span>
+                    <a href="https://bgforge.net" target="_blank" rel="noopener noreferrer" className={`d-flex align-items-center gap-1 ${styles.bgforgeLink}`}>
+                        <span>BGforge</span>
+                        <img src="/logo/bgforge.svg" alt="BGforge" className={styles.bgforgeLogo} />
+                    </a>
+                </div>
+            </div>
 
             {loading && (
                 <div className="text-center">
