@@ -40,8 +40,8 @@ const DamageChart = ({
     if (!vanillaMod) return null;
 
     const armorList = vanillaMod.armor;
-    const weapon = vanillaMod.weapons.find((w) => w.name === weaponName);
-    if (!weapon) return null;
+    const vanillaWeapon = vanillaMod.weapons.find((w) => w.name === weaponName);
+    if (!vanillaWeapon) return null;
 
     const armorNames = armorList.map((a) => a.name);
     const traces: Data[] = [];
@@ -51,11 +51,14 @@ const DamageChart = ({
         const config = modConfigs[modId];
         if (!mod || !config) return;
 
+        const weapon = mod.weapons.find((w) => w.name === weaponName) ?? vanillaWeapon;
         const ammo = mod.ammo.find((a) => a.name === ammoName && a.caliber === weapon.caliber);
         if (!ammo) return;
 
-        const burstRounds = burst && weapon.burst ? weapon.burst : 1;
-        const hitsMultiplier = calculateHitsMultiplier(burst, pointBlank, burstRounds);
+        const weaponHasBurst = !!weapon.burst;
+        const effectiveBurst = burst && weaponHasBurst;
+        const burstRounds = effectiveBurst && weapon.burst ? weapon.burst : 1;
+        const hitsMultiplier = calculateHitsMultiplier(effectiveBurst, pointBlank, burstRounds);
 
         const damageData = armorList.map((armor) => {
             const modArmor = mod.armor.find((a) => a.name === armor.name) ?? armor;
@@ -65,7 +68,7 @@ const DamageChart = ({
                 ammo,
                 modArmor,
                 critical,
-                burst,
+                effectiveBurst,
                 rangedBonus
             );
             return parseDamageString(damageStr, hitsMultiplier);
@@ -76,8 +79,8 @@ const DamageChart = ({
         traces.push(...createDamageTraces(armorNames, damageData, mode, config.name, visible));
     });
 
-    const hasBurst = burst && weapon.burst !== undefined;
-    const title = buildChartTitle(`${weapon.name} + ${ammoName}`, mode, hasBurst, pointBlank, critical, rangedBonus);
+    const hasBurst = burst && vanillaWeapon.burst !== undefined;
+    const title = buildChartTitle(`${vanillaWeapon.name} + ${ammoName}`, mode, hasBurst, pointBlank, critical, rangedBonus);
 
     return (
         <BaseDamageChart
