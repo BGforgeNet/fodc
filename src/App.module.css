@@ -46,6 +46,30 @@
     min-height: 32px;
 }
 
+.caliberRow {
+    gap: 1rem;
+}
+
+.caliberModSelect {
+    width: 150px;
+}
+
+.caliberAmmoIcons {
+    min-width: 120px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.hidden {
+    opacity: 0.3;
+}
+
+.hiddenBadge {
+    opacity: 0.5;
+}
+
 .headerSpacer {
     width: 200px;
 }

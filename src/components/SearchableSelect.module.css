@@ -1,0 +1,23 @@
+.container {
+    position: relative;
+    min-width: 200px;
+}
+
+.containerNarrow {
+    position: relative;
+    width: 130px;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.containerNarrow .dropdown {
+    min-width: 150px;
+}

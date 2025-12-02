@@ -1,12 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
+import styles from './SearchableSelect.module.css';
 
 interface SearchableSelectProps {
     options: string[];
     value: string;
     onChange: (value: string) => void;
+    narrow?: boolean;
 }
 
-const SearchableSelect = ({ options, value, onChange }: SearchableSelectProps) => {
+const SearchableSelect = ({ options, value, onChange, narrow = false }: SearchableSelectProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [search, setSearch] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
@@ -26,7 +28,7 @@ const SearchableSelect = ({ options, value, onChange }: SearchableSelectProps) =
     }, []);
 
     return (
-        <div ref={containerRef} style={{ position: 'relative', minWidth: '200px' }}>
+        <div ref={containerRef} className={narrow ? styles.containerNarrow : styles.container}>
             <input
                 ref={inputRef}
                 className="form-control"
@@ -50,18 +52,7 @@ const SearchableSelect = ({ options, value, onChange }: SearchableSelectProps) =
                 }}
             />
             {isOpen && (
-                <div
-                    className="dropdown-menu show"
-                    style={{
-                        position: 'absolute',
-                        top: '100%',
-                        left: 0,
-                        right: 0,
-                        maxHeight: '300px',
-                        overflowY: 'auto',
-                        zIndex: 1000,
-                    }}
-                >
+                <div className={`dropdown-menu show ${styles.dropdown}`}>
                     {filtered.map((option) => (
                         <button
                             key={option}

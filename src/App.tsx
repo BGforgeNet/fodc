@@ -353,10 +353,10 @@ const App = () => {
 
                     {activeTab === 'caliber' && (
                         <>
-                            <div className="row mb-3 align-items-center justify-content-center">
-                                <div className="col-auto">
+                            <div className={`d-flex mb-3 align-items-center justify-content-center ${styles.caliberRow}`}>
+                                <div className="d-flex align-items-center gap-3">
                                     <select
-                                        className="form-select"
+                                        className={`form-select ${styles.caliberModSelect}`}
                                         value={calModId}
                                         onChange={(e) => handleCalModChange(e.target.value)}
                                     >
@@ -366,25 +366,23 @@ const App = () => {
                                             </option>
                                         ))}
                                     </select>
-                                </div>
-                                <div className="col-auto">
                                     <SearchableSelect
                                         options={calCalibers}
                                         value={calCaliber}
                                         onChange={setCalCaliber}
+                                        narrow
                                     />
                                 </div>
-                                <div className="col-auto d-flex align-items-center gap-2">
+                                <div className={`d-flex align-items-center gap-2 ${styles.caliberAmmoIcons}`}>
                                     {calAmmoList.map((a) => {
                                         const isHidden = calHiddenAmmo.has(a.name);
                                         const canToggle = calAmmoList.length > 1;
                                         return ammoIcons[a.name] ? (
                                             <div
                                                 key={a.name}
-                                                className={styles.ammoIconPlaceholder}
+                                                className={`${styles.ammoIconPlaceholder} ${styles.clickable} ${isHidden ? styles.hidden : ''}`}
                                                 title={a.name}
                                                 onClick={canToggle ? () => toggleCalAmmoVisibility(a.name) : undefined}
-                                                style={{ cursor: canToggle ? 'pointer' : 'default', opacity: isHidden ? 0.3 : 1 }}
                                             >
                                                 <img
                                                     src={ammoIcons[a.name]}
@@ -395,9 +393,8 @@ const App = () => {
                                         ) : (
                                             <span
                                                 key={a.name}
-                                                className={`badge ${isHidden ? 'bg-secondary' : 'bg-success'}`}
+                                                className={`badge ${isHidden ? 'bg-secondary' : 'bg-success'} ${styles.clickable} ${isHidden ? styles.hiddenBadge : ''}`}
                                                 onClick={canToggle ? () => toggleCalAmmoVisibility(a.name) : undefined}
-                                                style={{ cursor: canToggle ? 'pointer' : 'default', opacity: isHidden ? 0.5 : 1 }}
                                             >
                                                 {a.name}
                                             </span>
