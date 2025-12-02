@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ModData } from './types';
 import { DamageMode } from './chartUtils';
 import DamageTable from './components/DamageTable';
@@ -11,19 +11,10 @@ import { modOrder, modConfigs } from './modConfig';
 import { weaponIcons } from './icons/weaponIcons';
 import { ammoIcons } from './icons/ammoIcons';
 import styles from './App.module.css';
-
-const fetchModData = async (): Promise<ModData> => {
-    const response = await fetch('/data/out/data.json');
-    if (!response.ok) {
-        throw new Error(`Failed to load data: ${response.statusText}`);
-    }
-    return response.json();
-};
+import modData from '../data/out/data.json';
 
 const App = () => {
-    const [data, setData] = useState<ModData | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<Error | null>(null);
+    const data = modData as ModData;
     const [activeTab, setActiveTab] = useState<'mods' | 'caliber' | 'any-to-any' | 'tables'>('mods');
     const [damageMode, setDamageMode] = useState<DamageMode>('average');
     const [selectedWeapon, setSelectedWeapon] = useState<string>('10mm SMG');
@@ -42,28 +33,13 @@ const App = () => {
     const [cwHiddenItems, setCwHiddenItems] = useState<Set<string>>(new Set());
 
     // Caliber tab state
+    const vanillaMod = data.mods['vanilla'];
+    const defaultCaliber = vanillaMod?.weapons[0]?.caliber ?? '';
     const [calModId, setCalModId] = useState<string>('vanilla');
-    const [calCaliber, setCalCaliber] = useState<string>('');
+    const [calCaliber, setCalCaliber] = useState<string>(defaultCaliber);
     const [calHiddenItems, setCalHiddenItems] = useState<Set<string>>(new Set());
     const [calHiddenAmmo, setCalHiddenAmmo] = useState<Set<string>>(new Set());
     const [calHiddenWeapons, setCalHiddenWeapons] = useState<Set<string>>(new Set());
-
-    useEffect(() => {
-        fetchModData()
-            .then((d) => {
-                setData(d);
-                // Initialize caliber tab with first caliber
-                const vanillaMod = d.mods['vanilla'];
-                if (vanillaMod) {
-                    const calibers = [...new Set(vanillaMod.weapons.map((w) => w.caliber))];
-                    setCalCaliber(calibers[0] ?? '');
-                }
-            })
-            .catch(setError)
-            .finally(() => setLoading(false));
-    }, []);
-
-    const vanillaMod = data?.mods['vanilla'];
     const weapons = vanillaMod?.weapons ?? [];
     const weapon = weapons.find((w) => w.name === selectedWeapon);
 
@@ -211,24 +187,7 @@ const App = () => {
                 </div>
             </div>
 
-            {loading && (
-                <div className="text-center">
-                    <div className="spinner-border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </div>
-                </div>
-            )}
-
-            {error && (
-                <div className="alert alert-danger" role="alert">
-                    <h4 className="alert-heading">Error loading data</h4>
-                    <p>{error.message || 'Unknown error occurred'}</p>
-                </div>
-            )}
-
-            {data && (
-                <>
-                    <ul className="nav nav-tabs mb-4 justify-content-center">
+            <ul className="nav nav-tabs mb-4 justify-content-center">
                         <li className="nav-item">
                             <button
                                 className={`nav-link ${activeTab === 'mods' ? 'active' : ''}`}
@@ -624,8 +583,6 @@ const App = () => {
                                 />
                             );
                         })}
-                </>
-            )}
         </div>
     );
 };
