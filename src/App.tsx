@@ -4,6 +4,7 @@ import { DamageMode } from './chartUtils';
 import DamageTable from './components/DamageTable';
 import DamageChart from './components/DamageChart';
 import CompareWeaponsChart, { WeaponEntry } from './components/CompareWeaponsChart';
+import CaliberChart from './components/CaliberChart';
 import SearchableSelect from './components/SearchableSelect';
 import { DamageModeButtons, FireModeSelector, CriticalControls, BonusRangedDamage } from './components/ChartControls';
 import { modOrder, modConfigs } from './modConfig';
@@ -23,7 +24,7 @@ const App = () => {
     const [data, setData] = useState<ModData | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
-    const [activeTab, setActiveTab] = useState<'compare-mods' | 'compare-weapons' | 'tables'>('compare-mods');
+    const [activeTab, setActiveTab] = useState<'mods' | 'caliber' | 'any-to-any' | 'tables'>('mods');
     const [damageMode, setDamageMode] = useState<DamageMode>('average');
     const [selectedWeapon, setSelectedWeapon] = useState<string>('10mm SMG');
     const [selectedAmmo, setSelectedAmmo] = useState<string>('10mm AP');
@@ -39,9 +40,22 @@ const App = () => {
     const [cwAmmo, setCwAmmo] = useState<string>('');
     const [cwHiddenItems, setCwHiddenItems] = useState<Set<string>>(new Set());
 
+    // Caliber tab state
+    const [calModId, setCalModId] = useState<string>('vanilla');
+    const [calCaliber, setCalCaliber] = useState<string>('');
+    const [calHiddenItems, setCalHiddenItems] = useState<Set<string>>(new Set());
+
     useEffect(() => {
         fetchModData()
-            .then(setData)
+            .then((d) => {
+                setData(d);
+                // Initialize caliber tab with first caliber
+                const vanillaMod = d.mods['vanilla'];
+                if (vanillaMod) {
+                    const calibers = [...new Set(vanillaMod.weapons.map((w) => w.caliber))];
+                    setCalCaliber(calibers[0] ?? '');
+                }
+            })
             .catch(setError)
             .finally(() => setLoading(false));
     }, []);
@@ -90,7 +104,7 @@ const App = () => {
     const cwSelectedWeapon = cwWeapons.find((w) => w.name === cwWeapon);
     const cwCompatibleAmmo = cwMod?.ammo.filter((a) => a.caliber === cwSelectedWeapon?.caliber) ?? [];
 
-    // Handler for compare-weapons mod change
+    // Handler for any-to-any mod change
     const handleCwModChange = (newModId: string) => {
         setCwModId(newModId);
         const newMod = data?.mods[newModId];
@@ -111,7 +125,7 @@ const App = () => {
         }
     };
 
-    // Handler for compare-weapons weapon change
+    // Handler for any-to-any weapon change
     const handleCwWeaponChange = (newWeapon: string) => {
         setCwWeapon(newWeapon);
         const newWeaponData = cwWeapons.find((w) => w.name === newWeapon);
@@ -126,6 +140,21 @@ const App = () => {
     const isDuplicateEntry = weaponEntries.some(
         (e) => e.modId === cwModId && e.weaponName === cwWeapon && e.ammoName === cwAmmo
     );
+
+    // Caliber tab: get calibers and ammo for selected mod
+    const calMod = data?.mods[calModId];
+    const calCalibers = [...new Set(calMod?.weapons.map((w) => w.caliber) ?? [])];
+    const calAmmoList = calMod?.ammo.filter((a) => a.caliber === calCaliber) ?? [];
+
+    // Handler for caliber mod change
+    const handleCalModChange = (newModId: string) => {
+        setCalModId(newModId);
+        const newMod = data?.mods[newModId];
+        const newCalibers = [...new Set(newMod?.weapons.map((w) => w.caliber) ?? [])];
+        if (newCalibers.length > 0 && !newCalibers.includes(calCaliber)) {
+            setCalCaliber(newCalibers[0] ?? '');
+        }
+    };
 
     const addWeaponEntry = () => {
         if (!cwWeapon || !cwAmmo || isDuplicateEntry) return;
@@ -161,18 +190,26 @@ const App = () => {
                     <ul className="nav nav-tabs mb-4 justify-content-center">
                         <li className="nav-item">
                             <button
-                                className={`nav-link ${activeTab === 'compare-mods' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('compare-mods')}
+                                className={`nav-link ${activeTab === 'mods' ? 'active' : ''}`}
+                                onClick={() => setActiveTab('mods')}
                             >
-                                Compare mods
+                                Mods
                             </button>
                         </li>
                         <li className="nav-item">
                             <button
-                                className={`nav-link ${activeTab === 'compare-weapons' ? 'active' : ''}`}
-                                onClick={() => setActiveTab('compare-weapons')}
+                                className={`nav-link ${activeTab === 'caliber' ? 'active' : ''}`}
+                                onClick={() => setActiveTab('caliber')}
                             >
-                                Compare weapons
+                                Caliber
+                            </button>
+                        </li>
+                        <li className="nav-item">
+                            <button
+                                className={`nav-link ${activeTab === 'any-to-any' ? 'active' : ''}`}
+                                onClick={() => setActiveTab('any-to-any')}
+                            >
+                                Any to any
                             </button>
                         </li>
                         <li className="nav-item">
@@ -185,7 +222,7 @@ const App = () => {
                         </li>
                     </ul>
 
-                    {activeTab === 'compare-mods' && (
+                    {activeTab === 'mods' && (
                         <>
                             <div className="row mb-3 align-items-center justify-content-center">
                                 <div className="col-auto">
@@ -267,7 +304,81 @@ const App = () => {
                         </>
                     )}
 
-                    {activeTab === 'compare-weapons' && (
+                    {activeTab === 'caliber' && (
+                        <>
+                            <div className="row mb-3 align-items-center justify-content-center">
+                                <div className="col-auto">
+                                    <select
+                                        className="form-select"
+                                        value={calModId}
+                                        onChange={(e) => handleCalModChange(e.target.value)}
+                                    >
+                                        {modOrder.map((modId) => (
+                                            <option key={modId} value={modId}>
+                                                {modConfigs[modId]?.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="col-auto">
+                                    <SearchableSelect
+                                        options={calCalibers}
+                                        value={calCaliber}
+                                        onChange={setCalCaliber}
+                                    />
+                                </div>
+                                <div className="col-auto d-flex align-items-center gap-2">
+                                    {calAmmoList.map((a) =>
+                                        ammoIcons[a.name] ? (
+                                            <div key={a.name} className={styles.ammoIconPlaceholder} title={a.name}>
+                                                <img
+                                                    src={ammoIcons[a.name]}
+                                                    alt={a.name}
+                                                    className={styles.ammoIcon}
+                                                />
+                                            </div>
+                                        ) : (
+                                            <span key={a.name} className="badge bg-secondary">{a.name}</span>
+                                        )
+                                    )}
+                                </div>
+                            </div>
+                            <div className="row mb-3 align-items-center justify-content-center">
+                                <div className="col-auto">
+                                    <DamageModeButtons mode={damageMode} onChange={setDamageMode} />
+                                </div>
+                                <div className="col-auto d-flex align-items-center">
+                                    <FireModeSelector
+                                        mode={fireMode}
+                                        onChange={setFireMode}
+                                        hasBurst={true}
+                                        isBurstOnly={false}
+                                        idPrefix="cal"
+                                    />
+                                </div>
+                                <CriticalControls
+                                    critical={criticalHit}
+                                    onCriticalChange={setCriticalHit}
+                                    idPrefix="cal"
+                                />
+                                <BonusRangedDamage value={bonusRangedDamage} onChange={setBonusRangedDamage} />
+                            </div>
+                            <CaliberChart
+                                modId={calModId}
+                                caliber={calCaliber}
+                                data={data}
+                                mode={damageMode}
+                                hiddenItems={calHiddenItems}
+                                onHiddenItemsChange={setCalHiddenItems}
+                                burst={fireMode !== 'single'}
+                                pointBlank={fireMode === 'pointblank'}
+                                critical={criticalHit}
+                                rangedBonus={bonusRangedDamage * 2}
+                            />
+                        </>
+                    )}
+
+                    {activeTab === 'any-to-any' && (
                         <>
                             <div className="row mb-3 align-items-center justify-content-center">
                                 <div className="col-auto">
