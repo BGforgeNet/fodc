@@ -46,6 +46,7 @@ const App = () => {
     const [calCaliber, setCalCaliber] = useState<string>('');
     const [calHiddenItems, setCalHiddenItems] = useState<Set<string>>(new Set());
     const [calHiddenAmmo, setCalHiddenAmmo] = useState<Set<string>>(new Set());
+    const [calHiddenWeapons, setCalHiddenWeapons] = useState<Set<string>>(new Set());
 
     useEffect(() => {
         fetchModData()
@@ -142,9 +143,10 @@ const App = () => {
         (e) => e.modId === cwModId && e.weaponName === cwWeapon && e.ammoName === cwAmmo
     );
 
-    // Caliber tab: get calibers and ammo for selected mod
+    // Caliber tab: get calibers, weapons and ammo for selected mod
     const calMod = data?.mods[calModId];
     const calCalibers = [...new Set(calMod?.weapons.map((w) => w.caliber) ?? [])];
+    const calWeaponList = calMod?.weapons.filter((w) => w.caliber === calCaliber) ?? [];
     const calAmmoList = calMod?.ammo.filter((a) => a.caliber === calCaliber) ?? [];
 
     // Handler for caliber mod change
@@ -156,6 +158,7 @@ const App = () => {
             setCalCaliber(newCalibers[0] ?? '');
         }
         setCalHiddenAmmo(new Set());
+        setCalHiddenWeapons(new Set());
     };
 
     // Handler for toggling ammo visibility
@@ -166,6 +169,19 @@ const App = () => {
                 next.delete(ammoName);
             } else {
                 next.add(ammoName);
+            }
+            return next;
+        });
+    };
+
+    // Handler for toggling weapon visibility
+    const toggleCalWeaponVisibility = (weaponName: string) => {
+        setCalHiddenWeapons((prev) => {
+            const next = new Set(prev);
+            if (next.has(weaponName)) {
+                next.delete(weaponName);
+            } else {
+                next.add(weaponName);
             }
             return next;
         });
@@ -415,6 +431,38 @@ const App = () => {
                                 />
                                 <BonusRangedDamage value={bonusRangedDamage} onChange={setBonusRangedDamage} />
                             </div>
+                            <div className="row mb-3 justify-content-center">
+                                <div className="col-auto d-flex flex-wrap align-items-center gap-2">
+                                    {calWeaponList.map((w) => {
+                                        const isHidden = calHiddenWeapons.has(w.name);
+                                        const canToggle = calWeaponList.length > 1;
+                                        return weaponIcons[w.name] ? (
+                                            <div
+                                                key={w.name}
+                                                className={styles.weaponIconPlaceholder}
+                                                title={w.name}
+                                                onClick={canToggle ? () => toggleCalWeaponVisibility(w.name) : undefined}
+                                                style={{ cursor: canToggle ? 'pointer' : 'default', opacity: isHidden ? 0.3 : 1 }}
+                                            >
+                                                <img
+                                                    src={weaponIcons[w.name]}
+                                                    alt={w.name}
+                                                    className={styles.weaponIcon}
+                                                />
+                                            </div>
+                                        ) : (
+                                            <span
+                                                key={w.name}
+                                                className={`badge ${isHidden ? 'bg-secondary' : 'bg-success'}`}
+                                                onClick={canToggle ? () => toggleCalWeaponVisibility(w.name) : undefined}
+                                                style={{ cursor: canToggle ? 'pointer' : 'default', opacity: isHidden ? 0.5 : 1 }}
+                                            >
+                                                {w.name}
+                                            </span>
+                                        );
+                                    })}
+                                </div>
+                            </div>
                             <CaliberChart
                                 modId={calModId}
                                 caliber={calCaliber}
@@ -423,6 +471,7 @@ const App = () => {
                                 hiddenItems={calHiddenItems}
                                 onHiddenItemsChange={setCalHiddenItems}
                                 hiddenAmmo={calHiddenAmmo}
+                                hiddenWeapons={calHiddenWeapons}
                                 burst={burst}
                                 pointBlank={pointBlank}
                                 critical={criticalHit}

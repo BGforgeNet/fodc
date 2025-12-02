@@ -19,6 +19,7 @@ interface CaliberChartProps {
     hiddenItems: Set<string>;
     onHiddenItemsChange: (items: Set<string>) => void;
     hiddenAmmo: Set<string>;
+    hiddenWeapons: Set<string>;
     burst: boolean;
     pointBlank: boolean;
     critical: boolean;
@@ -33,6 +34,7 @@ const CaliberChart = ({
     hiddenItems,
     onHiddenItemsChange,
     hiddenAmmo,
+    hiddenWeapons,
     burst,
     pointBlank,
     critical,
@@ -77,7 +79,7 @@ const CaliberChart = ({
             });
 
             const traceName = ammoList.length > 1 ? `${weapon.name} + ${ammo.name}` : weapon.name;
-            const visible = hiddenItems.has(traceName) || hiddenAmmo.has(ammo.name) ? 'legendonly' : true;
+            const visible = hiddenItems.has(traceName) || hiddenAmmo.has(ammo.name) || hiddenWeapons.has(weapon.name) ? 'legendonly' : true;
 
             traces.push(...createDamageTraces(armorNames, damageData, mode, traceName, visible));
         });
