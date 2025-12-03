@@ -12,12 +12,14 @@ export interface Armor {
     abbrev: string;
     dr: number;
     dt: number;
-    dt_fire: number;
     dr_fire: number;
+    dt_fire: number;
     dr_plasma: number;
     dt_plasma: number;
     dr_laser: number;
     dt_laser: number;
+    dr_explosive: number;
+    dt_explosive: number;
 }
 
 export interface Weapon {

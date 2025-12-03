@@ -130,11 +130,15 @@ const App = () => {
         setCalModId(newModId);
         const newMod = data?.mods[newModId];
         const newCalibers = [...new Set(newMod?.weapons.map((w) => w.caliber) ?? [])];
-        if (newCalibers.length > 0 && !newCalibers.includes(calCaliber)) {
-            setCalCaliber(newCalibers[0] ?? '');
+        const effectiveCaliber = newCalibers.includes(calCaliber) ? calCaliber : (newCalibers[0] ?? '');
+        if (effectiveCaliber !== calCaliber) {
+            setCalCaliber(effectiveCaliber);
         }
-        setCalHiddenAmmo(new Set());
-        setCalHiddenWeapons(new Set());
+        // Only remove hidden items that don't exist in new mod's caliber
+        const newWeaponNames = new Set(newMod?.weapons.filter((w) => w.caliber === effectiveCaliber).map((w) => w.name) ?? []);
+        const newAmmoNames = new Set(newMod?.ammo.filter((a) => a.caliber === effectiveCaliber).map((a) => a.name) ?? []);
+        setCalHiddenWeapons((prev) => new Set([...prev].filter((name) => newWeaponNames.has(name))));
+        setCalHiddenAmmo((prev) => new Set([...prev].filter((name) => newAmmoNames.has(name))));
     };
 
     // Handler for toggling ammo visibility

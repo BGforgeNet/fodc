@@ -1,16 +1,16 @@
-Name,Abbrev,DR,DT,DR fire,DT fire,DR plasma,DT plasma,DR laser,DT laser
-No armor,,0,0,0,0,0,0,0,0
-Leather jacket,,20,0,10,0,10,0,20,0
-Combat leather jacket,,30,2,25,2,10,0,20,0
-Leather armor,,25,2,20,0,10,0,20,0
-Leather armor Mk II,Mk II,25,3,25,1,10,1,20,1
-Metal armor,,30,4,10,4,20,4,75,6
-Metal armor Mk II,Mk II,35,4,15,4,25,4,80,7
-Tesla armor,Tesla,20,4,10,4,80,10,90,19
-Combat armor,,40,5,30,4,50,4,60,8
-Combat armor Mk II,Mk II,40,6,35,5,50,9,65,9
-Brotherhood armor,Brotherhood,40,8,50,7,60,7,70,8
-Power armor,,40,12,60,12,40,10,80,18
-Hardened power armor,Hardened,50,13,70,14,50,13,90,19
-Advanced power armor,,55,15,70,16,60,15,90,19
-Advanced power armor Mk II,Mk II,60,18,70,16,60,18,90,19
+Name,Abbrev,DR,DT,DR fire,DT fire,DR plasma,DT plasma,DR laser,DT laser,DR explosive,DT explosive
+No armor,,0,0,0,0,0,0,0,0,0,0
+Leather jacket,,20,0,10,0,10,0,20,0,20,0
+Combat leather jacket,,30,2,25,2,10,0,20,0,20,0
+Leather armor,,25,2,20,0,10,0,20,0,20,0
+Leather armor Mk II,Mk II,25,3,25,1,10,1,20,1,25,1
+Metal armor,,30,4,10,4,20,4,75,6,25,4
+Metal armor Mk II,Mk II,35,4,15,4,25,4,80,7,30,4
+Tesla armor,Tesla,20,4,10,4,80,10,90,19,20,4
+Combat armor,,40,5,30,4,50,4,60,8,40,6
+Combat armor Mk II,Mk II,40,6,35,5,50,9,65,9,45,9
+Brotherhood armor,Brotherhood,40,8,50,7,60,7,70,8,40,8
+Power armor,,40,12,60,12,40,10,80,18,50,20
+Hardened power armor,Hardened,50,13,70,14,50,13,90,19,60,20
+Advanced power armor,,55,15,70,16,60,15,90,19,65,20
+Advanced power armor Mk II,Mk II,60,18,70,16,60,18,90,19,70,20

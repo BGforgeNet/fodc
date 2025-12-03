@@ -1,5 +1,32 @@
 import { Weapon, Ammo, Armor } from './types';
 
+// Get armor DR/DT based on damage type
+const getArmorResistance = (
+    armor: Armor,
+    weapon: Weapon,
+    ammo: Ammo
+): { dr: number; dt: number } => {
+    // Determine damage type: weapon dmg_type takes precedence, then ammo dmg_type
+    const dmgType = weapon.dmg_type ?? ammo.dmg_type;
+
+    switch (dmgType) {
+        case 'fire':
+            return { dr: armor.dr_fire, dt: armor.dt_fire };
+        case 'plasma':
+            return { dr: armor.dr_plasma, dt: armor.dt_plasma };
+        case 'laser':
+            return { dr: armor.dr_laser, dt: armor.dt_laser };
+        case 'electrical':
+            // Electrical uses plasma resistance in Fallout 2
+            return { dr: armor.dr_plasma, dt: armor.dt_plasma };
+        case 'explosive':
+            return { dr: armor.dr_explosive, dt: armor.dt_explosive };
+        default:
+            // Normal damage
+            return { dr: armor.dr, dt: armor.dt };
+    }
+};
+
 type DamageCalculator = (
     weapon: Weapon,
     ammo: Ammo,
@@ -20,19 +47,21 @@ const fallout2Formula = (
     burst: boolean,
     rangedBonus: number
 ): string => {
+    const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
+
     const calculateDamage = (baseDamage: number): number => {
         // Critical multiplier: x3 for single (x6 total), x2 for burst (x4 total)
         const critMultiplier = critical ? (burst ? 2 : 3) : 1;
 
         // Armor bypass: critical (20%) or penetrate (20% via /5), not cumulative
         // Critical bypass applies to both DR and DT, penetrate only to DT
-        let armorDr = armor.dr;
-        let armorDt = armor.dt;
+        let armorDr = baseDr;
+        let armorDt = baseDt;
         if (critical) {
-            armorDr = armor.dr * 0.2;
-            armorDt = armor.dt * 0.2;
+            armorDr = baseDr * 0.2;
+            armorDt = baseDt * 0.2;
         } else if (weapon.penetrate) {
-            armorDt = Math.floor(armor.dt / 5);
+            armorDt = Math.floor(baseDt / 5);
         }
 
         const effectiveDr = Math.max(0, Math.min(90, armorDr + ammo.dr_mod));
@@ -68,16 +97,18 @@ const fo2tweaksFormula = (
     burst: boolean,
     rangedBonus: number
 ): string => {
+    const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
+
     const calculateDamage = (baseDamage: number, isCritical: boolean): number => {
         // Armor bypass: critical affects both DR and DT, penetrate only DT
         // Applied before dr_mod, not cumulative
-        let targetDr = armor.dr;
-        let targetDt = armor.dt;
+        let targetDr = baseDr;
+        let targetDt = baseDt;
         if (isCritical) {
-            targetDr = armor.dr * 0.2;
-            targetDt = armor.dt * 0.2;
+            targetDr = baseDr * 0.2;
+            targetDt = baseDt * 0.2;
         } else if (weapon.penetrate) {
-            targetDt = armor.dt * 0.2;
+            targetDt = baseDt * 0.2;
         }
 
         // Calculate modified DT (float)
@@ -145,16 +176,18 @@ const yaamFormula = (
     burst: boolean,
     rangedBonus: number
 ): string => {
+    const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
+
     const calculateDamage = (baseDamage: number): number => {
         // Armor bypass: critical affects both DR and DT, penetrate only DT
         // Not cumulative - critical takes precedence
-        let armorDR = armor.dr;
-        let armorDT = armor.dt;
+        let armorDR = baseDr;
+        let armorDT = baseDt;
         if (critical) {
-            armorDR = armor.dr * 0.2;
-            armorDT = armor.dt * 0.2;
+            armorDR = baseDr * 0.2;
+            armorDT = baseDt * 0.2;
         } else if (weapon.penetrate) {
-            armorDT = armor.dt * 0.2;
+            armorDT = baseDt * 0.2;
         }
 
         // calcDT = armorDT - ammoDT
@@ -218,16 +251,18 @@ const glovzFormula = (
     burst: boolean,
     rangedBonus: number
 ): string => {
+    const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
+
     const calculateDamage = (baseDamage: number): number => {
         // Armor bypass: critical affects both DR and DT, penetrate only DT
         // Not cumulative - critical takes precedence
-        let armorDR = armor.dr;
-        let armorDT = armor.dt;
+        let armorDR = baseDr;
+        let armorDT = baseDt;
         if (critical) {
-            armorDR = armor.dr * 0.2;
-            armorDT = armor.dt * 0.2;
+            armorDR = baseDr * 0.2;
+            armorDT = baseDt * 0.2;
         } else if (weapon.penetrate) {
-            armorDT = armor.dt * 0.2;
+            armorDT = baseDt * 0.2;
         }
 
         // ammoY = divisor (we use dmg_mod as multiplier, so Y = 1)
@@ -303,6 +338,8 @@ const eccoFormula = (
     burst: boolean,
     rangedBonus: number
 ): string => {
+    const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
+
     // EcCo config defaults from combat.ini
     const DT_MULT_NEGATIVE = 1.3; // dt_mult_negative for AP ammo
     // BURST_CRITICAL_FRACTION = 0.5 - Only 50% of burst bullets get crit bonus
@@ -311,13 +348,13 @@ const eccoFormula = (
     const calculateDamage = (baseDamage: number, isCritical: boolean): number => {
         // Armor bypass: critical affects both DR and DT, penetrate only DT
         // Applied before ammo modifiers, not cumulative
-        let targetDr = armor.dr;
-        let targetDt = armor.dt;
+        let targetDr = baseDr;
+        let targetDt = baseDt;
         if (isCritical) {
-            targetDr = armor.dr * 0.2;
-            targetDt = armor.dt * 0.2;
+            targetDr = baseDr * 0.2;
+            targetDt = baseDt * 0.2;
         } else if (weapon.penetrate) {
-            targetDt = armor.dt * 0.2;
+            targetDt = baseDt * 0.2;
         }
 
         // DT modification by ammo DR adjust (EcCo's key difference)

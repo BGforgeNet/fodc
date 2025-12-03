@@ -52,6 +52,8 @@ const parseArmor = (item: CsvRow) => ({
     dt_plasma: item['DT plasma'] ? parseInt(item['DT plasma']) : 0,
     dr_laser: item['DR laser'] ? parseInt(item['DR laser']) : 0,
     dt_laser: item['DT laser'] ? parseInt(item['DT laser']) : 0,
+    dr_explosive: item['DR explosive'] ? parseInt(item['DR explosive']) : 0,
+    dt_explosive: item['DT explosive'] ? parseInt(item['DT explosive']) : 0,
 });
 
 const parseWeapon = (item: CsvRow) => ({
