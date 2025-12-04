@@ -25,7 +25,7 @@ export const weaponIcons: Record<string, string> = {
     'FN FAL HPFA': '/images/weapons/fnfal.png',
     'FN FAL (night sight)': '/images/weapons/fnfalnightsight.png',
     'Hunting rifle': '/images/weapons/huntingrifle.png',
-    'Scoped hunting rifle': '/images/weapons/scopedhuntingrifle.png',
+    'Scoped Hunting rifle': '/images/weapons/scopedhuntingrifle.webp',
     'Pipe rifle': '/images/weapons/piperifle.gif',
     'Red Ryder BB gun': '/images/weapons/redryderbbgun.png',
     'Red Ryder LE BB gun': '/images/weapons/redryderlebb.png',
@@ -44,7 +44,7 @@ export const weaponIcons: Record<string, string> = {
     Bozar: '/images/weapons/bozar.png',
     M60: '/images/weapons/m60.png',
     Flamer: '/images/weapons/flamer.png',
-    'Improved flamer': '/images/weapons/improvedflamer.png',
+    'Improved Flamer': '/images/weapons/improvedflamer.webp',
     'Rocket launcher': '/images/weapons/rocketlauncher.png',
     // Energy pistols
     'Alien blaster': '/images/weapons/alienblaster.png',
