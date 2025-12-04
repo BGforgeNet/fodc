@@ -131,7 +131,11 @@ const App = () => {
         const ammoForCaliber = calMod?.ammo.filter((a) => a.caliber === caliber) ?? [];
         const icons = ammoForCaliber
             .filter((a) => ammoIcons[a.name])
-            .map((a) => ({ src: ammoIcons[a.name]!, title: a.name }));
+            .map((a) => {
+                const drSign = a.dr_mod >= 0 ? '+' : '';
+                const dmgType = a.dmg_type ?? 'normal';
+                return { src: ammoIcons[a.name]!, title: `${a.name}\nDR ${drSign}${a.dr_mod}%, DMG x${a.dmg_mod}, ${dmgType}` };
+            });
         if (icons.length > 0) {
             caliberAmmoIcons[caliber] = icons;
         }
@@ -353,11 +357,14 @@ const App = () => {
                                     {calAmmoList.map((a) => {
                                         const isHidden = calHiddenAmmo.has(a.name);
                                         const canToggle = calAmmoList.length > 1;
+                                        const drSign = a.dr_mod >= 0 ? '+' : '';
+                                        const dmgType = a.dmg_type ?? 'normal';
+                                        const ammoTooltip = `${a.name}\nDR ${drSign}${a.dr_mod}%, DMG x${a.dmg_mod}, ${dmgType}`;
                                         return ammoIcons[a.name] ? (
                                             <div
                                                 key={a.name}
                                                 className={`${styles.ammoIconPlaceholder} ${styles.clickable} ${isHidden ? styles.hidden : ''}`}
-                                                title={a.name}
+                                                title={ammoTooltip}
                                                 onClick={canToggle ? () => toggleCalAmmoVisibility(a.name) : undefined}
                                             >
                                                 <img
@@ -370,6 +377,7 @@ const App = () => {
                                             <span
                                                 key={a.name}
                                                 className={`badge ${isHidden ? 'bg-secondary' : 'bg-success'} ${styles.clickable} ${isHidden ? styles.hiddenBadge : ''}`}
+                                                title={ammoTooltip}
                                                 onClick={canToggle ? () => toggleCalAmmoVisibility(a.name) : undefined}
                                             >
                                                 {a.name}
@@ -409,11 +417,13 @@ const App = () => {
                                     {calWeaponList.map((w) => {
                                         const isHidden = calHiddenWeapons.has(w.name);
                                         const canToggle = calWeaponList.length > 1;
+                                        const dmgType = w.dmg_type && w.dmg_type !== 'normal' ? ` ${w.dmg_type}` : '';
+                                        const tooltip = `${w.name}\nDamage: ${w.min_dmg}-${w.max_dmg}${dmgType}`;
                                         return weaponIcons[w.name] ? (
                                             <div
                                                 key={w.name}
                                                 className={styles.weaponIconPlaceholder}
-                                                title={w.name}
+                                                title={tooltip}
                                                 onClick={canToggle ? () => toggleCalWeaponVisibility(w.name) : undefined}
                                                 style={{ cursor: canToggle ? 'pointer' : 'default', opacity: isHidden ? 0.3 : 1 }}
                                             >
@@ -427,6 +437,7 @@ const App = () => {
                                             <span
                                                 key={w.name}
                                                 className={`badge ${isHidden ? 'bg-secondary' : 'bg-success'}`}
+                                                title={tooltip}
                                                 onClick={canToggle ? () => toggleCalWeaponVisibility(w.name) : undefined}
                                                 style={{ cursor: canToggle ? 'pointer' : 'default', opacity: isHidden ? 0.5 : 1 }}
                                             >
@@ -478,24 +489,30 @@ const App = () => {
                                 </div>
                                 <div className="col-auto d-flex align-items-center gap-2">
                                     <div className={styles.weaponIconPlaceholder}>
-                                        {weaponIcons[cwWeapon] && (
+                                        {weaponIcons[cwWeapon] && cwSelectedWeapon && (
                                             <img
                                                 src={weaponIcons[cwWeapon]}
                                                 alt={cwWeapon}
-                                                title={cwWeapon}
+                                                title={`${cwWeapon}\nDamage: ${cwSelectedWeapon.min_dmg}-${cwSelectedWeapon.max_dmg}${cwSelectedWeapon.dmg_type && cwSelectedWeapon.dmg_type !== 'normal' ? ` ${cwSelectedWeapon.dmg_type}` : ''}`}
                                                 className={styles.weaponIcon}
                                             />
                                         )}
                                     </div>
                                     <div className={styles.ammoIconPlaceholder}>
-                                        {ammoIcons[cwAmmo] && (
-                                            <img
-                                                src={ammoIcons[cwAmmo]}
-                                                alt={cwAmmo}
-                                                title={cwAmmo}
-                                                className={styles.ammoIcon}
-                                            />
-                                        )}
+                                        {ammoIcons[cwAmmo] && (() => {
+                                            const ammoData = cwCompatibleAmmo.find((a) => a.name === cwAmmo);
+                                            const drSign = (ammoData?.dr_mod ?? 0) >= 0 ? '+' : '';
+                                            const dmgType = ammoData?.dmg_type ?? 'normal';
+                                            const ammoTooltip = ammoData ? `${cwAmmo}\nDR ${drSign}${ammoData.dr_mod}%, DMG x${ammoData.dmg_mod}, ${dmgType}` : cwAmmo;
+                                            return (
+                                                <img
+                                                    src={ammoIcons[cwAmmo]}
+                                                    alt={cwAmmo}
+                                                    title={ammoTooltip}
+                                                    className={styles.ammoIcon}
+                                                />
+                                            );
+                                        })()}
                                     </div>
                                 </div>
                                 <div className="col-auto">
