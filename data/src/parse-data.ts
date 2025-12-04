@@ -37,7 +37,8 @@ const parseAmmo = (item: CsvRow) => ({
     caliber: item['Caliber'] ?? '',
     ac_mod: parseIntStrict(item['AC mod'] ?? '0'),
     dr_mod: parseIntStrict(item['DR mod'] ?? '0'),
-    dmg_mod: parseFloat(item['DMG mod'] ?? '1'),
+    dmg_mult: parseIntStrict(item['DMG mult'] ?? '1'),
+    dmg_div: parseIntStrict(item['DMG div'] ?? '1'),
     dmg_type: item['DMG type'] || 'normal',
 });
 

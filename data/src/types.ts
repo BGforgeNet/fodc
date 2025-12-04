@@ -3,7 +3,8 @@ export interface Ammo {
     caliber: string;
     ac_mod: number;
     dr_mod: number;
-    dmg_mod: number;
+    dmg_mult: number;
+    dmg_div: number;
     dmg_type?: string;
 }
 

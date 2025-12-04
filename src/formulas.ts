@@ -64,7 +64,7 @@ const fallout2Formula = (
 
         const effectiveDr = Math.max(0, Math.min(90, armorDr + ammo.dr_mod));
         const damage =
-            (((baseDamage + rangedBonus) * ammo.dmg_mod * critMultiplier - armorDt) * (100 - effectiveDr)) / 100;
+            (((baseDamage + rangedBonus) * ammo.dmg_mult / ammo.dmg_div * critMultiplier - armorDt) * (100 - effectiveDr)) / 100;
         return Math.max(0, Math.round(damage));
     };
 
@@ -206,7 +206,7 @@ const yaamFormula = (
 
         // multiplyDamage: 6 for single crit, 4 for burst crit, 2 for non-critical
         // multiplyDamage *= ammoMult
-        const multiplyDamage = (critical ? (burst ? 4 : 6) : 2) * ammo.dmg_mod;
+        const multiplyDamage = (critical ? (burst ? 4 : 6) : 2) * ammo.dmg_mult / ammo.dmg_div;
 
         // rawDamage -= calcDT
         let rawDamage = baseDamage + rangedBonus - calcDT;
@@ -264,11 +264,11 @@ const glovzFormula = (
             armorDT = baseDt * 0.2;
         }
 
-        // ammoY = divisor (we use dmg_mod as multiplier, so Y = 1)
-        // ammoX = multiplier (dmg_mod)
+        // ammoY = divisor (dmg_div)
+        // ammoX = multiplier (dmg_mult / dmg_div)
         // ammoDRM = dr_mod (if positive, flip to negative)
-        const ammoY = 1;
-        const ammoX = ammo.dmg_mod;
+        const ammoY = ammo.dmg_div;
+        const ammoX = ammo.dmg_mult / ammo.dmg_div;
         let ammoDRM = ammo.dr_mod;
         if (ammoDRM > 0) ammoDRM = -ammoDRM;
 
@@ -378,7 +378,7 @@ const eccoFormula = (
         const rawDamage = baseDamage + rangedBonus - effectiveDt;
         if (rawDamage <= 0) return 0;
 
-        const damage = rawDamage * ammo.dmg_mod * (1 - effectiveDr / 100) * critMult;
+        const damage = rawDamage * ammo.dmg_mult / ammo.dmg_div * (1 - effectiveDr / 100) * critMult;
         return Math.max(0, damage);
     };
 

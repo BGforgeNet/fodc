@@ -1,33 +1,33 @@
-Name,Caliber,AC mod,DR mod,DMG mod,DMG type
-.223 FMJ,.223,0,-10,1,
-.223 AP,.223,0,-50,0.8,
-.44 Magnum FMJ,.44,0,-20,1,
-.44 Magnum JHP,.44,0,20,1.8,
-.45 caliber,.45,0,0,1,
-2mm EC,2mm,-30,-50,1,
-4.7mm caseless,4.7mm,-10,-30,1.33,
-5mm AP,5mm,0,-35,1,
-5mm JHP,5mm,0,0,1.33,
-7.62mm,7.62mm,0,-10,1,
-7.62mm AP,7.62mm,0,-50,0.8,
-9mm AP,9mm,0,-30,1,
-9mm ball,9mm,0,0,1,
-10mm AP,10mm,0,-30,0.8,
-10mm JHP,10mm,0,10,1.5,
-14mm AP,14mm,0,-50,1,
-14mm JHP,14mm,0,-10,1.5,
-BBs,BBs,0,0,1,
-12 gauge shotgun shells,12ga,-15,20,1.6,
-12 ga. Slugs,12ga,0,-20,1,
-12 ga. Dragon Breath,12ga,-15,-10,1.25,
-Explosive rocket,Rocket,0,0,1.5,explosive
-Rocket AP,Rocket,-15,-60,1,explosive
-Flamethrower fuel,Flamer,-25,20,1.25,fire
-Flamethrower fuel Mk II,Flamer,-25,-15,1,fire
-HN Needler cartridge,Needler,-10,0,1,
-HN AP Needler cartridge,Needler,-10,-40,1.33,
-Microfusion cell,MFC,0,-20,1,laser
-Small energy cell,SEC,0,-10,1,laser
-.50 BMG,.50,-10,-50,1,
-40mm HE,40mm,0,-10,1,
-40mm IC,40mm,0,0,1.33,
+Name,Caliber,AC mod,DR mod,DMG mult,DMG div,DMG type
+.223 FMJ,.223,0,-10,1,1,
+.223 AP,.223,0,-50,4,5,
+.44 Magnum FMJ,.44,0,-20,1,1,
+.44 Magnum JHP,.44,0,20,9,5,
+.45 caliber,.45,0,0,1,1,
+2mm EC,2mm,-30,-50,1,1,
+4.7mm caseless,4.7mm,-10,-30,4,3,
+5mm AP,5mm,0,-35,1,1,
+5mm JHP,5mm,0,0,4,3,
+7.62mm,7.62mm,0,-10,1,1,
+7.62mm AP,7.62mm,0,-50,4,5,
+9mm AP,9mm,0,-30,1,1,
+9mm ball,9mm,0,0,1,1,
+10mm AP,10mm,0,-30,4,5,
+10mm JHP,10mm,0,10,3,2,
+14mm AP,14mm,0,-50,1,1,
+14mm JHP,14mm,0,-10,3,2,
+BBs,BBs,0,0,1,1,
+12 gauge shotgun shells,12ga,-15,20,8,5,
+12 ga. Slugs,12ga,0,-20,1,1,
+12 ga. Dragon Breath,12ga,-15,-10,5,4,fire
+Explosive rocket,Rocket,0,0,3,2,explosive
+Rocket AP,Rocket,-15,-60,1,1,explosive
+Flamethrower fuel,Flamer,-25,20,5,4,fire
+Flamethrower fuel Mk II,Flamer,-25,-15,1,1,fire
+HN Needler cartridge,Needler,-10,0,1,1,
+HN AP Needler cartridge,Needler,-10,-40,4,3,
+Microfusion cell,MFC,0,-20,1,1,
+Small energy cell,SEC,0,-10,1,1,
+.50 BMG,.50,-10,-50,1,1,
+40mm HE,40mm,0,-10,1,1,explosive
+40mm IC,40mm,0,0,4,3,fire

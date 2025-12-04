@@ -132,9 +132,10 @@ const App = () => {
         const icons = ammoForCaliber
             .filter((a) => ammoIcons[a.name])
             .map((a) => {
-                const drSign = a.dr_mod >= 0 ? '+' : '';
-                const dmgType = a.dmg_type ?? 'normal';
-                return { src: ammoIcons[a.name]!, title: `${a.name}\nDR ${drSign}${a.dr_mod}%, DMG x${a.dmg_mod}, ${dmgType}` };
+                const drMod = a.dr_mod === 0 ? '0' : `${a.dr_mod > 0 ? '+' : ''}${a.dr_mod}%`;
+                const dmgMod = a.dmg_mult === a.dmg_div ? `${a.dmg_mult}` : `${a.dmg_mult}/${a.dmg_div}`;
+                const typeLine = a.dmg_type && a.dmg_type !== 'normal' ? `\nType: ${a.dmg_type}` : '';
+                return { src: ammoIcons[a.name]!, title: `${a.name}\nDR mod: ${drMod}\nDMG mod: ${dmgMod}${typeLine}` };
             });
         if (icons.length > 0) {
             caliberAmmoIcons[caliber] = icons;
@@ -357,9 +358,10 @@ const App = () => {
                                     {calAmmoList.map((a) => {
                                         const isHidden = calHiddenAmmo.has(a.name);
                                         const canToggle = calAmmoList.length > 1;
-                                        const drSign = a.dr_mod >= 0 ? '+' : '';
-                                        const dmgType = a.dmg_type ?? 'normal';
-                                        const ammoTooltip = `${a.name}\nDR ${drSign}${a.dr_mod}%, DMG x${a.dmg_mod}, ${dmgType}`;
+                                        const drMod = a.dr_mod === 0 ? '0' : `${a.dr_mod > 0 ? '+' : ''}${a.dr_mod}%`;
+                                        const dmgMod = a.dmg_mult === a.dmg_div ? `${a.dmg_mult}` : `${a.dmg_mult}/${a.dmg_div}`;
+                                        const typeLine = a.dmg_type && a.dmg_type !== 'normal' ? `\nType: ${a.dmg_type}` : '';
+                                        const ammoTooltip = `${a.name}\nDR mod: ${drMod}\nDMG mod: ${dmgMod}${typeLine}`;
                                         return ammoIcons[a.name] ? (
                                             <div
                                                 key={a.name}
@@ -501,9 +503,10 @@ const App = () => {
                                     <div className={styles.ammoIconPlaceholder}>
                                         {ammoIcons[cwAmmo] && (() => {
                                             const ammoData = cwCompatibleAmmo.find((a) => a.name === cwAmmo);
-                                            const drSign = (ammoData?.dr_mod ?? 0) >= 0 ? '+' : '';
-                                            const dmgType = ammoData?.dmg_type ?? 'normal';
-                                            const ammoTooltip = ammoData ? `${cwAmmo}\nDR ${drSign}${ammoData.dr_mod}%, DMG x${ammoData.dmg_mod}, ${dmgType}` : cwAmmo;
+                                            const drMod = !ammoData || ammoData.dr_mod === 0 ? '0' : `${ammoData.dr_mod > 0 ? '+' : ''}${ammoData.dr_mod}%`;
+                                            const dmgMod = !ammoData || ammoData.dmg_mult === ammoData.dmg_div ? `${ammoData?.dmg_mult ?? 1}` : `${ammoData.dmg_mult}/${ammoData.dmg_div}`;
+                                            const typeLine = ammoData?.dmg_type && ammoData.dmg_type !== 'normal' ? `\nType: ${ammoData.dmg_type}` : '';
+                                            const ammoTooltip = ammoData ? `${cwAmmo}\nDR mod: ${drMod}\nDMG mod: ${dmgMod}${typeLine}` : cwAmmo;
                                             return (
                                                 <img
                                                     src={ammoIcons[cwAmmo]}
