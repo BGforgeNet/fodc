@@ -87,7 +87,7 @@ interface PointBlankCheckboxProps {
 
 export const PointBlankCheckbox = ({ checked, onChange, disabled, idPrefix = '' }: PointBlankCheckboxProps) => (
     <div className="col-auto d-flex align-items-center">
-        <div className="form-check mb-0" title="If burst is point-blank, assume all rounds hit. Otherwise, only 1/3. For single shots, no difference.">
+        <div className="form-check mb-0" title={"If burst is point-blank, assume all rounds hit. Otherwise, only 1/3.\nFor single shots, no difference."}>
             <input
                 type="checkbox"
                 className="form-check-input"
@@ -113,7 +113,7 @@ export const CriticalControls = ({ critical, onCriticalChange, idPrefix = '' }: 
     <div className="col-auto d-flex align-items-center">
         <div
             className="form-check mb-0"
-            title="Assume armor bypass. On single shot, assume damage x3, on burst - x2"
+            title={"Assumptions:\n - Armor bypass.\n - On single shot - damage x3, on burst - x2.\n - For bursts, assume 5 Luck in mods where it matters."}
         >
             <input
                 type="checkbox"

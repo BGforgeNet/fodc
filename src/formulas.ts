@@ -1,11 +1,7 @@
 import { Weapon, Ammo, Armor } from './types';
 
 // Get armor DR/DT based on damage type
-const getArmorResistance = (
-    armor: Armor,
-    weapon: Weapon,
-    ammo: Ammo
-): { dr: number; dt: number } => {
+const getArmorResistance = (armor: Armor, weapon: Weapon, ammo: Ammo): { dr: number; dt: number } => {
     // Determine damage type: weapon dmg_type takes precedence, then ammo dmg_type
     const dmgType = weapon.dmg_type ?? ammo.dmg_type;
 
@@ -33,7 +29,8 @@ type DamageCalculator = (
     armor: Armor,
     critical: boolean,
     burst: boolean,
-    rangedBonus: number
+    rangedBonus: number,
+    hits: number
 ) => string;
 
 // Fallout 2 formula (standard rounding, damage never negative)
@@ -45,7 +42,8 @@ const fallout2Formula = (
     armor: Armor,
     critical: boolean,
     burst: boolean,
-    rangedBonus: number
+    rangedBonus: number,
+    hits: number
 ): string => {
     const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
 
@@ -70,8 +68,8 @@ const fallout2Formula = (
         return Math.max(0, Math.round(damage));
     };
 
-    const minDamage = calculateDamage(weapon.min_dmg);
-    const maxDamage = calculateDamage(weapon.max_dmg);
+    const minDamage = calculateDamage(weapon.min_dmg) * hits;
+    const maxDamage = calculateDamage(weapon.max_dmg) * hits;
 
     return `${minDamage}-${maxDamage}`;
 };
@@ -95,34 +93,38 @@ const fo2tweaksFormula = (
     armor: Armor,
     critical: boolean,
     burst: boolean,
-    rangedBonus: number
+    rangedBonus: number,
+    hits: number
 ): string => {
     const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
 
     const calculateDamage = (baseDamage: number, isCritical: boolean): number => {
         // Armor bypass: critical affects both DR and DT, penetrate only DT
-        // Applied before dr_mod, not cumulative
         let targetDr = baseDr;
         let targetDt = baseDt;
         if (isCritical) {
             targetDr = baseDr * 0.2;
-            targetDt = baseDt * 0.2;
+            targetDt = baseDt * 0.5;
         } else if (weapon.penetrate) {
-            targetDt = baseDt * 0.2;
+            targetDr = baseDr * 0.2;
         }
 
-        // Calculate modified DT (float)
-        let dt = (targetDt * (100.0 + ammo.dr_mod)) / 100.0;
-        if (dt < 0) dt = 0;
-
-        // Calculate ammo multiplier (float)
         const ammoMult = (100.0 + ammo.dr_mod) / 100.0;
+
+        // Calculate modified DT (float)
+        let dt = targetDt * ammoMult;
+        if (dt < 0) dt = 0;
 
         // Critical multiplier: 2 for critical (x4 total), 1 for non-critical (x2 total)
         const critMult = isCritical ? 2 : 1;
 
         // Calculate final DR and DR multiplier (float)
-        let finalDr = (targetDr * (100.0 + ammo.dr_mod)) / 100.0;
+        let finalDr;
+        if (ammo.dr_mod > 0) {
+            finalDr = targetDr * ammoMult;
+        } else {
+            finalDr = targetDr + ammo.dr_mod;
+        }
         if (finalDr < 0) finalDr = 0;
         if (finalDr > 90) finalDr = 90;
         const drMult = (100.0 - finalDr) / 100.0;
@@ -132,30 +134,25 @@ const fo2tweaksFormula = (
         return Math.max(0, damage);
     };
 
-    // For burst critical: 1 bullet at x4, rest at x2
-    // For single critical: x4
-    // For non-critical: x2
-    if (burst && critical) {
-        const minCrit = calculateDamage(weapon.min_dmg, true);
-        const maxCrit = calculateDamage(weapon.max_dmg, true);
-        const minNonCrit = calculateDamage(weapon.min_dmg, false);
-        const maxNonCrit = calculateDamage(weapon.max_dmg, false);
-        // Return "critDamage + nonCritDamage" format for DamageChart to handle
-        const formatFloat = (n: number): string => {
-            if (n % 1 === 0) return n.toString();
-            return parseFloat(n.toFixed(1)).toString();
-        };
-        // Encode both values: crit|noncrit
-        return `${formatFloat(minCrit)}|${formatFloat(minNonCrit)}-${formatFloat(maxCrit)}|${formatFloat(maxNonCrit)}`;
-    }
-
-    const minDamage = calculateDamage(weapon.min_dmg, critical);
-    const maxDamage = calculateDamage(weapon.max_dmg, critical);
-
     const formatFloat = (n: number): string => {
         if (n % 1 === 0) return n.toString();
         return parseFloat(n.toFixed(1)).toString();
     };
+
+    // For burst: all bullets roll for crit (5% chance, assume 5 Luck)
+    // Critical checkbox only forces first bullet to crit
+    if (burst) {
+        const critHits = critical
+            ? 1 + Math.round((hits - 1) * 0.05) // first bullet crits + 5% of rest
+            : Math.round(hits * 0.05); // all bullets roll 5%
+        const nonCritHits = hits - critHits;
+        const minDamage = calculateDamage(weapon.min_dmg, true) * critHits + calculateDamage(weapon.min_dmg, false) * nonCritHits;
+        const maxDamage = calculateDamage(weapon.max_dmg, true) * critHits + calculateDamage(weapon.max_dmg, false) * nonCritHits;
+        return `${formatFloat(minDamage)}-${formatFloat(maxDamage)}`;
+    }
+
+    const minDamage = calculateDamage(weapon.min_dmg, critical) * hits;
+    const maxDamage = calculateDamage(weapon.max_dmg, critical) * hits;
 
     return `${formatFloat(minDamage)}-${formatFloat(maxDamage)}`;
 };
@@ -174,7 +171,8 @@ const yaamFormula = (
     armor: Armor,
     critical: boolean,
     burst: boolean,
-    rangedBonus: number
+    rangedBonus: number,
+    hits: number
 ): string => {
     const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
 
@@ -228,8 +226,8 @@ const yaamFormula = (
         return Math.max(0, Math.floor(rawDamage));
     };
 
-    const minDamage = calculateDamage(weapon.min_dmg);
-    const maxDamage = calculateDamage(weapon.max_dmg);
+    const minDamage = calculateDamage(weapon.min_dmg) * hits;
+    const maxDamage = calculateDamage(weapon.max_dmg) * hits;
 
     return `${minDamage}-${maxDamage}`;
 };
@@ -249,7 +247,8 @@ const glovzFormula = (
     armor: Armor,
     critical: boolean,
     burst: boolean,
-    rangedBonus: number
+    rangedBonus: number,
+    hits: number
 ): string => {
     const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
 
@@ -306,8 +305,8 @@ const glovzFormula = (
         return Math.max(0, rawDamage);
     };
 
-    const minDamage = calculateDamage(weapon.min_dmg);
-    const maxDamage = calculateDamage(weapon.max_dmg);
+    const minDamage = calculateDamage(weapon.min_dmg) * hits;
+    const maxDamage = calculateDamage(weapon.max_dmg) * hits;
 
     return `${minDamage}-${maxDamage}`;
 };
@@ -336,7 +335,8 @@ const eccoFormula = (
     armor: Armor,
     critical: boolean,
     burst: boolean,
-    rangedBonus: number
+    rangedBonus: number,
+    hits: number
 ): string => {
     const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
 
@@ -382,29 +382,22 @@ const eccoFormula = (
         return Math.max(0, damage);
     };
 
-    // For burst critical: only 50% of bullets get crit (first bullet always crits)
-    // Return both crit and non-crit damage for chart to handle
-    if (burst && critical) {
-        const minCrit = calculateDamage(weapon.min_dmg, true);
-        const maxCrit = calculateDamage(weapon.max_dmg, true);
-        const minNonCrit = calculateDamage(weapon.min_dmg, false);
-        const maxNonCrit = calculateDamage(weapon.max_dmg, false);
-
-        const formatFloat = (n: number): string => {
-            if (n % 1 === 0) return n.toString();
-            return parseFloat(n.toFixed(1)).toString();
-        };
-        // Encode both values: crit|noncrit (50% of bullets are crit)
-        return `${formatFloat(minCrit)}|${formatFloat(minNonCrit)}-${formatFloat(maxCrit)}|${formatFloat(maxNonCrit)}`;
-    }
-
-    const minDamage = calculateDamage(weapon.min_dmg, critical);
-    const maxDamage = calculateDamage(weapon.max_dmg, critical);
-
     const formatFloat = (n: number): string => {
         if (n % 1 === 0) return n.toString();
         return parseFloat(n.toFixed(1)).toString();
     };
+
+    // For burst critical: 50% of bullets get crit
+    if (burst && critical) {
+        const critHits = Math.ceil(hits / 2);
+        const nonCritHits = Math.floor(hits / 2);
+        const minDamage = calculateDamage(weapon.min_dmg, true) * critHits + calculateDamage(weapon.min_dmg, false) * nonCritHits;
+        const maxDamage = calculateDamage(weapon.max_dmg, true) * critHits + calculateDamage(weapon.max_dmg, false) * nonCritHits;
+        return `${formatFloat(minDamage)}-${formatFloat(maxDamage)}`;
+    }
+
+    const minDamage = calculateDamage(weapon.min_dmg, critical) * hits;
+    const maxDamage = calculateDamage(weapon.max_dmg, critical) * hits;
 
     return `${formatFloat(minDamage)}-${formatFloat(maxDamage)}`;
 };
@@ -424,15 +417,16 @@ export const getDamageWithFormula = (
     armor: Armor,
     critical: boolean,
     burst: boolean,
-    rangedBonus: number
+    rangedBonus: number,
+    hits: number = 1
 ): string => {
     const formula = formulas[formulaName];
     let result: string;
     if (!formula) {
         console.warn(`Unknown formula: ${formulaName}, falling back to fallout2`);
-        result = fallout2Formula(weapon, ammo, armor, critical, burst, rangedBonus);
+        result = fallout2Formula(weapon, ammo, armor, critical, burst, rangedBonus, hits);
     } else {
-        result = formula(weapon, ammo, armor, critical, burst, rangedBonus);
+        result = formula(weapon, ammo, armor, critical, burst, rangedBonus, hits);
     }
     return result === '0-0' ? '0' : result;
 };

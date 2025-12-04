@@ -73,9 +73,10 @@ const CaliberChart = ({
                     modArmor,
                     critical,
                     effectiveBurst,
-                    rangedBonus
+                    rangedBonus,
+                    hitsMultiplier
                 );
-                return parseDamageString(damageStr, hitsMultiplier);
+                return parseDamageString(damageStr);
             });
 
             const traceName = ammoList.length > 1 ? `${weapon.name} + ${ammo.name}` : weapon.name;

@@ -8,26 +8,14 @@ export interface DamageRange {
 }
 
 /**
- * Parse damage string from formula into min/max values, accounting for burst hits
+ * Parse damage string from formula into min/max values
+ * Formulas now return total damage including burst hits
  */
-export function parseDamageString(damageStr: string, hitsMultiplier: number): DamageRange {
-    // Handle fo2tweaks burst critical format: "crit|noncrit-crit|noncrit"
-    if (damageStr.includes('|')) {
-        const [minPart, maxPart] = damageStr.split('-');
-        const [minCrit, minNonCrit] = (minPart ?? '0|0').split('|').map(Number);
-        const [maxCrit, maxNonCrit] = (maxPart ?? '0|0').split('|').map(Number);
-        // 1 bullet at crit, rest at noncrit
-        const nonCritHits = hitsMultiplier - 1;
-        return {
-            min: Math.round(((minCrit ?? 0) + (minNonCrit ?? 0) * nonCritHits) * 10) / 10,
-            max: Math.round(((maxCrit ?? 0) + (maxNonCrit ?? 0) * nonCritHits) * 10) / 10,
-        };
-    }
-
+export function parseDamageString(damageStr: string): DamageRange {
     const parts = damageStr.split('-').map(Number);
     return {
-        min: (parts[0] ?? 0) * hitsMultiplier,
-        max: (parts[1] ?? 0) * hitsMultiplier,
+        min: parts[0] ?? 0,
+        max: parts[1] ?? parts[0] ?? 0,
     };
 }
 

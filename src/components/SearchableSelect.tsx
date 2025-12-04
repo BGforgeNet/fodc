@@ -1,14 +1,21 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './SearchableSelect.module.css';
 
+interface IconInfo {
+    src: string;
+    title: string;
+}
+
 interface SearchableSelectProps {
     options: string[];
     value: string;
     onChange: (value: string) => void;
     narrow?: boolean;
+    /** Optional icons to show for each option. Maps option value to array of icons. */
+    optionIcons?: Record<string, IconInfo[]>;
 }
 
-const SearchableSelect = ({ options, value, onChange, narrow = false }: SearchableSelectProps) => {
+const SearchableSelect = ({ options, value, onChange, narrow = false, optionIcons }: SearchableSelectProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [search, setSearch] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
@@ -56,14 +63,21 @@ const SearchableSelect = ({ options, value, onChange, narrow = false }: Searchab
                     {filtered.map((option) => (
                         <button
                             key={option}
-                            className={`dropdown-item ${option === value ? 'active' : ''}`}
+                            className={`dropdown-item ${option === value ? 'active' : ''} ${styles.optionWithIcons}`}
                             onClick={() => {
                                 onChange(option);
                                 setIsOpen(false);
                                 setSearch('');
                             }}
                         >
-                            {option}
+                            <span>{option}</span>
+                            {optionIcons?.[option] && (
+                                <span className={styles.optionIcons}>
+                                    {optionIcons[option]!.map((icon, i) => (
+                                        <img key={i} src={icon.src} alt={icon.title} title={icon.title} className={styles.optionIcon} />
+                                    ))}
+                                </span>
+                            )}
                         </button>
                     ))}
                     {filtered.length === 0 && <div className="dropdown-item disabled">No matches</div>}

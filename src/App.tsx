@@ -17,7 +17,7 @@ const App = () => {
     const data = modData as ModData;
     const [activeTab, setActiveTab] = useState<'mods' | 'caliber' | 'any-to-any' | 'tables'>('mods');
     const [damageMode, setDamageMode] = useState<DamageMode>('average');
-    const [selectedWeapon, setSelectedWeapon] = useState<string>('10mm SMG');
+    const [selectedWeapon, setSelectedWeapon] = useState<string>('10mm pistol');
     const [selectedAmmo, setSelectedAmmo] = useState<string>('10mm AP');
     const [hiddenMods, setHiddenMods] = useState<Set<string>>(new Set());
     const [burst, setBurst] = useState(false);
@@ -124,6 +124,18 @@ const App = () => {
     const calCalibers = [...new Set(calMod?.weapons.map((w) => w.caliber) ?? [])];
     const calWeaponList = calMod?.weapons.filter((w) => w.caliber === calCaliber) ?? [];
     const calAmmoList = calMod?.ammo.filter((a) => a.caliber === calCaliber) ?? [];
+
+    // Build mapping of caliber -> ammo icons for dropdown
+    const caliberAmmoIcons: Record<string, { src: string; title: string }[]> = {};
+    for (const caliber of calCalibers) {
+        const ammoForCaliber = calMod?.ammo.filter((a) => a.caliber === caliber) ?? [];
+        const icons = ammoForCaliber
+            .filter((a) => ammoIcons[a.name])
+            .map((a) => ({ src: ammoIcons[a.name]!, title: a.name }));
+        if (icons.length > 0) {
+            caliberAmmoIcons[caliber] = icons;
+        }
+    }
 
     // Handler for caliber mod change
     const handleCalModChange = (newModId: string) => {
@@ -334,6 +346,7 @@ const App = () => {
                                         value={calCaliber}
                                         onChange={setCalCaliber}
                                         narrow
+                                        optionIcons={caliberAmmoIcons}
                                     />
                                 </div>
                                 <div className={`d-flex align-items-center gap-2 ${styles.caliberAmmoIcons}`}>

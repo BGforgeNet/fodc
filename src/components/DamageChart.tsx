@@ -69,9 +69,10 @@ const DamageChart = ({
                 modArmor,
                 critical,
                 effectiveBurst,
-                rangedBonus
+                rangedBonus,
+                hitsMultiplier
             );
-            return parseDamageString(damageStr, hitsMultiplier);
+            return parseDamageString(damageStr);
         });
 
         const visible = hiddenMods.has(config.name) ? 'legendonly' : true;

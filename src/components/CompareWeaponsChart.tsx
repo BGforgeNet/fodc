@@ -74,9 +74,10 @@ const CompareWeaponsChart = ({
                 modArmor,
                 critical,
                 effectiveBurst,
-                rangedBonus
+                rangedBonus,
+                hitsMultiplier
             );
-            return parseDamageString(damageStr, hitsMultiplier);
+            return parseDamageString(damageStr);
         });
 
         const compatibleAmmoCount = mod.ammo.filter((a) => a.caliber === weapon.caliber).length;
