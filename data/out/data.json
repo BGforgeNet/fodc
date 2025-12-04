@@ -206,7 +206,9 @@
           "dr_plasma": 0,
           "dt_plasma": 0,
           "dr_laser": 0,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 0,
+          "dt_explosive": 0
         },
         {
           "name": "Leather jacket",
@@ -218,7 +220,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 20,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 20,
+          "dt_explosive": 0
         },
         {
           "name": "Combat leather jacket",
@@ -230,7 +234,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 20,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 20,
+          "dt_explosive": 0
         },
         {
           "name": "Leather armor",
@@ -242,7 +248,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 20,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 20,
+          "dt_explosive": 0
         },
         {
           "name": "Leather armor Mk II",
@@ -254,7 +262,9 @@
           "dr_plasma": 10,
           "dt_plasma": 1,
           "dr_laser": 20,
-          "dt_laser": 1
+          "dt_laser": 1,
+          "dr_explosive": 25,
+          "dt_explosive": 1
         },
         {
           "name": "Metal armor",
@@ -266,7 +276,9 @@
           "dr_plasma": 20,
           "dt_plasma": 4,
           "dr_laser": 75,
-          "dt_laser": 6
+          "dt_laser": 6,
+          "dr_explosive": 25,
+          "dt_explosive": 4
         },
         {
           "name": "Metal armor Mk II",
@@ -278,7 +290,9 @@
           "dr_plasma": 25,
           "dt_plasma": 4,
           "dr_laser": 80,
-          "dt_laser": 7
+          "dt_laser": 7,
+          "dr_explosive": 30,
+          "dt_explosive": 4
         },
         {
           "name": "Tesla armor",
@@ -290,7 +304,9 @@
           "dr_plasma": 80,
           "dt_plasma": 10,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 20,
+          "dt_explosive": 4
         },
         {
           "name": "Combat armor",
@@ -302,7 +318,9 @@
           "dr_plasma": 50,
           "dt_plasma": 4,
           "dr_laser": 60,
-          "dt_laser": 8
+          "dt_laser": 8,
+          "dr_explosive": 40,
+          "dt_explosive": 6
         },
         {
           "name": "Combat armor Mk II",
@@ -314,7 +332,9 @@
           "dr_plasma": 50,
           "dt_plasma": 9,
           "dr_laser": 65,
-          "dt_laser": 9
+          "dt_laser": 9,
+          "dr_explosive": 45,
+          "dt_explosive": 9
         },
         {
           "name": "Brotherhood armor",
@@ -326,7 +346,9 @@
           "dr_plasma": 60,
           "dt_plasma": 7,
           "dr_laser": 70,
-          "dt_laser": 8
+          "dt_laser": 8,
+          "dr_explosive": 40,
+          "dt_explosive": 8
         },
         {
           "name": "Power armor",
@@ -338,7 +360,9 @@
           "dr_plasma": 40,
           "dt_plasma": 10,
           "dr_laser": 80,
-          "dt_laser": 18
+          "dt_laser": 18,
+          "dr_explosive": 50,
+          "dt_explosive": 20
         },
         {
           "name": "Hardened power armor",
@@ -350,7 +374,9 @@
           "dr_plasma": 50,
           "dt_plasma": 13,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 60,
+          "dt_explosive": 20
         },
         {
           "name": "Advanced power armor",
@@ -362,7 +388,9 @@
           "dr_plasma": 60,
           "dt_plasma": 15,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 65,
+          "dt_explosive": 20
         },
         {
           "name": "Advanced power armor Mk II",
@@ -374,7 +402,9 @@
           "dr_plasma": 60,
           "dt_plasma": 18,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 70,
+          "dt_explosive": 20
         }
       ],
       "weapons": [
@@ -1120,7 +1150,9 @@
           "dr_plasma": 0,
           "dt_plasma": 0,
           "dr_laser": 0,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 0,
+          "dt_explosive": 0
         },
         {
           "name": "Leather jacket",
@@ -1132,7 +1164,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 0,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 10,
+          "dt_explosive": 0
         },
         {
           "name": "Combat leather jacket",
@@ -1144,7 +1178,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 0,
-          "dt_laser": 2
+          "dt_laser": 2,
+          "dr_explosive": 15,
+          "dt_explosive": 0
         },
         {
           "name": "Leather armor",
@@ -1156,7 +1192,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 0,
-          "dt_laser": 2
+          "dt_laser": 2,
+          "dr_explosive": 15,
+          "dt_explosive": 0
         },
         {
           "name": "Leather armor Mk II",
@@ -1168,7 +1206,9 @@
           "dr_plasma": 10,
           "dt_plasma": 1,
           "dr_laser": 10,
-          "dt_laser": 2
+          "dt_laser": 2,
+          "dr_explosive": 20,
+          "dt_explosive": 1
         },
         {
           "name": "Metal armor",
@@ -1180,7 +1220,9 @@
           "dr_plasma": 20,
           "dt_plasma": 4,
           "dr_laser": 30,
-          "dt_laser": 6
+          "dt_laser": 6,
+          "dr_explosive": 25,
+          "dt_explosive": 4
         },
         {
           "name": "Metal armor Mk II",
@@ -1192,7 +1234,9 @@
           "dr_plasma": 25,
           "dt_plasma": 4,
           "dr_laser": 50,
-          "dt_laser": 6
+          "dt_laser": 6,
+          "dr_explosive": 30,
+          "dt_explosive": 5
         },
         {
           "name": "Tesla armor",
@@ -1204,7 +1248,9 @@
           "dr_plasma": 80,
           "dt_plasma": 10,
           "dr_laser": 90,
-          "dt_laser": 12
+          "dt_laser": 12,
+          "dr_explosive": 30,
+          "dt_explosive": 4
         },
         {
           "name": "Combat armor",
@@ -1216,7 +1262,9 @@
           "dr_plasma": 50,
           "dt_plasma": 4,
           "dr_laser": 30,
-          "dt_laser": 4
+          "dt_laser": 4,
+          "dr_explosive": 40,
+          "dt_explosive": 6
         },
         {
           "name": "Combat armor Mk II",
@@ -1228,7 +1276,9 @@
           "dr_plasma": 50,
           "dt_plasma": 5,
           "dr_laser": 40,
-          "dt_laser": 6
+          "dt_laser": 6,
+          "dr_explosive": 45,
+          "dt_explosive": 9
         },
         {
           "name": "Brotherhood armor",
@@ -1240,7 +1290,9 @@
           "dr_plasma": 60,
           "dt_plasma": 7,
           "dr_laser": 65,
-          "dt_laser": 6
+          "dt_laser": 6,
+          "dr_explosive": 45,
+          "dt_explosive": 9
         },
         {
           "name": "Power armor",
@@ -1252,7 +1304,9 @@
           "dr_plasma": 40,
           "dt_plasma": 10,
           "dr_laser": 70,
-          "dt_laser": 8
+          "dt_laser": 8,
+          "dr_explosive": 50,
+          "dt_explosive": 16
         },
         {
           "name": "Hardened power armor",
@@ -1264,7 +1318,9 @@
           "dr_plasma": 50,
           "dt_plasma": 13,
           "dr_laser": 70,
-          "dt_laser": 10
+          "dt_laser": 10,
+          "dr_explosive": 60,
+          "dt_explosive": 18
         },
         {
           "name": "Advanced power armor",
@@ -1276,7 +1332,9 @@
           "dr_plasma": 60,
           "dt_plasma": 15,
           "dr_laser": 70,
-          "dt_laser": 16
+          "dt_laser": 16,
+          "dr_explosive": 65,
+          "dt_explosive": 20
         },
         {
           "name": "Advanced power armor Mk II",
@@ -1288,7 +1346,9 @@
           "dr_plasma": 60,
           "dt_plasma": 18,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 70,
+          "dt_explosive": 20
         }
       ],
       "weapons": [
@@ -1856,7 +1916,7 @@
           "name": "4.7mm caseless",
           "caliber": "4.7mm",
           "ac_mod": -5,
-          "dr_mod": -10,
+          "dr_mod": -20,
           "dmg_mod": 1.5,
           "dmg_type": "normal"
         },
@@ -1888,7 +1948,7 @@
           "name": "9mm",
           "caliber": "9mm",
           "ac_mod": 0,
-          "dr_mod": 0,
+          "dr_mod": 10,
           "dmg_mod": 0.5,
           "dmg_type": "normal"
         },
@@ -1904,7 +1964,7 @@
           "name": "10mm AP",
           "caliber": "10mm",
           "ac_mod": 0,
-          "dr_mod": -35,
+          "dr_mod": -25,
           "dmg_mod": 0.5,
           "dmg_type": "normal"
         },
@@ -1912,7 +1972,7 @@
           "name": "10mm JHP",
           "caliber": "10mm",
           "ac_mod": 0,
-          "dr_mod": 35,
+          "dr_mod": 25,
           "dmg_mod": 2,
           "dmg_type": "normal"
         },
@@ -1944,7 +2004,7 @@
           "name": "Explosive rocket",
           "caliber": "Rocket",
           "ac_mod": 0,
-          "dr_mod": 35,
+          "dr_mod": 30,
           "dmg_mod": 1,
           "dmg_type": "explosive"
         },
@@ -1952,7 +2012,7 @@
           "name": "Rocket AP",
           "caliber": "Rocket",
           "ac_mod": -15,
-          "dr_mod": -35,
+          "dr_mod": -30,
           "dmg_mod": 1,
           "dmg_type": "explosive"
         },
@@ -1976,7 +2036,7 @@
           "name": "HN Needler cartridge",
           "caliber": "Needler",
           "ac_mod": -10,
-          "dr_mod": 0,
+          "dr_mod": 25,
           "dmg_mod": 1,
           "dmg_type": "normal"
         },
@@ -1984,7 +2044,7 @@
           "name": "HN AP Needler cartridge",
           "caliber": "Needler",
           "ac_mod": -10,
-          "dr_mod": -35,
+          "dr_mod": -25,
           "dmg_mod": 2,
           "dmg_type": "normal"
         },
@@ -2016,7 +2076,9 @@
           "dr_plasma": 0,
           "dt_plasma": 0,
           "dr_laser": 0,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 0,
+          "dt_explosive": 0
         },
         {
           "name": "Leather jacket",
@@ -2028,7 +2090,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 20,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 20,
+          "dt_explosive": 0
         },
         {
           "name": "Combat leather jacket",
@@ -2040,7 +2104,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 20,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 20,
+          "dt_explosive": 0
         },
         {
           "name": "Leather armor",
@@ -2052,7 +2118,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 20,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 20,
+          "dt_explosive": 0
         },
         {
           "name": "Leather armor Mk II",
@@ -2064,7 +2132,9 @@
           "dr_plasma": 10,
           "dt_plasma": 1,
           "dr_laser": 20,
-          "dt_laser": 1
+          "dt_laser": 1,
+          "dr_explosive": 25,
+          "dt_explosive": 1
         },
         {
           "name": "Metal armor",
@@ -2076,7 +2146,9 @@
           "dr_plasma": 20,
           "dt_plasma": 4,
           "dr_laser": 75,
-          "dt_laser": 6
+          "dt_laser": 6,
+          "dr_explosive": 25,
+          "dt_explosive": 4
         },
         {
           "name": "Metal armor Mk II",
@@ -2088,7 +2160,9 @@
           "dr_plasma": 25,
           "dt_plasma": 4,
           "dr_laser": 80,
-          "dt_laser": 7
+          "dt_laser": 7,
+          "dr_explosive": 30,
+          "dt_explosive": 4
         },
         {
           "name": "Tesla armor",
@@ -2100,7 +2174,9 @@
           "dr_plasma": 80,
           "dt_plasma": 10,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 20,
+          "dt_explosive": 4
         },
         {
           "name": "Combat armor",
@@ -2112,7 +2188,9 @@
           "dr_plasma": 50,
           "dt_plasma": 4,
           "dr_laser": 60,
-          "dt_laser": 8
+          "dt_laser": 8,
+          "dr_explosive": 40,
+          "dt_explosive": 6
         },
         {
           "name": "Combat armor Mk II",
@@ -2124,7 +2202,9 @@
           "dr_plasma": 50,
           "dt_plasma": 9,
           "dr_laser": 65,
-          "dt_laser": 9
+          "dt_laser": 9,
+          "dr_explosive": 45,
+          "dt_explosive": 9
         },
         {
           "name": "Brotherhood armor",
@@ -2136,7 +2216,9 @@
           "dr_plasma": 60,
           "dt_plasma": 7,
           "dr_laser": 70,
-          "dt_laser": 8
+          "dt_laser": 8,
+          "dr_explosive": 40,
+          "dt_explosive": 8
         },
         {
           "name": "Power armor",
@@ -2148,7 +2230,9 @@
           "dr_plasma": 40,
           "dt_plasma": 10,
           "dr_laser": 80,
-          "dt_laser": 18
+          "dt_laser": 18,
+          "dr_explosive": 50,
+          "dt_explosive": 20
         },
         {
           "name": "Hardened power armor",
@@ -2160,7 +2244,9 @@
           "dr_plasma": 50,
           "dt_plasma": 13,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 60,
+          "dt_explosive": 20
         },
         {
           "name": "Advanced power armor",
@@ -2172,7 +2258,9 @@
           "dr_plasma": 60,
           "dt_plasma": 15,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 65,
+          "dt_explosive": 20
         },
         {
           "name": "Advanced power armor Mk II",
@@ -2184,7 +2272,9 @@
           "dr_plasma": 60,
           "dt_plasma": 18,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 70,
+          "dt_explosive": 20
         }
       ],
       "weapons": [
@@ -2228,8 +2318,8 @@
         {
           "name": "Minigun",
           "caliber": "5mm",
-          "min_dmg": 7,
-          "max_dmg": 11,
+          "min_dmg": 9,
+          "max_dmg": 13,
           "dmg_type": "normal",
           "burst": 40,
           "burst_only": true,
@@ -2238,8 +2328,8 @@
         {
           "name": "Rocket launcher",
           "caliber": "Rocket",
-          "min_dmg": 35,
-          "max_dmg": 100,
+          "min_dmg": 45,
+          "max_dmg": 130,
           "dmg_type": "explosive",
           "burst_only": false,
           "penetrate": false
@@ -2274,8 +2364,8 @@
         {
           "name": "14mm pistol",
           "caliber": "14mm",
-          "min_dmg": 12,
-          "max_dmg": 22,
+          "min_dmg": 18,
+          "max_dmg": 28,
           "dmg_type": "normal",
           "burst_only": false,
           "penetrate": false
@@ -2499,8 +2589,8 @@
         {
           "name": "H&K G11",
           "caliber": "4.7mm",
-          "min_dmg": 10,
-          "max_dmg": 20,
+          "min_dmg": 16,
+          "max_dmg": 26,
           "dmg_type": "normal",
           "burst": 5,
           "burst_only": false,
@@ -2558,8 +2648,8 @@
         {
           "name": "Needler pistol",
           "caliber": "Needler",
-          "min_dmg": 12,
-          "max_dmg": 24,
+          "min_dmg": 18,
+          "max_dmg": 28,
           "dmg_type": "normal",
           "burst_only": false,
           "penetrate": true
@@ -2567,8 +2657,8 @@
         {
           "name": "Avenger minigun",
           "caliber": "5mm",
-          "min_dmg": 10,
-          "max_dmg": 14,
+          "min_dmg": 12,
+          "max_dmg": 16,
           "dmg_type": "normal",
           "burst": 40,
           "burst_only": true,
@@ -2577,8 +2667,8 @@
         {
           "name": "H&K G11E",
           "caliber": "4.7mm",
-          "min_dmg": 13,
-          "max_dmg": 23,
+          "min_dmg": 20,
+          "max_dmg": 30,
           "dmg_type": "normal",
           "burst": 7,
           "burst_only": false,
@@ -2587,8 +2677,8 @@
         {
           "name": "Gauss rifle",
           "caliber": "2mm",
-          "min_dmg": 32,
-          "max_dmg": 43,
+          "min_dmg": 46,
+          "max_dmg": 68,
           "dmg_type": "normal",
           "burst_only": false,
           "penetrate": false
@@ -2596,8 +2686,8 @@
         {
           "name": "Gauss pistol",
           "caliber": "2mm",
-          "min_dmg": 22,
-          "max_dmg": 32,
+          "min_dmg": 36,
+          "max_dmg": 46,
           "dmg_type": "normal",
           "burst_only": false,
           "penetrate": false
@@ -2605,8 +2695,8 @@
         {
           "name": "Vindicator minigun",
           "caliber": "4.7mm",
-          "min_dmg": 14,
-          "max_dmg": 19,
+          "min_dmg": 20,
+          "max_dmg": 30,
           "dmg_type": "normal",
           "burst": 25,
           "burst_only": true,
@@ -2866,7 +2956,9 @@
           "dr_plasma": 0,
           "dt_plasma": 0,
           "dr_laser": 0,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 0,
+          "dt_explosive": 0
         },
         {
           "name": "Leather jacket",
@@ -2878,7 +2970,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 20,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 20,
+          "dt_explosive": 0
         },
         {
           "name": "Combat leather jacket",
@@ -2890,7 +2984,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 20,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 20,
+          "dt_explosive": 0
         },
         {
           "name": "Leather armor",
@@ -2902,7 +2998,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 20,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 20,
+          "dt_explosive": 0
         },
         {
           "name": "Leather armor Mk II",
@@ -2914,7 +3012,9 @@
           "dr_plasma": 10,
           "dt_plasma": 1,
           "dr_laser": 20,
-          "dt_laser": 1
+          "dt_laser": 1,
+          "dr_explosive": 25,
+          "dt_explosive": 1
         },
         {
           "name": "Metal armor",
@@ -2926,7 +3026,9 @@
           "dr_plasma": 20,
           "dt_plasma": 4,
           "dr_laser": 75,
-          "dt_laser": 6
+          "dt_laser": 6,
+          "dr_explosive": 25,
+          "dt_explosive": 4
         },
         {
           "name": "Metal armor Mk II",
@@ -2938,7 +3040,9 @@
           "dr_plasma": 25,
           "dt_plasma": 4,
           "dr_laser": 80,
-          "dt_laser": 7
+          "dt_laser": 7,
+          "dr_explosive": 30,
+          "dt_explosive": 4
         },
         {
           "name": "Tesla armor",
@@ -2950,7 +3054,9 @@
           "dr_plasma": 80,
           "dt_plasma": 10,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 20,
+          "dt_explosive": 4
         },
         {
           "name": "Combat armor",
@@ -2962,7 +3068,9 @@
           "dr_plasma": 50,
           "dt_plasma": 4,
           "dr_laser": 60,
-          "dt_laser": 8
+          "dt_laser": 8,
+          "dr_explosive": 40,
+          "dt_explosive": 6
         },
         {
           "name": "Combat armor Mk II",
@@ -2974,7 +3082,9 @@
           "dr_plasma": 50,
           "dt_plasma": 9,
           "dr_laser": 65,
-          "dt_laser": 9
+          "dt_laser": 9,
+          "dr_explosive": 45,
+          "dt_explosive": 9
         },
         {
           "name": "Brotherhood armor",
@@ -2986,7 +3096,9 @@
           "dr_plasma": 60,
           "dt_plasma": 7,
           "dr_laser": 70,
-          "dt_laser": 8
+          "dt_laser": 8,
+          "dr_explosive": 40,
+          "dt_explosive": 8
         },
         {
           "name": "Power armor",
@@ -2998,7 +3110,9 @@
           "dr_plasma": 40,
           "dt_plasma": 10,
           "dr_laser": 80,
-          "dt_laser": 18
+          "dt_laser": 18,
+          "dr_explosive": 50,
+          "dt_explosive": 20
         },
         {
           "name": "Hardened power armor",
@@ -3010,7 +3124,9 @@
           "dr_plasma": 50,
           "dt_plasma": 13,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 60,
+          "dt_explosive": 20
         },
         {
           "name": "Advanced power armor",
@@ -3022,7 +3138,9 @@
           "dr_plasma": 60,
           "dt_plasma": 15,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 65,
+          "dt_explosive": 20
         },
         {
           "name": "Advanced power armor Mk II",
@@ -3034,7 +3152,9 @@
           "dr_plasma": 60,
           "dt_plasma": 18,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 70,
+          "dt_explosive": 20
         }
       ],
       "weapons": [
@@ -3716,7 +3836,9 @@
           "dr_plasma": 0,
           "dt_plasma": 0,
           "dr_laser": 0,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 0,
+          "dt_explosive": 0
         },
         {
           "name": "Leather jacket",
@@ -3728,7 +3850,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 20,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 20,
+          "dt_explosive": 0
         },
         {
           "name": "Combat leather jacket",
@@ -3740,7 +3864,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 20,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 20,
+          "dt_explosive": 0
         },
         {
           "name": "Leather armor",
@@ -3752,7 +3878,9 @@
           "dr_plasma": 10,
           "dt_plasma": 0,
           "dr_laser": 20,
-          "dt_laser": 0
+          "dt_laser": 0,
+          "dr_explosive": 20,
+          "dt_explosive": 0
         },
         {
           "name": "Leather armor Mk II",
@@ -3764,7 +3892,9 @@
           "dr_plasma": 10,
           "dt_plasma": 1,
           "dr_laser": 20,
-          "dt_laser": 1
+          "dt_laser": 1,
+          "dr_explosive": 25,
+          "dt_explosive": 1
         },
         {
           "name": "Metal armor",
@@ -3776,7 +3906,9 @@
           "dr_plasma": 20,
           "dt_plasma": 4,
           "dr_laser": 75,
-          "dt_laser": 6
+          "dt_laser": 6,
+          "dr_explosive": 25,
+          "dt_explosive": 4
         },
         {
           "name": "Metal armor Mk II",
@@ -3788,7 +3920,9 @@
           "dr_plasma": 25,
           "dt_plasma": 4,
           "dr_laser": 80,
-          "dt_laser": 7
+          "dt_laser": 7,
+          "dr_explosive": 30,
+          "dt_explosive": 4
         },
         {
           "name": "Tesla armor",
@@ -3800,7 +3934,9 @@
           "dr_plasma": 80,
           "dt_plasma": 10,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 20,
+          "dt_explosive": 4
         },
         {
           "name": "Combat armor",
@@ -3812,7 +3948,9 @@
           "dr_plasma": 50,
           "dt_plasma": 4,
           "dr_laser": 60,
-          "dt_laser": 8
+          "dt_laser": 8,
+          "dr_explosive": 40,
+          "dt_explosive": 6
         },
         {
           "name": "Combat armor Mk II",
@@ -3824,7 +3962,9 @@
           "dr_plasma": 50,
           "dt_plasma": 9,
           "dr_laser": 65,
-          "dt_laser": 9
+          "dt_laser": 9,
+          "dr_explosive": 45,
+          "dt_explosive": 9
         },
         {
           "name": "Brotherhood armor",
@@ -3836,7 +3976,9 @@
           "dr_plasma": 60,
           "dt_plasma": 7,
           "dr_laser": 70,
-          "dt_laser": 8
+          "dt_laser": 8,
+          "dr_explosive": 40,
+          "dt_explosive": 8
         },
         {
           "name": "Power armor",
@@ -3848,7 +3990,9 @@
           "dr_plasma": 40,
           "dt_plasma": 10,
           "dr_laser": 80,
-          "dt_laser": 18
+          "dt_laser": 18,
+          "dr_explosive": 50,
+          "dt_explosive": 20
         },
         {
           "name": "Hardened power armor",
@@ -3860,7 +4004,9 @@
           "dr_plasma": 50,
           "dt_plasma": 13,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 60,
+          "dt_explosive": 20
         },
         {
           "name": "Advanced power armor",
@@ -3872,7 +4018,9 @@
           "dr_plasma": 60,
           "dt_plasma": 15,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 65,
+          "dt_explosive": 20
         },
         {
           "name": "Advanced power armor Mk II",
@@ -3884,7 +4032,9 @@
           "dr_plasma": 60,
           "dt_plasma": 18,
           "dr_laser": 90,
-          "dt_laser": 19
+          "dt_laser": 19,
+          "dr_explosive": 70,
+          "dt_explosive": 20
         }
       ],
       "weapons": [
