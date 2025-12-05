@@ -1,0 +1,56 @@
+name: Update Data
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'data/mods/**/*.csv'
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Need to fetch with token that can push
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: 'data/pnpm-lock.yaml'
+
+      - name: Install dependencies
+        run: pnpm install
+        working-directory: data
+
+      - name: Run update.sh
+        run: ./update.sh
+        working-directory: data
+
+      - name: Commit and push
+        run: |
+          if git diff --quiet data/out/data.json; then
+            echo "No changes to commit"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add data/out/data.json
+            git commit -m "Update data.json from CSV changes"
+            git push
+          fi
