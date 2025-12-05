@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import { Ammo, Weapon } from './types';
 
 export const formatAmmoTooltip = (ammo: Ammo): string => {
@@ -13,7 +14,7 @@ export const formatWeaponTooltip = (weapon: Weapon): string => {
     return `${weapon.name}\nDamage: ${weapon.min_dmg}-${weapon.max_dmg}${dmgType}${burstLine}`;
 };
 
-export const createSetToggler = <T>(setState: React.Dispatch<React.SetStateAction<Set<T>>>) => {
+export const createSetToggler = <T>(setState: Dispatch<SetStateAction<Set<T>>>) => {
     return (item: T) => {
         setState((prev) => {
             const next = new Set(prev);
