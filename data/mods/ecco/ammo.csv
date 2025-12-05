@@ -20,14 +20,14 @@ BBs,BBs,0,0,1,1,
 12 gauge shotgun shells,12ga,-15,20,8,5,
 12 ga. Slugs,12ga,0,-20,1,1,
 12 ga. Dragon Breath,12ga,-15,-10,5,4,fire
-Explosive rocket,Rocket,0,0,3,2,explosive
-Rocket AP,Rocket,-15,-60,1,1,explosive
-Flamethrower fuel,Flamer,-25,20,5,4,fire
-Flamethrower fuel Mk II,Flamer,-25,-15,1,1,fire
+Explosive rocket,Rocket,0,0,3,2,
+Rocket AP,Rocket,-15,-60,1,1,
+Flamethrower fuel,Flamer,-25,20,5,4,
+Flamethrower fuel Mk II,Flamer,-25,-15,1,1,
 HN Needler cartridge,Needler,-10,0,1,1,
 HN AP Needler cartridge,Needler,-10,-40,4,3,
 Microfusion cell,MFC,0,-20,1,1,
 Small energy cell,SEC,0,-10,1,1,
 .50 BMG,.50,-10,-50,1,1,
-40mm HE,40mm,0,-10,1,1,explosive
+40mm HE,40mm,0,-10,1,1,
 40mm IC,40mm,0,0,4,3,fire

@@ -15,10 +15,10 @@ Name,Caliber,AC mod,DR mod,DMG mult,DMG div,DMG type
 14mm AP,14mm,0,8,1,1,
 BBs,BBs,0,0,1,1,
 12 gauge shotgun shells,12ga,-10,0,1,1,
-Explosive rocket,Rocket,0,0,3,2,explosive
-Rocket AP,Rocket,0,20,1,1,explosive
-Flamethrower fuel,Flamer,-20,0,3,4,fire
-Flamethrower fuel Mk II,Flamer,-20,0,1,1,fire
+Explosive rocket,Rocket,0,0,3,2,
+Rocket AP,Rocket,0,20,1,1,
+Flamethrower fuel,Flamer,-20,0,3,4,
+Flamethrower fuel Mk II,Flamer,-20,0,1,1,
 HN Needler cartridge,Needler,-10,2,1,1,
 HN AP Needler cartridge,Needler,-10,5,2,1,
 Microfusion cell,MFC,0,0,1,1,

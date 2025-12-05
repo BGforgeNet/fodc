@@ -2,8 +2,8 @@ import { Weapon, Ammo, Armor } from './types';
 
 // Get armor DR/DT based on damage type
 const getArmorResistance = (armor: Armor, weapon: Weapon, ammo: Ammo): { dr: number; dt: number } => {
-    // Determine damage type: weapon dmg_type takes precedence, then ammo dmg_type
-    const dmgType = weapon.dmg_type ?? ammo.dmg_type;
+    // Determine damage type: ammo dmg_type overrides weapon dmg_type
+    const dmgType = ammo.dmg_type ?? weapon.dmg_type;
 
     switch (dmgType) {
         case 'fire':

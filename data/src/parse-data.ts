@@ -39,7 +39,7 @@ const parseAmmo = (item: CsvRow) => ({
     dr_mod: parseIntStrict(item['DR mod'] ?? '0'),
     dmg_mult: parseIntStrict(item['DMG mult'] ?? '1'),
     dmg_div: parseIntStrict(item['DMG div'] ?? '1'),
-    dmg_type: item['DMG type'] || 'normal',
+    dmg_type: item['DMG type'] || undefined,
 });
 
 const parseArmor = (item: CsvRow) => ({
@@ -62,7 +62,7 @@ const parseWeapon = (item: CsvRow) => ({
     caliber: item['Caliber'] ?? '',
     min_dmg: parseIntStrict(item['Min DMG'] ?? '0'),
     max_dmg: parseIntStrict(item['Max DMG'] ?? '0'),
-    dmg_type: item['DMG type'] || 'normal',
+    dmg_type: item['DMG type'] || undefined,
     burst: item['Burst'] ? parseInt(item['Burst']) : undefined,
     burst_only: item['Burst only'] === 'true',
     penetrate: item['Penetrate'] === 'true',
