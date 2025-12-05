@@ -98,6 +98,7 @@ const BaseDamageChart = ({ traces, title, armorList, hiddenItems, onHiddenItemsC
                 className="plotly-chart"
                 data={traces}
                 config={{
+                    scrollZoom: false,
                     toImageButtonOptions: {
                         filename: 'fallout_2_damage_calculator',
                     },
