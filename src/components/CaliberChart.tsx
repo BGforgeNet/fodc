@@ -80,7 +80,10 @@ const CaliberChart = ({
             });
 
             const traceName = ammoList.length > 1 ? `${weapon.name} + ${ammo.name}` : weapon.name;
-            const visible = hiddenItems.has(traceName) || hiddenAmmo.has(ammo.name) || hiddenWeapons.has(weapon.name) ? 'legendonly' : true;
+            const visible =
+                hiddenItems.has(traceName) || hiddenAmmo.has(ammo.name) || hiddenWeapons.has(weapon.name)
+                    ? 'legendonly'
+                    : true;
 
             traces.push(...createDamageTraces(armorNames, damageData, mode, traceName, visible));
         });

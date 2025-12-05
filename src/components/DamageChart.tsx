@@ -81,7 +81,14 @@ const DamageChart = ({
     });
 
     const hasBurst = burst && vanillaWeapon.burst !== undefined;
-    const title = buildChartTitle(`${vanillaWeapon.name} + ${ammoName}`, mode, hasBurst, pointBlank, critical, rangedBonus);
+    const title = buildChartTitle(
+        `${vanillaWeapon.name} + ${ammoName}`,
+        mode,
+        hasBurst,
+        pointBlank,
+        critical,
+        rangedBonus
+    );
 
     return (
         <BaseDamageChart

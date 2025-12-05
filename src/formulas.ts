@@ -65,7 +65,9 @@ const fallout2Formula = (
 
         const effectiveDr = Math.max(0, Math.min(90, armorDr + ammo.dr_mod));
         const damage =
-            (((baseDamage + rangedBonus) * ammo.dmg_mult / ammo.dmg_div * critMultiplier - armorDt) * (100 - effectiveDr)) / 100;
+            (((((baseDamage + rangedBonus) * ammo.dmg_mult) / ammo.dmg_div) * critMultiplier - armorDt) *
+                (100 - effectiveDr)) /
+            100;
         return Math.max(0, Math.round(damage));
     };
 
@@ -142,8 +144,10 @@ const fo2tweaksFormula = (
             ? 1 + Math.round((hits - 1) * 0.05) // first bullet crits + 5% of rest
             : Math.round(hits * 0.05); // all bullets roll 5%
         const nonCritHits = hits - critHits;
-        const minDamage = calculateDamage(weapon.min_dmg, true) * critHits + calculateDamage(weapon.min_dmg, false) * nonCritHits;
-        const maxDamage = calculateDamage(weapon.max_dmg, true) * critHits + calculateDamage(weapon.max_dmg, false) * nonCritHits;
+        const minDamage =
+            calculateDamage(weapon.min_dmg, true) * critHits + calculateDamage(weapon.min_dmg, false) * nonCritHits;
+        const maxDamage =
+            calculateDamage(weapon.max_dmg, true) * critHits + calculateDamage(weapon.max_dmg, false) * nonCritHits;
         return `${formatFloat(minDamage)}-${formatFloat(maxDamage)}`;
     }
 
@@ -202,7 +206,7 @@ const yaamFormula = (
 
         // multiplyDamage: 6 for single crit, 4 for burst crit, 2 for non-critical
         // multiplyDamage *= ammoMult
-        const multiplyDamage = (critical ? (burst ? 4 : 6) : 2) * ammo.dmg_mult / ammo.dmg_div;
+        const multiplyDamage = ((critical ? (burst ? 4 : 6) : 2) * ammo.dmg_mult) / ammo.dmg_div;
 
         // rawDamage -= calcDT
         let rawDamage = baseDamage + rangedBonus - calcDT;
@@ -374,7 +378,7 @@ const eccoFormula = (
         const rawDamage = baseDamage + rangedBonus - effectiveDt;
         if (rawDamage <= 0) return 0;
 
-        const damage = rawDamage * ammo.dmg_mult / ammo.dmg_div * (1 - effectiveDr / 100) * critMult;
+        const damage = ((rawDamage * ammo.dmg_mult) / ammo.dmg_div) * (1 - effectiveDr / 100) * critMult;
         return Math.max(0, damage);
     };
 
@@ -382,8 +386,10 @@ const eccoFormula = (
     if (burst && critical) {
         const critHits = Math.ceil(hits / 2);
         const nonCritHits = Math.floor(hits / 2);
-        const minDamage = calculateDamage(weapon.min_dmg, true) * critHits + calculateDamage(weapon.min_dmg, false) * nonCritHits;
-        const maxDamage = calculateDamage(weapon.max_dmg, true) * critHits + calculateDamage(weapon.max_dmg, false) * nonCritHits;
+        const minDamage =
+            calculateDamage(weapon.min_dmg, true) * critHits + calculateDamage(weapon.min_dmg, false) * nonCritHits;
+        const maxDamage =
+            calculateDamage(weapon.max_dmg, true) * critHits + calculateDamage(weapon.max_dmg, false) * nonCritHits;
         return `${formatFloat(minDamage)}-${formatFloat(maxDamage)}`;
     }
 

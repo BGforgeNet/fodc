@@ -86,15 +86,7 @@ const DamageTable = (props: DamageTableProps) => {
                             </td>
                             {props.armor.map((armor) => (
                                 <td key={armor.name}>
-                                    {getDamageWithFormula(
-                                        props.formula,
-                                        row.weapon,
-                                        row.ammo,
-                                        armor,
-                                        false,
-                                        false,
-                                        0
-                                    )}
+                                    {getDamageWithFormula(props.formula, row.weapon, row.ammo, armor, false, false, 0)}
                                 </td>
                             ))}
                         </tr>

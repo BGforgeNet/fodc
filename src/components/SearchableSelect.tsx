@@ -74,7 +74,13 @@ const SearchableSelect = ({ options, value, onChange, narrow = false, optionIcon
                             {optionIcons?.[option] && (
                                 <span className={styles.optionIcons}>
                                     {optionIcons[option]!.map((icon, i) => (
-                                        <img key={i} src={icon.src} alt={icon.title} title={icon.title} className={styles.optionIcon} />
+                                        <img
+                                            key={i}
+                                            src={icon.src}
+                                            alt={icon.title}
+                                            title={icon.title}
+                                            className={styles.optionIcon}
+                                        />
                                     ))}
                                 </span>
                             )}

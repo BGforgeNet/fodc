@@ -103,4 +103,3 @@ export function buildChartTitle(
     const modifiersLabel = modifiers.length > 0 ? `, ${modifiers.join(', ')}` : '';
     return `${baseTitle} (${modeLabel})${burstLabel}${modifiersLabel}`;
 }
-
