@@ -38,9 +38,10 @@ const App = () => {
     const defaultCaliber = vanillaMod?.weapons[0]?.caliber ?? '';
     const [calModId, setCalModId] = useState<string>('vanilla');
     const [calCaliber, setCalCaliber] = useState<string>(defaultCaliber);
-    const [calHiddenItems, setCalHiddenItems] = useState<Set<string>>(new Set());
-    const [calHiddenAmmo, setCalHiddenAmmo] = useState<Set<string>>(new Set());
-    const [calHiddenWeapons, setCalHiddenWeapons] = useState<Set<string>>(new Set());
+    // Three independent hiding mechanisms: legend clicks, ammo icon clicks, weapon icon clicks
+    const [calHiddenItems, setCalHiddenItems] = useState<Set<string>>(new Set()); // legend clicks (trace names)
+    const [calHiddenAmmo, setCalHiddenAmmo] = useState<Set<string>>(new Set()); // ammo icon clicks
+    const [calHiddenWeapons, setCalHiddenWeapons] = useState<Set<string>>(new Set()); // weapon icon clicks
     const weapons = vanillaMod?.weapons ?? [];
     const weapon = weapons.find((w) => w.name === selectedWeapon);
 
