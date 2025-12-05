@@ -420,7 +420,8 @@ const App = () => {
                                         const isHidden = calHiddenWeapons.has(w.name);
                                         const canToggle = calWeaponList.length > 1;
                                         const dmgType = w.dmg_type && w.dmg_type !== 'normal' ? ` ${w.dmg_type}` : '';
-                                        const tooltip = `${w.name}\nDamage: ${w.min_dmg}-${w.max_dmg}${dmgType}`;
+                                        const burstLine = w.burst ? `\nBurst: ${w.burst}` : '';
+                                        const tooltip = `${w.name}\nDamage: ${w.min_dmg}-${w.max_dmg}${dmgType}${burstLine}`;
                                         return weaponIcons[w.name] ? (
                                             <div
                                                 key={w.name}
@@ -495,7 +496,7 @@ const App = () => {
                                             <img
                                                 src={weaponIcons[cwWeapon]}
                                                 alt={cwWeapon}
-                                                title={`${cwWeapon}\nDamage: ${cwSelectedWeapon.min_dmg}-${cwSelectedWeapon.max_dmg}${cwSelectedWeapon.dmg_type && cwSelectedWeapon.dmg_type !== 'normal' ? ` ${cwSelectedWeapon.dmg_type}` : ''}`}
+                                                title={`${cwWeapon}\nDamage: ${cwSelectedWeapon.min_dmg}-${cwSelectedWeapon.max_dmg}${cwSelectedWeapon.dmg_type && cwSelectedWeapon.dmg_type !== 'normal' ? ` ${cwSelectedWeapon.dmg_type}` : ''}${cwSelectedWeapon.burst ? `\nBurst: ${cwSelectedWeapon.burst}` : ''}`}
                                                 className={styles.weaponIcon}
                                             />
                                         )}
