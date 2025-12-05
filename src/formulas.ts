@@ -1,4 +1,5 @@
 import { Weapon, Ammo, Armor } from './types';
+import { formatFloat } from './chartUtils';
 
 // Get armor DR/DT based on damage type
 const getArmorResistance = (armor: Armor, weapon: Weapon, ammo: Ammo): { dr: number; dt: number } => {
@@ -132,11 +133,6 @@ const fo2tweaksFormula = (
         // Apply damage formula (float result)
         const damage = (baseDamage + rangedBonus - dt) * ammoMult * critMult * drMult;
         return Math.max(0, damage);
-    };
-
-    const formatFloat = (n: number): string => {
-        if (n % 1 === 0) return n.toString();
-        return parseFloat(n.toFixed(1)).toString();
     };
 
     // For burst: all bullets roll for crit (5% chance, assume 5 Luck)
@@ -380,11 +376,6 @@ const eccoFormula = (
 
         const damage = rawDamage * ammo.dmg_mult / ammo.dmg_div * (1 - effectiveDr / 100) * critMult;
         return Math.max(0, damage);
-    };
-
-    const formatFloat = (n: number): string => {
-        if (n % 1 === 0) return n.toString();
-        return parseFloat(n.toFixed(1)).toString();
     };
 
     // For burst critical: 50% of bullets get crit

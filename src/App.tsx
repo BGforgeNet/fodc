@@ -10,6 +10,7 @@ import { DamageModeButtons, FireModeSelector, PointBlankCheckbox, CriticalContro
 import { modOrder, modConfigs } from './modConfig';
 import { weaponIcons } from './icons/weaponIcons';
 import { ammoIcons } from './icons/ammoIcons';
+import { formatAmmoTooltip, formatWeaponTooltip, createSetToggler } from './tooltipUtils';
 import styles from './App.module.css';
 import modData from '../data/out/data.json';
 
@@ -131,12 +132,7 @@ const App = () => {
         const ammoForCaliber = calMod?.ammo.filter((a) => a.caliber === caliber) ?? [];
         const icons = ammoForCaliber
             .filter((a) => ammoIcons[a.name])
-            .map((a) => {
-                const drMod = a.dr_mod === 0 ? '0' : `${a.dr_mod > 0 ? '+' : ''}${a.dr_mod}%`;
-                const dmgMod = a.dmg_mult === a.dmg_div ? `${a.dmg_mult}` : `${a.dmg_mult}/${a.dmg_div}`;
-                const typeLine = a.dmg_type && a.dmg_type !== 'normal' ? `\nType: ${a.dmg_type}` : '';
-                return { src: ammoIcons[a.name]!, title: `${a.name}\nDR mod: ${drMod}\nDMG mod: ${dmgMod}${typeLine}` };
-            });
+            .map((a) => ({ src: ammoIcons[a.name]!, title: formatAmmoTooltip(a) }));
         if (icons.length > 0) {
             caliberAmmoIcons[caliber] = icons;
         }
@@ -158,31 +154,9 @@ const App = () => {
         setCalHiddenAmmo((prev) => new Set([...prev].filter((name) => newAmmoNames.has(name))));
     };
 
-    // Handler for toggling ammo visibility
-    const toggleCalAmmoVisibility = (ammoName: string) => {
-        setCalHiddenAmmo((prev) => {
-            const next = new Set(prev);
-            if (next.has(ammoName)) {
-                next.delete(ammoName);
-            } else {
-                next.add(ammoName);
-            }
-            return next;
-        });
-    };
-
-    // Handler for toggling weapon visibility
-    const toggleCalWeaponVisibility = (weaponName: string) => {
-        setCalHiddenWeapons((prev) => {
-            const next = new Set(prev);
-            if (next.has(weaponName)) {
-                next.delete(weaponName);
-            } else {
-                next.add(weaponName);
-            }
-            return next;
-        });
-    };
+    // Handlers for toggling visibility
+    const toggleCalAmmoVisibility = createSetToggler(setCalHiddenAmmo);
+    const toggleCalWeaponVisibility = createSetToggler(setCalHiddenWeapons);
 
     const addWeaponEntry = () => {
         if (!cwWeapon || !cwAmmo || isDuplicateEntry) return;
@@ -358,10 +332,7 @@ const App = () => {
                                     {calAmmoList.map((a) => {
                                         const isHidden = calHiddenAmmo.has(a.name);
                                         const canToggle = calAmmoList.length > 1;
-                                        const drMod = a.dr_mod === 0 ? '0' : `${a.dr_mod > 0 ? '+' : ''}${a.dr_mod}%`;
-                                        const dmgMod = a.dmg_mult === a.dmg_div ? `${a.dmg_mult}` : `${a.dmg_mult}/${a.dmg_div}`;
-                                        const typeLine = a.dmg_type && a.dmg_type !== 'normal' ? `\nType: ${a.dmg_type}` : '';
-                                        const ammoTooltip = `${a.name}\nDR mod: ${drMod}\nDMG mod: ${dmgMod}${typeLine}`;
+                                        const ammoTooltip = formatAmmoTooltip(a);
                                         return ammoIcons[a.name] ? (
                                             <div
                                                 key={a.name}
@@ -419,9 +390,7 @@ const App = () => {
                                     {calWeaponList.map((w) => {
                                         const isHidden = calHiddenWeapons.has(w.name);
                                         const canToggle = calWeaponList.length > 1;
-                                        const dmgType = w.dmg_type && w.dmg_type !== 'normal' ? ` ${w.dmg_type}` : '';
-                                        const burstLine = w.burst ? `\nBurst: ${w.burst}` : '';
-                                        const tooltip = `${w.name}\nDamage: ${w.min_dmg}-${w.max_dmg}${dmgType}${burstLine}`;
+                                        const tooltip = formatWeaponTooltip(w);
                                         return weaponIcons[w.name] ? (
                                             <div
                                                 key={w.name}
@@ -496,7 +465,7 @@ const App = () => {
                                             <img
                                                 src={weaponIcons[cwWeapon]}
                                                 alt={cwWeapon}
-                                                title={`${cwWeapon}\nDamage: ${cwSelectedWeapon.min_dmg}-${cwSelectedWeapon.max_dmg}${cwSelectedWeapon.dmg_type && cwSelectedWeapon.dmg_type !== 'normal' ? ` ${cwSelectedWeapon.dmg_type}` : ''}${cwSelectedWeapon.burst ? `\nBurst: ${cwSelectedWeapon.burst}` : ''}`}
+                                                title={formatWeaponTooltip(cwSelectedWeapon)}
                                                 className={styles.weaponIcon}
                                             />
                                         )}
@@ -504,15 +473,11 @@ const App = () => {
                                     <div className={styles.ammoIconPlaceholder}>
                                         {ammoIcons[cwAmmo] && (() => {
                                             const ammoData = cwCompatibleAmmo.find((a) => a.name === cwAmmo);
-                                            const drMod = !ammoData || ammoData.dr_mod === 0 ? '0' : `${ammoData.dr_mod > 0 ? '+' : ''}${ammoData.dr_mod}%`;
-                                            const dmgMod = !ammoData || ammoData.dmg_mult === ammoData.dmg_div ? `${ammoData?.dmg_mult ?? 1}` : `${ammoData.dmg_mult}/${ammoData.dmg_div}`;
-                                            const typeLine = ammoData?.dmg_type && ammoData.dmg_type !== 'normal' ? `\nType: ${ammoData.dmg_type}` : '';
-                                            const ammoTooltip = ammoData ? `${cwAmmo}\nDR mod: ${drMod}\nDMG mod: ${dmgMod}${typeLine}` : cwAmmo;
                                             return (
                                                 <img
                                                     src={ammoIcons[cwAmmo]}
                                                     alt={cwAmmo}
-                                                    title={ammoTooltip}
+                                                    title={ammoData ? formatAmmoTooltip(ammoData) : cwAmmo}
                                                     className={styles.ammoIcon}
                                                 />
                                             );

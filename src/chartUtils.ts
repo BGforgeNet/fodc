@@ -2,6 +2,14 @@ import { Data } from 'plotly.js';
 
 export type DamageMode = 'average' | 'min' | 'max' | 'range';
 
+/**
+ * Format a float for display - show as integer if whole, otherwise 1 decimal
+ */
+export const formatFloat = (n: number): string => {
+    if (n % 1 === 0) return n.toString();
+    return parseFloat(n.toFixed(1)).toString();
+};
+
 export interface DamageRange {
     min: number;
     max: number;
