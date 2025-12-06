@@ -3,7 +3,7 @@ import { Data, Layout, PlotlyHTMLElement } from 'plotly.js';
 import { Armor } from '../types';
 import { armorIcons } from '../icons/armorIcons';
 import styles from './DamageChart.module.css';
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 
 // Plotly internal types not exported in @types/plotly.js
 interface PlotlyAxis {
@@ -29,7 +29,7 @@ const BaseDamageChart = ({ traces, title, armorList, hiddenItems, onHiddenItemsC
     const armorNames = armorList.map((a) => a.name);
 
     const [tooltipPositions, setTooltipPositions] = useState<{ x: number; width: number }[]>([]);
-    const lastPositionsRef = React.useRef<string>('');
+    const lastPositionsRef = useRef<string>('');
 
     const handlePlotUpdate = useCallback(
         (_figure: unknown, graphDiv: PlotlyGraphDiv) => {

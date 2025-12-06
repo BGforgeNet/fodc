@@ -89,6 +89,7 @@ const App = () => {
     const cwWeapons = cwMod?.weapons ?? [];
     const cwSelectedWeapon = cwWeapons.find((w) => w.name === cwWeapon);
     const cwCompatibleAmmo = cwMod?.ammo.filter((a) => a.caliber === cwSelectedWeapon?.caliber) ?? [];
+    const cwSelectedAmmo = cwCompatibleAmmo.find((a) => a.name === cwAmmo);
 
     // Handler for any-to-any mod change
     const handleCwModChange = (newModId: string) => {
@@ -477,18 +478,14 @@ const App = () => {
                                 )}
                             </div>
                             <div className={styles.ammoIconPlaceholder}>
-                                {ammoIcons[cwAmmo] &&
-                                    (() => {
-                                        const ammoData = cwCompatibleAmmo.find((a) => a.name === cwAmmo);
-                                        return (
-                                            <img
-                                                src={ammoIcons[cwAmmo]}
-                                                alt={cwAmmo}
-                                                title={ammoData ? formatAmmoTooltip(ammoData) : cwAmmo}
-                                                className={styles.ammoIcon}
-                                            />
-                                        );
-                                    })()}
+                                {ammoIcons[cwAmmo] && (
+                                    <img
+                                        src={ammoIcons[cwAmmo]}
+                                        alt={cwAmmo}
+                                        title={cwSelectedAmmo ? formatAmmoTooltip(cwSelectedAmmo) : cwAmmo}
+                                        className={styles.ammoIcon}
+                                    />
+                                )}
                             </div>
                         </div>
                         <div className="col-auto">
