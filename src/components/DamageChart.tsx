@@ -22,6 +22,7 @@ interface DamageChartProps {
     pointBlank: boolean;
     critical: boolean;
     rangedBonus: number;
+    sniperLuck: boolean;
 }
 
 const DamageChart = ({
@@ -35,6 +36,7 @@ const DamageChart = ({
     pointBlank,
     critical,
     rangedBonus,
+    sniperLuck,
 }: DamageChartProps) => {
     const vanillaMod = data.mods['vanilla'];
     if (!vanillaMod) return null;
@@ -71,7 +73,8 @@ const DamageChart = ({
                 critical,
                 effectiveBurst,
                 rangedBonus,
-                hitsMultiplier
+                hitsMultiplier,
+                sniperLuck
             );
             return parseDamageString(damageStr);
         });

@@ -31,7 +31,8 @@ type DamageCalculator = (
     critical: boolean,
     burst: boolean,
     rangedBonus: number,
-    hits: number
+    hits: number,
+    sniperLuck: boolean
 ) => string;
 
 // Fallout 2 formula (standard rounding, damage never negative)
@@ -44,19 +45,22 @@ const fallout2Formula = (
     critical: boolean,
     burst: boolean,
     rangedBonus: number,
-    hits: number
+    hits: number,
+    sniperLuck: boolean
 ): string => {
     const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
+    // Sniper 10 Luck: all bullets crit
+    const effectiveCritical = critical || sniperLuck;
 
     const calculateDamage = (baseDamage: number): number => {
         // Critical multiplier: x3 for single (x6 total), x2 for burst (x4 total)
-        const critMultiplier = critical ? (burst ? 2 : 3) : 1;
+        const critMultiplier = effectiveCritical ? (burst ? 2 : 3) : 1;
 
         // Armor bypass: critical (20%) or penetrate (20% via /5), not cumulative
         // Critical bypass applies to both DR and DT, penetrate only to DT
         let armorDr = baseDr;
         let armorDt = baseDt;
-        if (critical) {
+        if (effectiveCritical) {
             armorDr = baseDr * 0.2;
             armorDt = baseDt * 0.2;
         } else if (weapon.penetrate) {
@@ -97,7 +101,8 @@ const fo2tweaksFormula = (
     critical: boolean,
     burst: boolean,
     rangedBonus: number,
-    hits: number
+    hits: number,
+    sniperLuck: boolean
 ): string => {
     const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
 
@@ -137,10 +142,10 @@ const fo2tweaksFormula = (
         return Math.max(0, damage);
     };
 
-    // For burst: all bullets roll for crit (5% chance, assume 5 Luck)
-    // Critical checkbox only forces first bullet to crit
+    // For burst: all bullets roll for crit
+    // 5 Luck = 5% chance, Sniper 10 Luck = 1/3 bullets crit
     if (burst) {
-        const critChance = 0.05;
+        const critChance = sniperLuck ? 1 / 3 : 0.05;
         const minCrit = calculateDamage(weapon.min_dmg, true);
         const minNonCrit = calculateDamage(weapon.min_dmg, false);
         const maxCrit = calculateDamage(weapon.max_dmg, true);
@@ -153,11 +158,11 @@ const fo2tweaksFormula = (
         let minDamage: number;
         let maxDamage: number;
         if (critical) {
-            // First bullet guaranteed crit, rest have 5% chance
+            // First bullet guaranteed crit, rest have crit chance
             minDamage = minCrit + (hits - 1) * minPerBullet;
             maxDamage = maxCrit + (hits - 1) * maxPerBullet;
         } else {
-            // All bullets have 5% crit chance
+            // All bullets have crit chance
             minDamage = hits * minPerBullet;
             maxDamage = hits * maxPerBullet;
         }
@@ -165,8 +170,10 @@ const fo2tweaksFormula = (
         return `${formatFloat(minDamage)}-${formatFloat(maxDamage)}`;
     }
 
-    const minDamage = calculateDamage(weapon.min_dmg, critical) * hits;
-    const maxDamage = calculateDamage(weapon.max_dmg, critical) * hits;
+    // For single shot: sniperLuck means guaranteed crit
+    const effectiveCritical = critical || sniperLuck;
+    const minDamage = calculateDamage(weapon.min_dmg, effectiveCritical) * hits;
+    const maxDamage = calculateDamage(weapon.max_dmg, effectiveCritical) * hits;
 
     return `${formatFloat(minDamage)}-${formatFloat(maxDamage)}`;
 };
@@ -186,16 +193,19 @@ const yaamFormula = (
     critical: boolean,
     burst: boolean,
     rangedBonus: number,
-    hits: number
+    hits: number,
+    sniperLuck: boolean
 ): string => {
     const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
+    // Sniper 10 Luck: all bullets crit
+    const effectiveCritical = critical || sniperLuck;
 
     const calculateDamage = (baseDamage: number): number => {
         // Armor bypass: critical affects both DR and DT, penetrate only DT
         // Not cumulative - critical takes precedence
         let armorDR = baseDr;
         let armorDT = baseDt;
-        if (critical) {
+        if (effectiveCritical) {
             armorDR = baseDr * 0.2;
             armorDT = baseDt * 0.2;
         } else if (weapon.penetrate) {
@@ -220,7 +230,7 @@ const yaamFormula = (
 
         // multiplyDamage: 6 for single crit, 4 for burst crit, 2 for non-critical
         // multiplyDamage *= ammoMult
-        const multiplyDamage = ((critical ? (burst ? 4 : 6) : 2) * ammo.dmg_mult) / ammo.dmg_div;
+        const multiplyDamage = ((effectiveCritical ? (burst ? 4 : 6) : 2) * ammo.dmg_mult) / ammo.dmg_div;
 
         // rawDamage -= calcDT
         let rawDamage = baseDamage + rangedBonus - calcDT;
@@ -262,16 +272,19 @@ const glovzFormula = (
     critical: boolean,
     burst: boolean,
     rangedBonus: number,
-    hits: number
+    hits: number,
+    sniperLuck: boolean
 ): string => {
     const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
+    // Sniper 10 Luck: all bullets crit
+    const effectiveCritical = critical || sniperLuck;
 
     const calculateDamage = (baseDamage: number): number => {
         // Armor bypass: critical affects both DR and DT, penetrate only DT
         // Not cumulative - critical takes precedence
         let armorDR = baseDr;
         let armorDT = baseDt;
-        if (critical) {
+        if (effectiveCritical) {
             armorDR = baseDr * 0.2;
             armorDT = baseDt * 0.2;
         } else if (weapon.penetrate) {
@@ -313,7 +326,7 @@ const glovzFormula = (
         }
 
         // multiplyDamage: 6 for single crit, 4 for burst crit, 2 for non-critical
-        const multiplyDamage = critical ? (burst ? 4 : 6) : 2;
+        const multiplyDamage = effectiveCritical ? (burst ? 4 : 6) : 2;
         rawDamage = Math.floor((rawDamage * multiplyDamage) / 2);
 
         return Math.max(0, rawDamage);
@@ -350,14 +363,15 @@ const eccoFormula = (
     critical: boolean,
     burst: boolean,
     rangedBonus: number,
-    hits: number
+    hits: number,
+    sniperLuck: boolean
 ): string => {
     const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
 
     // EcCo config defaults from combat.ini
     const DT_MULT_NEGATIVE = 1.3; // dt_mult_negative for AP ammo
     // BURST_CRITICAL_FRACTION = 0.5 - Only 50% of burst bullets get crit bonus
-    // This is handled by returning both crit and non-crit damage for charts to calculate
+    // Sniper 10 Luck overrides this - all bullets crit
 
     const calculateDamage = (baseDamage: number, isCritical: boolean): number => {
         // Armor bypass: critical affects both DR and DT, penetrate only DT
@@ -396,6 +410,13 @@ const eccoFormula = (
         return Math.max(0, damage);
     };
 
+    // Sniper 10 Luck: all bullets crit
+    if (sniperLuck) {
+        const minDamage = calculateDamage(weapon.min_dmg, true) * hits;
+        const maxDamage = calculateDamage(weapon.max_dmg, true) * hits;
+        return `${formatFloat(minDamage)}-${formatFloat(maxDamage)}`;
+    }
+
     // For burst critical: 50% of bullets get crit
     if (burst && critical) {
         const critHits = Math.ceil(hits / 2);
@@ -429,15 +450,16 @@ export const getDamageWithFormula = (
     critical: boolean,
     burst: boolean,
     rangedBonus: number,
-    hits: number = 1
+    hits: number = 1,
+    sniperLuck: boolean = false
 ): string => {
     const formula = formulas[formulaName];
     let result: string;
     if (!formula) {
         console.warn(`Unknown formula: ${formulaName}, falling back to fallout2`);
-        result = fallout2Formula(weapon, ammo, armor, critical, burst, rangedBonus, hits);
+        result = fallout2Formula(weapon, ammo, armor, critical, burst, rangedBonus, hits, sniperLuck);
     } else {
-        result = formula(weapon, ammo, armor, critical, burst, rangedBonus, hits);
+        result = formula(weapon, ammo, armor, critical, burst, rangedBonus, hits, sniperLuck);
     }
     return result === '0-0' ? '0' : result;
 };

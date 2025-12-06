@@ -24,6 +24,7 @@ interface CaliberChartProps {
     pointBlank: boolean;
     critical: boolean;
     rangedBonus: number;
+    sniperLuck: boolean;
 }
 
 const CaliberChart = ({
@@ -39,6 +40,7 @@ const CaliberChart = ({
     pointBlank,
     critical,
     rangedBonus,
+    sniperLuck,
 }: CaliberChartProps) => {
     const vanillaMod = data.mods['vanilla'];
     if (!vanillaMod) return null;
@@ -75,7 +77,8 @@ const CaliberChart = ({
                     critical,
                     effectiveBurst,
                     rangedBonus,
-                    hitsMultiplier
+                    hitsMultiplier,
+                    sniperLuck
                 );
                 return parseDamageString(damageStr);
             });

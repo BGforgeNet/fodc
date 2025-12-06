@@ -28,6 +28,7 @@ interface CompareWeaponsChartProps {
     pointBlank: boolean;
     critical: boolean;
     rangedBonus: number;
+    sniperLuck: boolean;
 }
 
 const CompareWeaponsChart = ({
@@ -40,6 +41,7 @@ const CompareWeaponsChart = ({
     pointBlank,
     critical,
     rangedBonus,
+    sniperLuck,
 }: CompareWeaponsChartProps) => {
     const vanillaMod = data.mods['vanilla'];
     if (!vanillaMod) return null;
@@ -75,7 +77,8 @@ const CompareWeaponsChart = ({
                 critical,
                 effectiveBurst,
                 rangedBonus,
-                hitsMultiplier
+                hitsMultiplier,
+                sniperLuck
             );
             return parseDamageString(damageStr);
         });

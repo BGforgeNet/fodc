@@ -119,7 +119,7 @@ export const CriticalControls = ({ critical, onCriticalChange, idPrefix = '' }: 
         <div
             className="form-check mb-0"
             title={
-                'Assumptions:\n - Armor bypass.\n - On single shot - damage x3, on burst - x2.\n - For bursts, assume 5 Luck in mods where it matters.'
+                'Assumptions:\n - Armor bypass.\n - On single shot - damage x3, on burst - x2.\n - For bursts in FO2tweaks, assume 5 Luck.'
             }
         >
             <input
@@ -131,6 +131,29 @@ export const CriticalControls = ({ critical, onCriticalChange, idPrefix = '' }: 
             />
             <label className="form-check-label" htmlFor={`${idPrefix}criticalToggle`}>
                 Critical
+            </label>
+        </div>
+    </div>
+);
+
+interface SniperLuckCheckboxProps {
+    checked: boolean;
+    onChange: (value: boolean) => void;
+    idPrefix?: string;
+}
+
+export const SniperLuckCheckbox = ({ checked, onChange, idPrefix = '' }: SniperLuckCheckboxProps) => (
+    <div className="col-auto d-flex align-items-center">
+        <div className="form-check mb-0">
+            <input
+                type="checkbox"
+                className="form-check-input"
+                id={`${idPrefix}sniperLuckToggle`}
+                checked={checked}
+                onChange={() => onChange(!checked)}
+            />
+            <label className="form-check-label" htmlFor={`${idPrefix}sniperLuckToggle`}>
+                Sniper 10 Luck
             </label>
         </div>
     </div>

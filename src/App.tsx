@@ -11,6 +11,7 @@ import {
     FireModeSelector,
     PointBlankCheckbox,
     CriticalControls,
+    SniperLuckCheckbox,
     BonusRangedDamage,
 } from './components/ChartControls';
 import { modOrder, modConfigs } from './modConfig';
@@ -30,6 +31,7 @@ const App = () => {
     const [burst, setBurst] = useState(false);
     const [pointBlank, setPointBlank] = useState(false);
     const [criticalHit, setCriticalHit] = useState(false);
+    const [sniperLuck, setSniperLuck] = useState(false);
     const [bonusRangedDamage, setBonusRangedDamage] = useState(0);
 
     // Compare weapons state
@@ -301,6 +303,7 @@ const App = () => {
                             idPrefix="cm"
                         />
                         <CriticalControls critical={criticalHit} onCriticalChange={setCriticalHit} idPrefix="cm" />
+                        <SniperLuckCheckbox checked={sniperLuck} onChange={setSniperLuck} idPrefix="cm" />
                         <BonusRangedDamage value={bonusRangedDamage} onChange={setBonusRangedDamage} />
                     </div>
                     <DamageChart
@@ -314,6 +317,7 @@ const App = () => {
                         pointBlank={pointBlank}
                         critical={criticalHit}
                         rangedBonus={bonusRangedDamage * 2}
+                        sniperLuck={sniperLuck}
                     />
                 </>
             )}
@@ -388,6 +392,7 @@ const App = () => {
                             idPrefix="cal"
                         />
                         <CriticalControls critical={criticalHit} onCriticalChange={setCriticalHit} idPrefix="cal" />
+                        <SniperLuckCheckbox checked={sniperLuck} onChange={setSniperLuck} idPrefix="cal" />
                         <BonusRangedDamage value={bonusRangedDamage} onChange={setBonusRangedDamage} />
                     </div>
                     <div className="row mb-3 justify-content-center">
@@ -439,6 +444,7 @@ const App = () => {
                         pointBlank={pointBlank}
                         critical={criticalHit}
                         rangedBonus={bonusRangedDamage * 2}
+                        sniperLuck={sniperLuck}
                     />
                 </>
             )}
@@ -553,6 +559,7 @@ const App = () => {
                             idPrefix="cw"
                         />
                         <CriticalControls critical={criticalHit} onCriticalChange={setCriticalHit} idPrefix="cw" />
+                        <SniperLuckCheckbox checked={sniperLuck} onChange={setSniperLuck} idPrefix="cw" />
                         <BonusRangedDamage value={bonusRangedDamage} onChange={setBonusRangedDamage} />
                     </div>
                     <CompareWeaponsChart
@@ -565,6 +572,7 @@ const App = () => {
                         pointBlank={pointBlank}
                         critical={criticalHit}
                         rangedBonus={bonusRangedDamage * 2}
+                        sniperLuck={sniperLuck}
                     />
                 </>
             )}
