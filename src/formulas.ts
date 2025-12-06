@@ -140,14 +140,28 @@ const fo2tweaksFormula = (
     // For burst: all bullets roll for crit (5% chance, assume 5 Luck)
     // Critical checkbox only forces first bullet to crit
     if (burst) {
-        const critHits = critical
-            ? 1 + Math.round((hits - 1) * 0.05) // first bullet crits + 5% of rest
-            : Math.round(hits * 0.05); // all bullets roll 5%
-        const nonCritHits = hits - critHits;
-        const minDamage =
-            calculateDamage(weapon.min_dmg, true) * critHits + calculateDamage(weapon.min_dmg, false) * nonCritHits;
-        const maxDamage =
-            calculateDamage(weapon.max_dmg, true) * critHits + calculateDamage(weapon.max_dmg, false) * nonCritHits;
+        const critChance = 0.05;
+        const minCrit = calculateDamage(weapon.min_dmg, true);
+        const minNonCrit = calculateDamage(weapon.min_dmg, false);
+        const maxCrit = calculateDamage(weapon.max_dmg, true);
+        const maxNonCrit = calculateDamage(weapon.max_dmg, false);
+
+        // Weighted per-bullet damage based on crit chance
+        const minPerBullet = critChance * minCrit + (1 - critChance) * minNonCrit;
+        const maxPerBullet = critChance * maxCrit + (1 - critChance) * maxNonCrit;
+
+        let minDamage: number;
+        let maxDamage: number;
+        if (critical) {
+            // First bullet guaranteed crit, rest have 5% chance
+            minDamage = minCrit + (hits - 1) * minPerBullet;
+            maxDamage = maxCrit + (hits - 1) * maxPerBullet;
+        } else {
+            // All bullets have 5% crit chance
+            minDamage = hits * minPerBullet;
+            maxDamage = hits * maxPerBullet;
+        }
+
         return `${formatFloat(minDamage)}-${formatFloat(maxDamage)}`;
     }
 
