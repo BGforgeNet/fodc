@@ -48,7 +48,7 @@ const CompareWeaponsChart = ({
     const armorNames = armorList.map((a) => a.name);
     const traces: Data[] = [];
 
-    entries.forEach((entry) => {
+    entries.forEach((entry, colorIndex) => {
         const mod = data.mods[entry.modId];
         const config = modConfigs[entry.modId];
         if (!mod || !config) return;
@@ -88,7 +88,7 @@ const CompareWeaponsChart = ({
 
         const visible = hiddenItems.has(legendName) ? 'legendonly' : true;
 
-        traces.push(...createDamageTraces(armorNames, damageData, mode, legendName, visible));
+        traces.push(...createDamageTraces(armorNames, damageData, mode, legendName, visible, colorIndex));
     });
 
     const title = buildChartTitle('Compare Weapons', mode, burst, pointBlank, critical, rangedBonus);

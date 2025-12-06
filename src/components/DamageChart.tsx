@@ -46,6 +46,7 @@ const DamageChart = ({
     const armorNames = armorList.map((a) => a.name);
     const traces: Data[] = [];
 
+    let colorIndex = 0;
     modOrder.forEach((modId) => {
         const mod = data.mods[modId];
         const config = modConfigs[modId];
@@ -77,7 +78,8 @@ const DamageChart = ({
 
         const visible = hiddenMods.has(config.name) ? 'legendonly' : true;
 
-        traces.push(...createDamageTraces(armorNames, damageData, mode, config.name, visible));
+        traces.push(...createDamageTraces(armorNames, damageData, mode, config.name, visible, colorIndex));
+        colorIndex++;
     });
 
     const hasBurst = burst && vanillaWeapon.burst !== undefined;

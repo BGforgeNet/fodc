@@ -57,6 +57,7 @@ const CaliberChart = ({
     if (ammoList.length === 0) return null;
 
     // Create traces for each weapon+ammo combination
+    let colorIndex = 0;
     weapons.forEach((weapon) => {
         const weaponHasBurst = !!weapon.burst;
         const effectiveBurst = burst && weaponHasBurst;
@@ -85,7 +86,8 @@ const CaliberChart = ({
                     ? 'legendonly'
                     : true;
 
-            traces.push(...createDamageTraces(armorNames, damageData, mode, traceName, visible));
+            traces.push(...createDamageTraces(armorNames, damageData, mode, traceName, visible, colorIndex));
+            colorIndex++;
         });
     });
 
