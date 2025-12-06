@@ -1961,17 +1961,17 @@
           "name": "HN Needler cartridge",
           "caliber": "Needler",
           "ac_mod": -10,
-          "dr_mod": 25,
-          "dmg_mult": 5,
-          "dmg_div": 4
+          "dr_mod": 35,
+          "dmg_mult": 27,
+          "dmg_div": 20
         },
         {
           "name": "HN AP Needler cartridge",
           "caliber": "Needler",
           "ac_mod": -10,
-          "dr_mod": -25,
-          "dmg_mult": 3,
-          "dmg_div": 4
+          "dr_mod": -35,
+          "dmg_mult": 13,
+          "dmg_div": 20
         },
         {
           "name": "Microfusion cell",
