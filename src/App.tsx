@@ -58,7 +58,7 @@ const App = () => {
 
     // Compute effective ammo - use selected if compatible, otherwise first compatible
     const currentAmmoValid = compatibleAmmo.some((a) => a.name === selectedAmmo);
-    const effectiveAmmo = currentAmmoValid ? selectedAmmo : compatibleAmmo[0]?.name ?? '';
+    const effectiveAmmo = currentAmmoValid ? selectedAmmo : (compatibleAmmo[0]?.name ?? '');
 
     // Burst: force enabled for burst-only weapons, otherwise use burst state
     const hasBurst = weapon?.burst !== undefined;
@@ -153,7 +153,7 @@ const App = () => {
         setCalModId(newModId);
         const newMod = data?.mods[newModId];
         const newCalibers = [...new Set(newMod?.weapons.map((w) => w.caliber) ?? [])];
-        const effectiveCaliber = newCalibers.includes(calCaliber) ? calCaliber : newCalibers[0] ?? '';
+        const effectiveCaliber = newCalibers.includes(calCaliber) ? calCaliber : (newCalibers[0] ?? '');
         if (effectiveCaliber !== calCaliber) {
             setCalCaliber(effectiveCaliber);
         }
