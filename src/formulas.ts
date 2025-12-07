@@ -88,8 +88,8 @@ const fallout2Formula = (
 //   ammo_mult = (100 + dr_mod) / 100
 //   dr_mult = (100 - final_dr) / 100
 //   final_dr = target_dr * (100 + dr_mod) / 100, capped at 90
-// Critical: bypass armor (DR and DT to 20%), critical_mult = 2 (x4 total)
-// Penetrate: target_dt *= 0.2 (not cumulative with critical)
+// Critical: bypass armor (DR to 20%, DT to 50%), critical_mult = 2 (x4 total)
+// Penetrate: target_dr *= 0.2 (not cumulative with critical)
 // Both applied before dr_mod
 // Burst critical: 1 bullet at x4, rest at x2 (base)
 // Simplified (no ranged bonus, normal difficulty):
@@ -107,7 +107,7 @@ const fo2tweaksFormula = (
     const { dr: baseDr, dt: baseDt } = getArmorResistance(armor, weapon, ammo);
 
     const calculateDamage = (baseDamage: number, isCritical: boolean): number => {
-        // Armor bypass: critical affects both DR and DT, penetrate only DT
+        // Armor bypass: critical affects both DR and DT, penetrate only DR
         let targetDr = baseDr;
         let targetDt = baseDt;
         if (isCritical) {
