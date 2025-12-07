@@ -190,7 +190,7 @@ const App = () => {
                 <div className={`d-flex align-items-center gap-1 ${styles.poweredBy}`}>
                     <span className="text-muted">Powered by</span>
                     <a
-                        href="https://bgforge.net"
+                        href="https://forums.bgforge.net/viewtopic.php?p=2567"
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`d-flex align-items-center gap-1 ${styles.bgforgeLink}`}
