@@ -1,6 +1,27 @@
 import { Weapon, Ammo, Armor } from './types';
 import { formatFloat } from './chartUtils';
 
+// Integer division with round half to even (banker's rounding) for Glovz formula
+// Port of sfall's DivRound function
+const divRound = (dividend: number, divisor: number): number => {
+    if (dividend <= divisor) {
+        return dividend !== divisor && dividend * 2 <= divisor ? 0 : 1;
+    }
+
+    const quotient = Math.trunc(dividend / divisor);
+    const remainder = dividend % divisor;
+
+    if (remainder === 0) return quotient;
+
+    const remainder2 = remainder * 2;
+
+    // if equal then round to even
+    if (remainder2 > divisor || (remainder2 === divisor && quotient % 2 === 1)) {
+        return quotient + 1;
+    }
+    return quotient;
+};
+
 // Get armor DR/DT based on damage type
 const getArmorResistance = (armor: Armor, weapon: Weapon, ammo: Ammo): { dr: number; dt: number } => {
     // Determine damage type: ammo dmg_type overrides weapon dmg_type
@@ -300,14 +321,14 @@ const glovzFormula = (
         if (ammoDRM > 0) ammoDRM = -ammoDRM;
 
         // calcDT = armorDT / ammoY
-        const calcDT = armorDT > 0 ? Math.round(armorDT / ammoY) : armorDT;
+        const calcDT = armorDT > 0 ? divRound(armorDT, ammoY) : armorDT;
 
         // calcDR = (armorDR + ammoDRM) / ammoX
         // Normal difficulty (100), so no ±20 adjustment
         let calcDR = armorDR;
         if (armorDR > 0) {
             calcDR += ammoDRM;
-            calcDR = Math.round(calcDR / ammoX);
+            calcDR = divRound(calcDR, ammoX);
             if (calcDR >= 100) return 0;
         }
 
@@ -320,7 +341,7 @@ const glovzFormula = (
 
         // resistedDamage = calcDR * rawDamage / 100
         if (armorDR > 0) {
-            const resistedDamage = Math.round((calcDR * rawDamage) / 100);
+            const resistedDamage = divRound(calcDR * rawDamage, 100);
             rawDamage -= resistedDamage;
             if (rawDamage <= 0) return 0;
         }
