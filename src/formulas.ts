@@ -277,12 +277,13 @@ const yaamFormula = (
     return `${minDamage}-${maxDamage}`;
 };
 
-// Glovz Damage Fix v5 formula (from sfall DamageMod.cpp)
-// calcDT = armorDT / ammoY (ammo divisor)
-// calcDR = (armorDR + ammoDRM) / ammoX (ammo multiplier)
-// rawDamage = baseDamage - calcDT
-// resistedDamage = calcDR * rawDamage / 100
-// rawDamage = (rawDamage - resistedDamage) * multiplyDamage / 2
+// Glovz Damage Fix v5.1 formula (from sfall DamageMod.cpp)
+// Uses DivRound (round half to even) for intermediate calculations
+// calcDT = DivRound(armorDT, ammoY)
+// calcDR = DivRound(armorDR + ammoDRM, ammoX)
+// resistedDamage = DivRound(calcDR * rawDamage, 100)
+// Bonus damage to unarmored (DT<=0 && DR<=0): FMJ +15%, JHP +20%, AP +10%
+// v5.1 tweak: rawDamage += DivRound(rawDamage * multiplyDamage * 25, 100)
 // Critical: multiplyDamage = 6 instead of 2, armor bypass (DR and DT to 20%)
 // Penetrate: DT to 20% (not cumulative with critical)
 // Normal difficulty (100), no perks
@@ -313,10 +314,12 @@ const glovzFormula = (
         }
 
         // ammoY = divisor (dmg_div)
-        // ammoX = multiplier (dmg_mult / dmg_div)
+        // ammoX = multiplier (dmg_mult)
         // ammoDRM = dr_mod (if positive, flip to negative)
-        const ammoY = ammo.dmg_div;
-        const ammoX = ammo.dmg_mult / ammo.dmg_div;
+        let ammoY = ammo.dmg_div;
+        if (ammoY <= 0) ammoY = 1;
+        let ammoX = ammo.dmg_mult;
+        if (ammoX <= 0) ammoX = 1;
         let ammoDRM = ammo.dr_mod;
         if (ammoDRM > 0) ammoDRM = -ammoDRM;
 
@@ -346,9 +349,24 @@ const glovzFormula = (
             if (rawDamage <= 0) return 0;
         }
 
+        // Bonus damage to unarmored target
+        if (armorDT <= 0 && armorDR <= 0) {
+            if (ammoX > 1 && ammoY > 1) {
+                // FMJ/high-end: +15%
+                rawDamage += divRound(rawDamage * 15, 100);
+            } else if (ammoX > 1) {
+                // JHP: +20%
+                rawDamage += divRound(rawDamage * 20, 100);
+            } else if (ammoY > 1) {
+                // AP: +10%
+                rawDamage += divRound(rawDamage * 10, 100);
+            }
+        }
+
         // multiplyDamage: 6 for single crit, 4 for burst crit, 2 for non-critical
+        // v5.1 tweak: rawDamage += DivRound(rawDamage * multiplyDamage * 25, 100)
         const multiplyDamage = effectiveCritical ? (burst ? 4 : 6) : 2;
-        rawDamage = Math.floor((rawDamage * multiplyDamage) / 2);
+        rawDamage += divRound(rawDamage * multiplyDamage * 25, 100);
 
         return Math.max(0, rawDamage);
     };

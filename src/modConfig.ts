@@ -32,8 +32,8 @@ export const modConfigs: Record<string, ModConfig> = {
     },
     glovz: {
         id: 'glovz',
-        name: 'Glovz',
-        description: "Glovz's Damage Formula",
+        name: 'Glovz v5.1',
+        description: "Glovz's Damage Fix with Multiplier tweak",
         formula: 'glovz',
     },
 };
